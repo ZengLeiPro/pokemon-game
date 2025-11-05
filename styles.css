@@ -1,0 +1,455 @@
+/* ========== 全局样式 ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Microsoft YaHei', Arial, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* ========== 游戏容器 ========== */
+#game-container {
+  width: 100%;
+  max-width: 600px;
+  background: #f5f5dc;  /* 米白色背景 */
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+/* ========== 标题栏 ========== */
+#game-header {
+  background: #2c3e50;
+  color: #ecf0f1;
+  padding: 20px;
+  text-align: center;
+}
+
+#game-header h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* ========== 主内容区 ========== */
+#game-main {
+  min-height: 500px;
+  padding: 20px;
+}
+
+/* 界面切换（默认隐藏） */
+.screen {
+  display: none;
+}
+
+.screen.active {
+  display: block;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ========== 初始选择界面 ========== */
+#starter-selection h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+.starter-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+.starter-btn {
+  background: white;
+  border: 3px solid #3498db;
+  border-radius: 15px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.starter-btn:hover {
+  background: #ecf0f1;
+  border-color: #2980b9;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.starter-btn:active {
+  transform: translateY(0);
+}
+
+.starter-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.starter-type {
+  font-size: 14px;
+  color: #7f8c8d;
+  margin-bottom: 12px;
+}
+
+.starter-moves {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.starter-moves span {
+  font-size: 12px;
+  color: #34495e;
+  background: #ecf0f1;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/* ========== 主界面 ========== */
+#player-status {
+  background: white;
+  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pokemon-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+/* HP条 */
+.hp-bar-container {
+  margin-bottom: 10px;
+}
+
+.hp-bar {
+  width: 100%;
+  height: 20px;
+  background: #ecf0f1;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.hp-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #e74c3c 0%, #e67e22 100%);
+  transition: width 0.5s ease;
+}
+
+.hp-text {
+  font-size: 14px;
+  color: #7f8c8d;
+  text-align: right;
+}
+
+/* 经验条 */
+.exp-bar-container {
+  margin-top: 10px;
+}
+
+.exp-bar {
+  width: 100%;
+  height: 12px;
+  background: #ecf0f1;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.exp-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f39c12 0%, #f1c40f 100%);
+  transition: width 0.5s ease;
+}
+
+.exp-text {
+  font-size: 12px;
+  color: #7f8c8d;
+  text-align: right;
+}
+
+/* 文字显示区 */
+#message-box {
+  background: white;
+  border: 3px solid #34495e;
+  border-radius: 10px;
+  padding: 20px;
+  min-height: 120px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #2c3e50;
+}
+
+/* 功能按钮 */
+#action-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.action-btn {
+  padding: 18px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.action-btn.primary {
+  background: #3498db;
+  color: white;
+}
+
+.action-btn.primary:hover {
+  background: #2980b9;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(52, 152, 219, 0.3);
+}
+
+.action-btn.secondary {
+  background: #95a5a6;
+  color: white;
+}
+
+.action-btn.secondary:hover {
+  background: #7f8c8d;
+  transform: translateY(-3px);
+}
+
+/* ========== 战斗界面 ========== */
+.status-box {
+  background: white;
+  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.status-label {
+  font-size: 14px;
+  color: #7f8c8d;
+  margin-bottom: 5px;
+}
+
+/* 战斗日志 */
+#battle-log {
+  background: white;
+  border: 3px solid #34495e;
+  border-radius: 10px;
+  padding: 15px;
+  min-height: 150px;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #2c3e50;
+}
+
+.log-entry {
+  margin-bottom: 10px;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.log-entry.critical {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.log-entry.success {
+  color: #27ae60;
+  font-weight: bold;
+}
+
+/* 技能按钮 */
+#move-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.move-btn {
+  padding: 15px;
+  border: 2px solid #34495e;
+  border-radius: 10px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: left;
+}
+
+.move-btn:hover {
+  background: #ecf0f1;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.move-btn:active {
+  transform: translateY(0);
+}
+
+.move-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.move-type {
+  font-size: 12px;
+  color: white;
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+/* 属性颜色 */
+.type-火 { background: #f08030; }
+.type-水 { background: #6890f0; }
+.type-草 { background: #78c850; }
+.type-电 { background: #f8d030; color: #2c3e50; }
+.type-普通 { background: #a8a878; }
+.type-毒 { background: #a040a0; }
+.type-飞行 { background: #a890f0; }
+.type-虫 { background: #a8b820; }
+.type-地面 { background: #e0c068; }
+.type-岩石 { background: #b8a038; }
+
+.move-power {
+  font-size: 12px;
+  color: #7f8c8d;
+}
+
+/* ========== 页脚 ========== */
+#game-footer {
+  background: #34495e;
+  color: #ecf0f1;
+  padding: 15px;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* ========== 响应式设计（手机适配） ========== */
+@media (max-width: 600px) {
+  #game-header h1 {
+    font-size: 20px;
+  }
+
+  #message-box {
+    font-size: 18px;  /* 手机端字号≥18px */
+    padding: 15px;
+  }
+
+  .action-btn {
+    padding: 20px;    /* 手机端按钮高度≥65px */
+    font-size: 16px;
+  }
+
+  .move-btn {
+    padding: 18px;    /* 技能按钮高度≥65px */
+  }
+
+  .starter-btn {
+    padding: 25px;
+  }
+
+  #battle-log {
+    font-size: 16px;
+  }
+}
+
+/* ========== 禁用按钮样式 ========== */
+.action-btn:disabled,
+.move-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.action-btn:disabled:hover,
+.move-btn:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* HP条减少动画 */
+.hp-fill.damage {
+  animation: hpShake 0.5s ease;
+}
+
+@keyframes hpShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* 升级动画 */
+@keyframes levelUp {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+    color: #f39c12;
+  }
+}
+
+.level-up-animation {
+  animation: levelUp 0.6s ease;
+}
+
+/* 进化动画 */
+@keyframes evolve {
+  0% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.5) rotate(180deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+.evolution-animation {
+  animation: evolve 1.5s ease;
+}
