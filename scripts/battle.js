@@ -26,29 +26,68 @@ class Battle {
   }
 
   // ========== 执行回合 ==========
-  executeTurn(playerMove, aiMove) {
+  async executeTurn(playerMove, aiMove) {
     this.turn++;
     UI.addBattleLog(`\n--- 第 ${this.turn} 回合 ---`);
 
+    // 等待一小段时间
+    await this.delay(300);
+
     // 决定行动顺序（简化版：玩家先攻）
     // 先攻方行动
-    this.executeMove(this.playerPokemon, this.wildPokemon, playerMove, true);
+    await this.executeMoveWithDelay(this.playerPokemon, this.wildPokemon, playerMove, true);
 
     // 检查战斗是否结束
     if (this.checkBattleEnd()) {
+      await this.delay(800);
       return this.endBattle();
     }
 
+    // 等待一段时间再让对方行动
+    await this.delay(600);
+
     // 后攻方行动
-    this.executeMove(this.wildPokemon, this.playerPokemon, aiMove, false);
+    await this.executeMoveWithDelay(this.wildPokemon, this.playerPokemon, aiMove, false);
 
     // 再次检查战斗是否结束
     if (this.checkBattleEnd()) {
+      await this.delay(800);
       return this.endBattle();
     }
 
     // 更新UI
+    await this.delay(400);
     UI.updateBattleStatus(this.playerPokemon, this.wildPokemon);
+  }
+
+  // ========== 延迟函数 ==========
+  delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  // ========== 带延迟的技能执行 ==========
+  async executeMoveWithDelay(attacker, defender, move, isPlayer) {
+    const attackerName = isPlayer ?
+      `你的 ${attacker.name}` : `野生的 ${attacker.name}`;
+
+    UI.addBattleLog(`${attackerName} 使用了 ${move.name}！`);
+
+    // 等待技能动画时间
+    await this.delay(500);
+
+    if (move.category === 'attack') {
+      // 攻击技能
+      this.executeAttackMove(attacker, defender, move, isPlayer);
+      // 等待伤害显示
+      await this.delay(400);
+      // 更新HP显示
+      UI.updateBattleStatus(this.playerPokemon, this.wildPokemon);
+      await this.delay(300);
+    } else if (move.category === 'support') {
+      // 辅助技能
+      this.executeSupportMove(attacker, defender, move, isPlayer);
+      await this.delay(400);
+    }
   }
 
   // ========== 执行单个技能 ==========

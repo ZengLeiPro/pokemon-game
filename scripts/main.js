@@ -110,7 +110,7 @@ function onStartBattle() {
 }
 
 // ========== 玩家选择技能 ==========
-function onPlayerMoveSelected(playerMove) {
+async function onPlayerMoveSelected(playerMove) {
   const battle = gameState.battle.instance;
 
   if (!battle || !battle.isActive) {
@@ -126,15 +126,13 @@ function onPlayerMoveSelected(playerMove) {
   const aiMove = SimpleAI.chooseMove(gameState.battle.wildPokemon);
   console.log(`AI选择了技能: ${aiMove.name}`);
 
-  // 执行回合
-  battle.executeTurn(playerMove, aiMove);
+  // 执行回合（等待所有动画和延迟完成）
+  await battle.executeTurn(playerMove, aiMove);
 
   // 如果战斗还没结束，重新启用按钮
-  setTimeout(() => {
-    if (battle.isActive) {
-      UI.setMoveButtonsEnabled(true);
-    }
-  }, 500);
+  if (battle.isActive) {
+    UI.setMoveButtonsEnabled(true);
+  }
 }
 
 // ========== 调试功能（可选） ==========
