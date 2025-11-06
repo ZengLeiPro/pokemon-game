@@ -61,19 +61,27 @@ class Pokemon {
   // ========== 获得经验 ==========
   gainExp(amount) {
     this.exp += amount;
-    let leveledUp = false;
+    const levelUpInfo = [];
 
     // 检查是否升级
     while (this.exp >= EXP_TABLE[this.level + 1] && this.level < 50) {
-      this.levelUp();
-      leveledUp = true;
+      const statGains = this.levelUp();
+      levelUpInfo.push({
+        level: this.level,
+        statGains: statGains
+      });
     }
 
-    return leveledUp;
+    return levelUpInfo;
   }
 
   // ========== 升级 ==========
   levelUp() {
+    // 记录升级前的属性
+    const oldMaxHP = this.maxHP;
+    const oldAttack = this.attack;
+    const oldDefense = this.defense;
+
     this.level++;
 
     // 获取成长值
@@ -91,11 +99,23 @@ class Pokemon {
     // 重新计算下一级所需经验
     this.expToNext = this.calculateExpToNext();
 
+    // 返回属性提升信息（用于显示）
+    const statGains = {
+      hp: this.maxHP - oldMaxHP,
+      attack: this.attack - oldAttack,
+      defense: this.defense - oldDefense,
+      newMaxHP: this.maxHP,
+      newAttack: this.attack,
+      newDefense: this.defense
+    };
+
     // 检查是否学习新技能
     this.checkLearnMove();
 
     // 检查是否进化
     this.checkEvolution();
+
+    return statGains;
   }
 
   // ========== 检查学习新技能 ==========
