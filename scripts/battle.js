@@ -236,12 +236,20 @@ class Battle {
       UI.addBattleLog(`获得 ${expGained} 点经验！`, 'success');
 
       // 加经验（可能会升级）
-      const leveledUp = this.playerPokemon.gainExp(expGained);
+      const levelUpInfo = this.playerPokemon.gainExp(expGained);
 
-      if (leveledUp) {
-        UI.addBattleLog(`\n${this.playerPokemon.name} 升到了 Lv.${this.playerPokemon.level}！`, 'success');
-        const growth = POKEMON_DATA[this.playerPokemon.speciesId].statsGrowth;
-        UI.addBattleLog(`HP+${growth.hp}，攻击+${growth.attack}，防御+${growth.defense}！`);
+      // 显示每次升级的详细信息
+      if (levelUpInfo.length > 0) {
+        for (let info of levelUpInfo) {
+          UI.addBattleLog(`\n${this.playerPokemon.name} 升到了 Lv.${info.level}！`, 'success');
+          const gains = info.statGains;
+          UI.addBattleLog(
+            `HP +${gains.hp} (${gains.newMaxHP})，` +
+            `攻击 +${gains.attack} (${gains.newAttack})，` +
+            `防御 +${gains.defense} (${gains.newDefense})`,
+            'success'
+          );
+        }
       }
 
       // 战后自动回血
