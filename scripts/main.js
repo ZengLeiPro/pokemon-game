@@ -13,6 +13,7 @@ window.addEventListener('DOMContentLoaded', () => {
     UI.showScreen('main-screen');
     UI.updatePlayerStatus(gameState.player.pokemon);
     UI.updateStats(gameState.player.battlesWon, gameState.player.totalBattles);
+    UI.updateMoney(gameState.player.money);
     UI.showMessage(`欢迎回来！继续你的冒险吧！`);
   } else {
     // 没有存档，显示初始选择界面
@@ -54,14 +55,19 @@ function onStarterSelected(pokemonId) {
   UI.showScreen('main-screen');
   UI.updatePlayerStatus(gameState.player.pokemon);
   UI.updateStats(0, 0);
+  UI.updateMoney(gameState.player.money);
   UI.showMessage(`你选择了 ${gameState.player.pokemon.name}！开始你的冒险吧！`);
 }
 
 // ========== 绑定主界面按钮 ==========
 function bindMainScreenButtons() {
-  // 开始战斗按钮
-  const battleBtn = document.getElementById('battle-btn');
-  battleBtn.addEventListener('click', onStartBattle);
+  // 野生宝可梦对战按钮
+  const wildBattleBtn = document.getElementById('wild-battle-btn');
+  wildBattleBtn.addEventListener('click', () => onStartBattle('wild'));
+
+  // 训练家对战按钮
+  const trainerBattleBtn = document.getElementById('trainer-battle-btn');
+  trainerBattleBtn.addEventListener('click', () => onStartBattle('trainer'));
 
   // 宝可梦中心按钮
   const centerBtn = document.getElementById('center-btn');
@@ -76,26 +82,40 @@ function bindMainScreenButtons() {
 }
 
 // ========== 开始战斗 ==========
-function onStartBattle() {
+function onStartBattle(battleType = 'wild') {
   if (!gameState.player.pokemon) {
     UI.showMessage('请先选择初始宝可梦！');
     return;
   }
 
-  console.log('开始战斗...');
+  console.log(`开始${battleType === 'trainer' ? '训练家' : '野生宝可梦'}战斗...`);
 
-  // 生成野生宝可梦
-  const wildPokemon = generateWildPokemon(gameState.player.pokemon.level);
-  console.log('野生宝可梦:', wildPokemon);
+  let opponent;
+  let battle;
 
-  // 创建战斗实例
-  const battle = new Battle(gameState.player.pokemon, wildPokemon);
+  if (battleType === 'trainer') {
+    // 生成训练家
+    opponent = generateTrainer(gameState.player.pokemon.level);
+    console.log('训练家:', opponent.name, opponent.trainerClass);
+    console.log('训练家的宝可梦:', opponent.pokemon);
+
+    // 创建战斗实例
+    battle = new Battle(gameState.player.pokemon, opponent, 'trainer');
+  } else {
+    // 生成野生宝可梦
+    opponent = generateWildPokemon(gameState.player.pokemon.level);
+    console.log('野生宝可梦:', opponent);
+
+    // 创建战斗实例
+    battle = new Battle(gameState.player.pokemon, opponent, 'wild');
+  }
 
   // 保存到游戏状态
   gameState.battle = {
     isActive: true,
     instance: battle,
-    wildPokemon: wildPokemon
+    opponent: opponent,
+    battleType: battleType
   };
 
   // 切换到战斗界面
@@ -122,8 +142,12 @@ async function onPlayerMoveSelected(playerMove) {
   // 禁用技能按钮（防止重复点击）
   UI.setMoveButtonsEnabled(false);
 
-  // AI选择技能
-  const aiMove = SimpleAI.chooseMove(gameState.battle.wildPokemon);
+  // AI选择技能（获取对手的宝可梦）
+  const opponentPokemon = gameState.battle.battleType === 'trainer'
+    ? gameState.battle.opponent.pokemon
+    : gameState.battle.opponent;
+
+  const aiMove = SimpleAI.chooseMove(opponentPokemon);
   console.log(`AI选择了技能: ${aiMove.name}`);
 
   // 执行回合（等待所有动画和延迟完成）

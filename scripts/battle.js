@@ -1,11 +1,19 @@
 // ========== Battle类 ==========
 class Battle {
-  constructor(playerPokemon, wildPokemon) {
+  constructor(playerPokemon, opponent, battleType = 'wild') {
     this.playerPokemon = playerPokemon;
-    this.wildPokemon = wildPokemon;
+    this.opponent = opponent;  // 可以是野生宝可梦或训练家
+    this.battleType = battleType;  // 'wild' 或 'trainer'
     this.turn = 0;
     this.isActive = true;
     this.winner = null;
+
+    // 获取对手的宝可梦
+    if (battleType === 'trainer') {
+      this.opponentPokemon = opponent.pokemon;
+    } else {
+      this.opponentPokemon = opponent;
+    }
   }
 
   // ========== 开始战斗 ==========
@@ -16,13 +24,22 @@ class Battle {
 
     // 重置能力等级变化（战斗开始时清零）
     this.playerPokemon.statModifiers = { attack: 0, defense: 0 };
-    this.wildPokemon.statModifiers = { attack: 0, defense: 0 };
+    this.opponentPokemon.statModifiers = { attack: 0, defense: 0 };
 
     // 显示遭遇文字
     UI.clearBattleLog();
-    UI.addBattleLog(`野生的 ${this.wildPokemon.name} Lv.${this.wildPokemon.level} 出现了！`);
+
+    if (this.battleType === 'trainer') {
+      // 训练家对战
+      UI.addBattleLog(this.opponent.getIntroduction());
+      UI.addBattleLog(`${this.opponent.name} 派出了 ${this.opponentPokemon.name} Lv.${this.opponentPokemon.level}！`);
+    } else {
+      // 野生宝可梦对战
+      UI.addBattleLog(`野生的 ${this.opponentPokemon.name} Lv.${this.opponentPokemon.level} 出现了！`);
+    }
+
     UI.addBattleLog(`你的 ${this.playerPokemon.name} Lv.${this.playerPokemon.level} 准备战斗！`);
-    UI.updateBattleStatus(this.playerPokemon, this.wildPokemon);
+    UI.updateBattleStatus(this.playerPokemon, this.opponentPokemon, this.battleType, this.opponent);
   }
 
   // ========== 执行回合 ==========
@@ -38,44 +55,44 @@ class Battle {
     let secondAttacker, secondDefender, secondMove, secondIsPlayer;
 
     // 比较速度
-    if (this.playerPokemon.speed > this.wildPokemon.speed) {
+    if (this.playerPokemon.speed > this.opponentPokemon.speed) {
       // 玩家速度更快，玩家先攻
       firstAttacker = this.playerPokemon;
-      firstDefender = this.wildPokemon;
+      firstDefender = this.opponentPokemon;
       firstMove = playerMove;
       firstIsPlayer = true;
-      secondAttacker = this.wildPokemon;
+      secondAttacker = this.opponentPokemon;
       secondDefender = this.playerPokemon;
       secondMove = aiMove;
       secondIsPlayer = false;
-    } else if (this.playerPokemon.speed < this.wildPokemon.speed) {
-      // 野生宝可梦速度更快，野生宝可梦先攻
-      firstAttacker = this.wildPokemon;
+    } else if (this.playerPokemon.speed < this.opponentPokemon.speed) {
+      // 对手速度更快，对手先攻
+      firstAttacker = this.opponentPokemon;
       firstDefender = this.playerPokemon;
       firstMove = aiMove;
       firstIsPlayer = false;
       secondAttacker = this.playerPokemon;
-      secondDefender = this.wildPokemon;
+      secondDefender = this.opponentPokemon;
       secondMove = playerMove;
       secondIsPlayer = true;
     } else {
       // 速度相同，随机决定
       if (Math.random() < 0.5) {
         firstAttacker = this.playerPokemon;
-        firstDefender = this.wildPokemon;
+        firstDefender = this.opponentPokemon;
         firstMove = playerMove;
         firstIsPlayer = true;
-        secondAttacker = this.wildPokemon;
+        secondAttacker = this.opponentPokemon;
         secondDefender = this.playerPokemon;
         secondMove = aiMove;
         secondIsPlayer = false;
       } else {
-        firstAttacker = this.wildPokemon;
+        firstAttacker = this.opponentPokemon;
         firstDefender = this.playerPokemon;
         firstMove = aiMove;
         firstIsPlayer = false;
         secondAttacker = this.playerPokemon;
-        secondDefender = this.wildPokemon;
+        secondDefender = this.opponentPokemon;
         secondMove = playerMove;
         secondIsPlayer = true;
       }
@@ -104,7 +121,7 @@ class Battle {
 
     // 更新UI
     await this.delay(400);
-    UI.updateBattleStatus(this.playerPokemon, this.wildPokemon);
+    UI.updateBattleStatus(this.playerPokemon, this.opponentPokemon, this.battleType, this.opponent);
   }
 
   // ========== 延迟函数 ==========
@@ -114,8 +131,17 @@ class Battle {
 
   // ========== 带延迟的技能执行 ==========
   async executeMoveWithDelay(attacker, defender, move, isPlayer) {
-    const attackerName = isPlayer ?
-      `你的 ${attacker.name}` : `野生的 ${attacker.name}`;
+    let attackerName;
+    if (isPlayer) {
+      attackerName = `你的 ${attacker.name}`;
+    } else {
+      // 根据战斗类型显示不同的名称
+      if (this.battleType === 'trainer') {
+        attackerName = `${this.opponent.name}的 ${attacker.name}`;
+      } else {
+        attackerName = `野生的 ${attacker.name}`;
+      }
+    }
 
     UI.addBattleLog(`${attackerName} 使用了 ${move.name}！`);
 
@@ -128,7 +154,7 @@ class Battle {
       // 等待伤害显示
       await this.delay(400);
       // 更新HP显示
-      UI.updateBattleStatus(this.playerPokemon, this.wildPokemon);
+      UI.updateBattleStatus(this.playerPokemon, this.opponentPokemon, this.battleType, this.opponent);
       await this.delay(300);
     } else if (move.category === 'support') {
       // 辅助技能
@@ -139,8 +165,16 @@ class Battle {
 
   // ========== 执行单个技能 ==========
   executeMove(attacker, defender, move, isPlayer) {
-    const attackerName = isPlayer ?
-      `你的 ${attacker.name}` : `野生的 ${attacker.name}`;
+    let attackerName;
+    if (isPlayer) {
+      attackerName = `你的 ${attacker.name}`;
+    } else {
+      if (this.battleType === 'trainer') {
+        attackerName = `${this.opponent.name}的 ${attacker.name}`;
+      } else {
+        attackerName = `野生的 ${attacker.name}`;
+      }
+    }
 
     UI.addBattleLog(`${attackerName} 使用了 ${move.name}！`);
 
@@ -188,8 +222,18 @@ class Battle {
     }
 
     // 7. 显示剩余HP
-    const defenderName = isPlayer ?
-      `野生的 ${defender.name}` : `你的 ${defender.name}`;
+    let defenderName;
+    if (isPlayer) {
+      // 玩家攻击，防守方是对手
+      if (this.battleType === 'trainer') {
+        defenderName = `${this.opponent.name}的 ${defender.name}`;
+      } else {
+        defenderName = `野生的 ${defender.name}`;
+      }
+    } else {
+      // 对手攻击，防守方是玩家
+      defenderName = `你的 ${defender.name}`;
+    }
     UI.addBattleLog(`${defenderName} 剩余 HP: ${defender.currentHP}/${defender.maxHP}`);
   }
 
@@ -257,13 +301,13 @@ class Battle {
 
   // ========== 检查战斗是否结束 ==========
   checkBattleEnd() {
-    if (this.wildPokemon.currentHP <= 0) {
+    if (this.opponentPokemon.currentHP <= 0) {
       this.winner = 'player';
       return true;
     }
 
     if (this.playerPokemon.currentHP <= 0) {
-      this.winner = 'wild';
+      this.winner = 'opponent';
       return true;
     }
 
@@ -275,11 +319,29 @@ class Battle {
     this.isActive = false;
 
     if (this.winner === 'player') {
-      UI.addBattleLog(`\n野生的 ${this.wildPokemon.name} 倒下了！`, 'success');
-      UI.addBattleLog(`战斗胜利！`, 'success');
+      // 玩家胜利
+      if (this.battleType === 'trainer') {
+        // 训练家对战胜利
+        UI.addBattleLog(`\n${this.opponent.name}的 ${this.opponentPokemon.name} 倒下了！`, 'success');
+        UI.addBattleLog(this.opponent.getDefeatMessage());
+        UI.addBattleLog(`战斗胜利！`, 'success');
+
+        // 标记训练家为已击败
+        this.opponent.markDefeated();
+
+        // 获得奖金
+        const prizeMoney = this.opponent.prizeMoney;
+        addMoney(prizeMoney);
+        UI.addBattleLog(`获得了 ${prizeMoney} 金币！`, 'critical');
+        gameState.player.trainerDefeats++;
+      } else {
+        // 野生宝可梦对战胜利
+        UI.addBattleLog(`\n野生的 ${this.opponentPokemon.name} 倒下了！`, 'success');
+        UI.addBattleLog(`战斗胜利！`, 'success');
+      }
 
       // 计算经验值
-      const expGained = this.wildPokemon.level * 5;
+      const expGained = this.opponentPokemon.level * 5;
       UI.addBattleLog(`获得 ${expGained} 点经验！`, 'success');
 
       // 加经验（可能会升级）
@@ -288,7 +350,7 @@ class Battle {
       if (leveledUp) {
         UI.addBattleLog(`\n${this.playerPokemon.name} 升到了 Lv.${this.playerPokemon.level}！`, 'success');
         const growth = POKEMON_DATA[this.playerPokemon.speciesId].statsGrowth;
-        UI.addBattleLog(`HP+${growth.hp}，攻击+${growth.attack}，防御+${growth.defense}！`);
+        UI.addBattleLog(`HP+${growth.hp}，攻击+${growth.attack}，防御+${growth.defense}，速度+${growth.speed}！`);
       }
 
       // 战后自动回血
@@ -300,7 +362,13 @@ class Battle {
       gameState.player.totalBattles++;
 
     } else {
+      // 玩家失败
       UI.addBattleLog(`\n你的 ${this.playerPokemon.name} 倒下了！`, 'critical');
+
+      if (this.battleType === 'trainer') {
+        UI.addBattleLog(`${this.opponent.name}: 再继续努力吧！`);
+      }
+
       UI.addBattleLog(`战斗失败！`);
 
       // 失败也回血
@@ -317,11 +385,16 @@ class Battle {
     // 更新UI
     UI.updatePlayerStatus(this.playerPokemon);
     UI.updateStats(gameState.player.battlesWon, gameState.player.totalBattles);
+    UI.updateMoney(gameState.player.money);
 
     // 3秒后返回主界面
     setTimeout(() => {
       UI.showScreen('main-screen');
-      UI.showMessage('准备开始下一场战斗！');
+      if (this.winner === 'player') {
+        UI.showMessage('准备开始下一场战斗！');
+      } else {
+        UI.showMessage('继续加油！再来挑战吧！');
+      }
       gameState.battle.isActive = false;
     }, 3000);
 

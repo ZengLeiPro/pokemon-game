@@ -75,6 +75,11 @@
               <span id="player-current-exp">50</span>/<span id="player-exp-next">100</span> EXP
             </div>
           </div>
+          <!-- 金币显示 -->
+          <div class="money-display">
+            <span class="money-label">💰 金币：</span>
+            <span id="player-money">3000</span>
+          </div>
         </div>
 
         <!-- 文字显示区 -->
@@ -84,26 +89,27 @@
 
         <!-- 功能按钮区 -->
         <div id="action-buttons">
-          <button id="battle-btn" class="action-btn primary">开始战斗</button>
+          <button id="wild-battle-btn" class="action-btn primary">野生宝可梦对战</button>
+          <button id="trainer-battle-btn" class="action-btn primary">训练家对战</button>
           <button id="center-btn" class="action-btn secondary">宝可梦中心</button>
         </div>
       </div>
 
       <!-- 战斗界面（点击"开始战斗"后显示） -->
       <div id="battle-screen" class="screen">
-        <!-- 野生宝可梦状态 -->
-        <div id="wild-status" class="status-box">
+        <!-- 对手宝可梦状态 -->
+        <div id="opponent-status" class="status-box">
           <div class="status-label">野生的</div>
           <div class="pokemon-info">
-            <span id="wild-pokemon-name">绿毛虫</span>
-            <span id="wild-pokemon-level">Lv.5</span>
+            <span id="opponent-pokemon-name">绿毛虫</span>
+            <span id="opponent-pokemon-level">Lv.5</span>
           </div>
           <div class="hp-bar-container">
             <div class="hp-bar">
-              <div id="wild-hp-fill" class="hp-fill" style="width: 80%"></div>
+              <div id="opponent-hp-fill" class="hp-fill" style="width: 80%"></div>
             </div>
             <div class="hp-text">
-              <span id="wild-current-hp">48</span>/<span id="wild-max-hp">60</span> HP
+              <span id="opponent-current-hp">48</span>/<span id="opponent-max-hp">60</span> HP
             </div>
           </div>
         </div>
@@ -149,6 +155,7 @@
   <script src="scripts/data.js"></script>
   <script src="scripts/move.js"></script>
   <script src="scripts/pokemon.js"></script>
+  <script src="scripts/npc.js"></script>
   <script src="scripts/battle.js"></script>
   <script src="scripts/gameState.js"></script>
   <script src="scripts/ui.js"></script>

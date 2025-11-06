@@ -55,7 +55,7 @@ const UI = {
   },
 
   // ========== 更新战斗界面的宝可梦状态 ==========
-  updateBattleStatus(playerPokemon, wildPokemon) {
+  updateBattleStatus(playerPokemon, opponentPokemon, battleType = 'wild', trainer = null) {
     // 玩家宝可梦
     document.getElementById('battle-player-name').textContent = playerPokemon.name;
     document.getElementById('battle-player-level').textContent = `Lv.${playerPokemon.level}`;
@@ -65,14 +65,30 @@ const UI = {
     const playerHpPercent = (playerPokemon.currentHP / playerPokemon.maxHP) * 100;
     document.getElementById('battle-player-hp-fill').style.width = `${playerHpPercent}%`;
 
-    // 野生宝可梦
-    document.getElementById('wild-pokemon-name').textContent = wildPokemon.name;
-    document.getElementById('wild-pokemon-level').textContent = `Lv.${wildPokemon.level}`;
-    document.getElementById('wild-current-hp').textContent = wildPokemon.currentHP;
-    document.getElementById('wild-max-hp').textContent = wildPokemon.maxHP;
+    // 对手宝可梦
+    document.getElementById('opponent-pokemon-name').textContent = opponentPokemon.name;
+    document.getElementById('opponent-pokemon-level').textContent = `Lv.${opponentPokemon.level}`;
+    document.getElementById('opponent-current-hp').textContent = opponentPokemon.currentHP;
+    document.getElementById('opponent-max-hp').textContent = opponentPokemon.maxHP;
 
-    const wildHpPercent = (wildPokemon.currentHP / wildPokemon.maxHP) * 100;
-    document.getElementById('wild-hp-fill').style.width = `${wildHpPercent}%`;
+    const opponentHpPercent = (opponentPokemon.currentHP / opponentPokemon.maxHP) * 100;
+    document.getElementById('opponent-hp-fill').style.width = `${opponentHpPercent}%`;
+
+    // 更新对手标签
+    const statusLabel = document.querySelector('#opponent-status .status-label');
+    if (battleType === 'trainer' && trainer) {
+      statusLabel.textContent = `${trainer.trainerClass} ${trainer.name}的`;
+    } else {
+      statusLabel.textContent = '野生的';
+    }
+  },
+
+  // ========== 更新金币显示 ==========
+  updateMoney(money) {
+    const moneyElement = document.getElementById('player-money');
+    if (moneyElement) {
+      moneyElement.textContent = money;
+    }
   },
 
   // ========== 生成技能按钮 ==========
