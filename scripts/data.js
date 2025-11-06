@@ -403,12 +403,14 @@ const POKEMON_DATA = {
     "baseStats": {
       "hp": 39,
       "attack": 52,
-      "defense": 43
+      "defense": 43,
+      "speed": 65
     },
     "statsGrowth": {
       "hp": 8,
       "attack": 3,
-      "defense": 2
+      "defense": 2,
+      "speed": 3
     },
     "evolutions": [
       { "level": 16, "evolveInto": "charmeleon" },
@@ -430,12 +432,14 @@ const POKEMON_DATA = {
     "baseStats": {
       "hp": 58,
       "attack": 64,
-      "defense": 58
+      "defense": 58,
+      "speed": 80
     },
     "statsGrowth": {
       "hp": 8,
       "attack": 3,
-      "defense": 2
+      "defense": 2,
+      "speed": 3
     },
     "evolutions": [
       { "level": 36, "evolveInto": "charizard" }
@@ -454,12 +458,14 @@ const POKEMON_DATA = {
     "baseStats": {
       "hp": 78,
       "attack": 84,
-      "defense": 78
+      "defense": 78,
+      "speed": 100
     },
     "statsGrowth": {
       "hp": 8,
       "attack": 3,
-      "defense": 2
+      "defense": 2,
+      "speed": 3
     },
     "evolutions": [],
     "learnset": [
@@ -477,12 +483,14 @@ const POKEMON_DATA = {
     "baseStats": {
       "hp": 44,
       "attack": 48,
-      "defense": 65
+      "defense": 65,
+      "speed": 43
     },
     "statsGrowth": {
       "hp": 9,
       "attack": 2,
-      "defense": 3
+      "defense": 3,
+      "speed": 2
     },
     "evolutions": [
       { "level": 16, "evolveInto": "wartortle" },
@@ -503,12 +511,14 @@ const POKEMON_DATA = {
     "baseStats": {
       "hp": 59,
       "attack": 63,
-      "defense": 80
+      "defense": 80,
+      "speed": 58
     },
     "statsGrowth": {
       "hp": 9,
       "attack": 2,
-      "defense": 3
+      "defense": 3,
+      "speed": 2
     },
     "evolutions": [
       { "level": 36, "evolveInto": "blastoise" }
@@ -526,12 +536,14 @@ const POKEMON_DATA = {
     "baseStats": {
       "hp": 79,
       "attack": 83,
-      "defense": 100
+      "defense": 100,
+      "speed": 78
     },
     "statsGrowth": {
       "hp": 9,
       "attack": 2,
-      "defense": 3
+      "defense": 3,
+      "speed": 2
     },
     "evolutions": [],
     "learnset": [
@@ -549,12 +561,14 @@ const POKEMON_DATA = {
     "baseStats": {
       "hp": 45,
       "attack": 49,
-      "defense": 49
+      "defense": 49,
+      "speed": 45
     },
     "statsGrowth": {
       "hp": 8,
       "attack": 2,
-      "defense": 2
+      "defense": 2,
+      "speed": 2
     },
     "evolutions": [
       { "level": 16, "evolveInto": "ivysaur" },
@@ -576,12 +590,14 @@ const POKEMON_DATA = {
     "baseStats": {
       "hp": 60,
       "attack": 62,
-      "defense": 63
+      "defense": 63,
+      "speed": 60
     },
     "statsGrowth": {
       "hp": 8,
       "attack": 2,
-      "defense": 2
+      "defense": 2,
+      "speed": 2
     },
     "evolutions": [
       { "level": 36, "evolveInto": "venusaur" }
@@ -599,12 +615,14 @@ const POKEMON_DATA = {
     "baseStats": {
       "hp": 80,
       "attack": 82,
-      "defense": 83
+      "defense": 83,
+      "speed": 80
     },
     "statsGrowth": {
       "hp": 8,
       "attack": 2,
-      "defense": 2
+      "defense": 2,
+      "speed": 2
     },
     "evolutions": [],
     "learnset": [
@@ -622,12 +640,14 @@ const POKEMON_DATA = {
     "baseStats": {
       "hp": 45,
       "attack": 30,
-      "defense": 35
+      "defense": 35,
+      "speed": 45
     },
     "statsGrowth": {
       "hp": 5,
       "attack": 1,
-      "defense": 1
+      "defense": 1,
+      "speed": 2
     },
     "evolutions": [],
     "learnset": [
@@ -643,12 +663,14 @@ const POKEMON_DATA = {
     "baseStats": {
       "hp": 40,
       "attack": 35,
-      "defense": 30
+      "defense": 30,
+      "speed": 50
     },
     "statsGrowth": {
       "hp": 5,
       "attack": 1,
-      "defense": 1
+      "defense": 1,
+      "speed": 2
     },
     "evolutions": [],
     "learnset": [
@@ -664,12 +686,14 @@ const POKEMON_DATA = {
     "baseStats": {
       "hp": 30,
       "attack": 56,
-      "defense": 35
+      "defense": 35,
+      "speed": 72
     },
     "statsGrowth": {
       "hp": 6,
       "attack": 2,
-      "defense": 1
+      "defense": 1,
+      "speed": 3
     },
     "evolutions": [],
     "learnset": [
@@ -686,12 +710,14 @@ const POKEMON_DATA = {
     "baseStats": {
       "hp": 40,
       "attack": 45,
-      "defense": 40
+      "defense": 40,
+      "speed": 56
     },
     "statsGrowth": {
       "hp": 6,
       "attack": 2,
-      "defense": 1
+      "defense": 1,
+      "speed": 2
     },
     "evolutions": [],
     "learnset": [
@@ -708,12 +734,14 @@ const POKEMON_DATA = {
     "baseStats": {
       "hp": 35,
       "attack": 55,
-      "defense": 40
+      "defense": 40,
+      "speed": 90
     },
     "statsGrowth": {
       "hp": 6,
       "attack": 2,
-      "defense": 1
+      "defense": 1,
+      "speed": 3
     },
     "evolutions": [],
     "learnset": [
@@ -730,12 +758,14 @@ const POKEMON_DATA = {
     "baseStats": {
       "hp": 50,
       "attack": 75,
-      "defense": 85
+      "defense": 85,
+      "speed": 40
     },
     "statsGrowth": {
       "hp": 7,
       "attack": 3,
-      "defense": 3
+      "defense": 3,
+      "speed": 2
     },
     "evolutions": [],
     "learnset": [

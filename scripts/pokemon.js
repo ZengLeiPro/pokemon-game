@@ -23,6 +23,7 @@ class Pokemon {
     this.currentHP = this.maxHP;
     this.attack = data.baseStats.attack + data.statsGrowth.attack * (level - 1);
     this.defense = data.baseStats.defense + data.statsGrowth.defense * (level - 1);
+    this.speed = data.baseStats.speed + data.statsGrowth.speed * (level - 1);
 
     // 技能列表（Move对象数组）
     this.moves = this.loadMoves(data.learnset, level);
@@ -81,6 +82,7 @@ class Pokemon {
     const oldMaxHP = this.maxHP;
     const oldAttack = this.attack;
     const oldDefense = this.defense;
+    const oldSpeed = this.speed;
 
     this.level++;
 
@@ -92,6 +94,7 @@ class Pokemon {
     this.maxHP += growth.hp;
     this.attack += growth.attack;
     this.defense += growth.defense;
+    this.speed += growth.speed;
 
     // 升级时HP回满
     this.currentHP = this.maxHP;
@@ -104,9 +107,11 @@ class Pokemon {
       hp: this.maxHP - oldMaxHP,
       attack: this.attack - oldAttack,
       defense: this.defense - oldDefense,
+      speed: this.speed - oldSpeed,
       newMaxHP: this.maxHP,
       newAttack: this.attack,
-      newDefense: this.defense
+      newDefense: this.defense,
+      newSpeed: this.speed
     };
 
     // 检查是否学习新技能
@@ -188,13 +193,14 @@ class Pokemon {
     this.maxHP = Math.floor(this.maxHP * 1.2);
     this.attack = Math.floor(this.attack * 1.2);
     this.defense = Math.floor(this.defense * 1.2);
+    this.speed = Math.floor(this.speed * 1.2);
 
     // 进化时HP回满
     this.currentHP = this.maxHP;
 
     if (typeof UI !== 'undefined') {
       UI.addBattleLog(`\n${oldName} 进化成了 ${this.name}！`, 'critical');
-      UI.addBattleLog(`属性大幅提升！HP: ${this.maxHP}, 攻击: ${this.attack}, 防御: ${this.defense}`, 'success');
+      UI.addBattleLog(`属性大幅提升！HP: ${this.maxHP}, 攻击: ${this.attack}, 防御: ${this.defense}, 速度: ${this.speed}`, 'success');
     }
 
     // 检查是否学习进化技能

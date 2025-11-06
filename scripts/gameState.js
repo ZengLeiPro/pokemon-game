@@ -4,14 +4,17 @@ const gameState = {
   player: {
     pokemon: null,              // Pokemon对象
     battlesWon: 0,              // 胜场数
-    totalBattles: 0             // 总场数
+    totalBattles: 0,            // 总场数
+    money: 3000,                // 金币（初始3000，参考官方游戏）
+    trainerDefeats: 0           // 击败训练家数量
   },
 
   // 战斗状态
   battle: {
     isActive: false,            // 是否正在战斗中
     instance: null,             // Battle对象
-    wildPokemon: null           // 野生宝可梦
+    opponent: null,             // 对手（野生宝可梦或训练家）
+    battleType: null            // 战斗类型: 'wild' 或 'trainer'
   },
 
   // 游戏流程状态
@@ -22,7 +25,7 @@ const gameState = {
 function saveGame() {
   try {
     const saveData = {
-      version: "1.0",
+      version: "2.0",  // 版本号升级，支持金币系统
       timestamp: Date.now(),
       playerPokemon: {
         speciesId: gameState.player.pokemon.speciesId,
@@ -32,11 +35,14 @@ function saveGame() {
         maxHP: gameState.player.pokemon.maxHP,
         attack: gameState.player.pokemon.attack,
         defense: gameState.player.pokemon.defense,
+        speed: gameState.player.pokemon.speed,
         moves: gameState.player.pokemon.moves.map(m => m.id)
       },
       stats: {
         battlesWon: gameState.player.battlesWon,
-        totalBattles: gameState.player.totalBattles
+        totalBattles: gameState.player.totalBattles,
+        money: gameState.player.money,
+        trainerDefeats: gameState.player.trainerDefeats
       }
     };
 
@@ -66,12 +72,21 @@ function loadGame() {
     pokemon.attack = data.playerPokemon.attack;
     pokemon.defense = data.playerPokemon.defense;
 
+    // 兼容旧存档：如果有speed属性则加载，否则用默认值
+    if (data.playerPokemon.speed !== undefined) {
+      pokemon.speed = data.playerPokemon.speed;
+    }
+
     // 重建技能列表
     pokemon.moves = data.playerPokemon.moves.map(moveId => new Move(moveId));
 
     gameState.player.pokemon = pokemon;
     gameState.player.battlesWon = data.stats.battlesWon;
     gameState.player.totalBattles = data.stats.totalBattles;
+
+    // 加载金币和训练家击败数（兼容旧存档）
+    gameState.player.money = data.stats.money !== undefined ? data.stats.money : 3000;
+    gameState.player.trainerDefeats = data.stats.trainerDefeats || 0;
 
     console.log('游戏已加载');
     return true;
@@ -87,6 +102,30 @@ function resetGame() {
   gameState.player.pokemon = null;
   gameState.player.battlesWon = 0;
   gameState.player.totalBattles = 0;
+  gameState.player.money = 3000;
+  gameState.player.trainerDefeats = 0;
   gameState.phase = "start";
   console.log('游戏已重置');
+}
+
+// ========== 金币操作 ==========
+// 添加金币
+function addMoney(amount) {
+  gameState.player.money += amount;
+  saveGame();
+}
+
+// 扣除金币
+function deductMoney(amount) {
+  if (gameState.player.money >= amount) {
+    gameState.player.money -= amount;
+    saveGame();
+    return true;
+  }
+  return false;
+}
+
+// 获取当前金币
+function getMoney() {
+  return gameState.player.money;
 }
