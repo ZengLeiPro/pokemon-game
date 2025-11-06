@@ -33,9 +33,56 @@ class Battle {
     // 等待一小段时间
     await this.delay(300);
 
-    // 决定行动顺序（简化版：玩家先攻）
+    // 决定行动顺序（根据速度判断谁先攻击）
+    let firstAttacker, firstDefender, firstMove, firstIsPlayer;
+    let secondAttacker, secondDefender, secondMove, secondIsPlayer;
+
+    // 比较速度
+    if (this.playerPokemon.speed > this.wildPokemon.speed) {
+      // 玩家速度更快，玩家先攻
+      firstAttacker = this.playerPokemon;
+      firstDefender = this.wildPokemon;
+      firstMove = playerMove;
+      firstIsPlayer = true;
+      secondAttacker = this.wildPokemon;
+      secondDefender = this.playerPokemon;
+      secondMove = aiMove;
+      secondIsPlayer = false;
+    } else if (this.playerPokemon.speed < this.wildPokemon.speed) {
+      // 野生宝可梦速度更快，野生宝可梦先攻
+      firstAttacker = this.wildPokemon;
+      firstDefender = this.playerPokemon;
+      firstMove = aiMove;
+      firstIsPlayer = false;
+      secondAttacker = this.playerPokemon;
+      secondDefender = this.wildPokemon;
+      secondMove = playerMove;
+      secondIsPlayer = true;
+    } else {
+      // 速度相同，随机决定
+      if (Math.random() < 0.5) {
+        firstAttacker = this.playerPokemon;
+        firstDefender = this.wildPokemon;
+        firstMove = playerMove;
+        firstIsPlayer = true;
+        secondAttacker = this.wildPokemon;
+        secondDefender = this.playerPokemon;
+        secondMove = aiMove;
+        secondIsPlayer = false;
+      } else {
+        firstAttacker = this.wildPokemon;
+        firstDefender = this.playerPokemon;
+        firstMove = aiMove;
+        firstIsPlayer = false;
+        secondAttacker = this.playerPokemon;
+        secondDefender = this.wildPokemon;
+        secondMove = playerMove;
+        secondIsPlayer = true;
+      }
+    }
+
     // 先攻方行动
-    await this.executeMoveWithDelay(this.playerPokemon, this.wildPokemon, playerMove, true);
+    await this.executeMoveWithDelay(firstAttacker, firstDefender, firstMove, firstIsPlayer);
 
     // 检查战斗是否结束
     if (this.checkBattleEnd()) {
@@ -47,7 +94,7 @@ class Battle {
     await this.delay(600);
 
     // 后攻方行动
-    await this.executeMoveWithDelay(this.wildPokemon, this.playerPokemon, aiMove, false);
+    await this.executeMoveWithDelay(secondAttacker, secondDefender, secondMove, secondIsPlayer);
 
     // 再次检查战斗是否结束
     if (this.checkBattleEnd()) {
