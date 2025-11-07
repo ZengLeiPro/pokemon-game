@@ -32,9 +32,10 @@ const UI = {
     document.getElementById('player-exp-fill').style.width = `${expPercent}%`;
   },
 
-  // ========== 显示消息（主界面的消息框） ==========
+  // ========== 显示消息（已废弃，保留兼容性） ==========
   showMessage(text) {
-    document.getElementById('message-text').textContent = text;
+    // 消息框已移除，仅在控制台输出
+    console.log('[消息]', text);
   },
 
   // ========== 添加战斗日志 ==========
@@ -129,5 +130,31 @@ const UI = {
   updateStats(wins, total) {
     document.getElementById('wins').textContent = wins;
     document.getElementById('total').textContent = total;
+  },
+
+  // ========== 切换Tab ==========
+  switchTab(tabId) {
+    // 隐藏所有Tab面板
+    document.querySelectorAll('.tab-panel').forEach(panel => {
+      panel.classList.remove('active');
+    });
+
+    // 显示目标Tab面板
+    const targetPanel = document.getElementById(`${tabId}-tab`);
+    if (targetPanel) {
+      targetPanel.classList.add('active');
+    }
+
+    // 更新导航按钮状态（侧边栏和底部导航都要更新）
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.getAttribute('data-tab') === tabId) {
+        btn.classList.add('active');
+      }
+    });
+
+    // 更新游戏状态
+    gameState.currentTab = tabId;
+    console.log(`切换到Tab: ${tabId}`);
   }
 };

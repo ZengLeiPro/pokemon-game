@@ -29,6 +29,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // 绑定对战结束确认按钮
   bindBattleEndConfirm();
+
+  // 绑定Tab导航按钮
+  bindTabNavigation();
+
+  // 绑定重置按钮
+  bindResetButtons();
 });
 
 // ========== 绑定初始选择按钮 ==========
@@ -78,10 +84,59 @@ function bindMainScreenButtons() {
     if (gameState.player.pokemon) {
       gameState.player.pokemon.fullHeal();
       UI.updatePlayerStatus(gameState.player.pokemon);
-      UI.showMessage(`${gameState.player.pokemon.name} 的 HP 已恢复至满！`);
+      alert(`${gameState.player.pokemon.name} 的 HP 已恢复至满！`);
       saveGame();
     }
   });
+
+  // 保存游戏按钮
+  const saveBtn = document.getElementById('save-btn');
+  if (saveBtn) {
+    saveBtn.addEventListener('click', () => {
+      saveGame();
+      alert('游戏已保存！');
+    });
+  }
+
+  // 重置游戏按钮（服务Tab中的）
+  const resetGameBtn = document.getElementById('reset-game-btn');
+  if (resetGameBtn) {
+    resetGameBtn.addEventListener('click', () => {
+      if (confirm('确定要重置游戏吗？所有进度将被清除！')) {
+        resetGame();
+        location.reload();
+      }
+    });
+  }
+}
+
+// ========== 绑定Tab导航按钮 ==========
+function bindTabNavigation() {
+  // 获取所有导航按钮（包括侧边栏和底部导航）
+  const navButtons = document.querySelectorAll('.nav-btn');
+
+  navButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tabId = btn.getAttribute('data-tab');
+      if (tabId) {
+        UI.switchTab(tabId);
+      }
+    });
+  });
+}
+
+// ========== 绑定重置按钮 ==========
+function bindResetButtons() {
+  // 顶部重置按钮
+  const headerResetBtn = document.getElementById('reset-btn');
+  if (headerResetBtn) {
+    headerResetBtn.addEventListener('click', () => {
+      if (confirm('确定要重置游戏吗？所有进度将被清除！')) {
+        resetGame();
+        location.reload();
+      }
+    });
+  }
 }
 
 // ========== 绑定对战结束确认按钮 ==========
