@@ -5,10 +5,12 @@ const UI = {
   showScreen(screenId) {
     document.querySelectorAll('.screen').forEach(screen => {
       screen.classList.remove('active');
+      screen.classList.add('hidden');
     });
     const targetScreen = document.getElementById(screenId);
     if (targetScreen) {
       targetScreen.classList.add('active');
+      targetScreen.classList.remove('hidden');
     }
   },
 
