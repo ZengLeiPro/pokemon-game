@@ -18,7 +18,10 @@ const gameState = {
   },
 
   // 游戏流程状态
-  phase: "start"  // 当前阶段: 'start', 'main', 'battle'
+  phase: "start",  // 当前阶段: 'start', 'main', 'battle'
+
+  // 主界面Tab状态
+  currentTab: "adventure"  // 当前Tab: 'adventure', 'bag', 'pokedex', 'shop', 'services'
 };
 
 // ========== 保存游戏 ==========

@@ -7,12 +7,13 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- 游戏容器（所有内容都在这里面） -->
+  <!-- 游戏容器（固定视口） -->
   <div id="game-container">
 
     <!-- 游戏标题 -->
     <header id="game-header">
       <h1>关都文字对战：初始冒险</h1>
+      <button id="reset-btn" class="header-btn" title="重置游戏">×</button>
     </header>
 
     <!-- 主内容区 -->
@@ -51,51 +52,337 @@
         </div>
       </div>
 
-      <!-- 主界面（选择完初始宝可梦后显示） -->
+      <!-- 主界面（新的响应式布局） -->
       <div id="main-screen" class="screen">
-        <!-- 玩家宝可梦状态栏 -->
-        <div id="player-status">
-          <div class="pokemon-info">
-            <span id="player-pokemon-name">小火龙</span>
-            <span id="player-pokemon-level">Lv.8</span>
-          </div>
-          <div class="hp-bar-container">
-            <div class="hp-bar">
-              <div id="player-hp-fill" class="hp-fill" style="width: 100%"></div>
+
+        <!-- 顶部状态栏（固定） -->
+        <div id="status-bar">
+          <div class="status-bar-content">
+            <div class="pokemon-info">
+              <span id="player-pokemon-name">小火龙</span>
+              <span id="player-pokemon-level">Lv.8</span>
             </div>
-            <div class="hp-text">
-              <span id="player-current-hp">60</span>/<span id="player-max-hp">60</span> HP
+            <div class="status-bars">
+              <div class="hp-bar-container">
+                <div class="hp-bar">
+                  <div id="player-hp-fill" class="hp-fill" style="width: 100%"></div>
+                </div>
+                <div class="hp-text">
+                  <span id="player-current-hp">60</span>/<span id="player-max-hp">60</span> HP
+                </div>
+              </div>
+              <div class="exp-bar-container">
+                <div class="exp-bar">
+                  <div id="player-exp-fill" class="exp-fill" style="width: 50%"></div>
+                </div>
+                <div class="exp-text">
+                  <span id="player-current-exp">50</span>/<span id="player-exp-next">100</span> EXP
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="exp-bar-container">
-            <div class="exp-bar">
-              <div id="player-exp-fill" class="exp-fill" style="width: 50%"></div>
+            <div class="status-extra">
+              <div class="money-display">
+                <span class="money-label">💰</span>
+                <span id="player-money">3000</span>
+              </div>
+              <div class="record-display">
+                <span id="wins">0</span>/<span id="total">0</span>
+              </div>
             </div>
-            <div class="exp-text">
-              <span id="player-current-exp">50</span>/<span id="player-exp-next">100</span> EXP
-            </div>
-          </div>
-          <!-- 金币显示 -->
-          <div class="money-display">
-            <span class="money-label">💰 金币：</span>
-            <span id="player-money">3000</span>
           </div>
         </div>
 
-        <!-- 文字显示区 -->
-        <div id="message-box">
-          <p id="message-text">准备开始新的冒险！</p>
+        <!-- 内容区容器 -->
+        <div id="main-content-wrapper">
+
+          <!-- PC端侧边栏导航 -->
+          <nav id="sidebar-nav">
+            <button class="nav-btn active" data-tab="adventure">
+              <span class="nav-icon">⚔️</span>
+              <span class="nav-label">冒险</span>
+            </button>
+            <button class="nav-btn" data-tab="bag">
+              <span class="nav-icon">🎒</span>
+              <span class="nav-label">背包</span>
+            </button>
+            <button class="nav-btn" data-tab="pokedex">
+              <span class="nav-icon">📖</span>
+              <span class="nav-label">图鉴</span>
+            </button>
+            <button class="nav-btn" data-tab="shop">
+              <span class="nav-icon">🏪</span>
+              <span class="nav-label">商店</span>
+            </button>
+            <button class="nav-btn" data-tab="services">
+              <span class="nav-icon">⚙️</span>
+              <span class="nav-label">服务</span>
+            </button>
+          </nav>
+
+          <!-- Tab内容区（可滚动） -->
+          <div id="tab-content-area">
+
+            <!-- 冒险页面 -->
+            <div id="adventure-tab" class="tab-panel active">
+              <div class="feature-card">
+                <div class="card-icon">🌲</div>
+                <div class="card-content">
+                  <h3>野外探险</h3>
+                  <p>寻找野生宝可梦，获得经验和金币</p>
+                </div>
+                <button id="wild-battle-btn" class="card-btn">开始冒险 →</button>
+              </div>
+
+              <div class="feature-card">
+                <div class="card-icon">⚔️</div>
+                <div class="card-content">
+                  <h3>训练家挑战</h3>
+                  <p>与强大的训练家对战，赢取高额奖金</p>
+                </div>
+                <button id="trainer-battle-btn" class="card-btn">寻找对手 →</button>
+              </div>
+
+              <div class="feature-card disabled">
+                <div class="card-icon">🏛️</div>
+                <div class="card-content">
+                  <h3>道馆挑战</h3>
+                  <p>征服八大道馆，成为宝可梦大师</p>
+                  <div class="progress-info">进度：0/8 🏅</div>
+                </div>
+                <button class="card-btn" disabled>即将推出</button>
+              </div>
+            </div>
+
+            <!-- 背包页面 -->
+            <div id="bag-tab" class="tab-panel">
+              <div class="tab-header">
+                <h2>🎒 背包</h2>
+              </div>
+
+              <div class="section-card">
+                <h3>👾 我的宝可梦</h3>
+                <div id="pokemon-list" class="pokemon-grid">
+                  <div class="pokemon-slot active">
+                    <div class="slot-icon">🌱</div>
+                    <div class="slot-info">
+                      <div class="slot-name">妙蛙种子</div>
+                      <div class="slot-level">Lv.15</div>
+                    </div>
+                  </div>
+                  <div class="pokemon-slot empty">
+                    <div class="slot-icon">+</div>
+                    <div class="slot-info">空位</div>
+                  </div>
+                  <div class="pokemon-slot empty">
+                    <div class="slot-icon">+</div>
+                    <div class="slot-info">空位</div>
+                  </div>
+                  <div class="pokemon-slot empty">
+                    <div class="slot-icon">+</div>
+                    <div class="slot-info">空位</div>
+                  </div>
+                  <div class="pokemon-slot empty">
+                    <div class="slot-icon">+</div>
+                    <div class="slot-info">空位</div>
+                  </div>
+                  <div class="pokemon-slot empty">
+                    <div class="slot-icon">+</div>
+                    <div class="slot-info">空位</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="section-card">
+                <h3>🎒 道具</h3>
+                <div class="items-list">
+                  <div class="item-row">
+                    <span class="item-name">伤药</span>
+                    <span class="item-count">x 0</span>
+                  </div>
+                  <div class="item-row">
+                    <span class="item-name">精灵球</span>
+                    <span class="item-count">x 0</span>
+                  </div>
+                  <div class="item-row">
+                    <span class="item-name">解毒药</span>
+                    <span class="item-count">x 0</span>
+                  </div>
+                  <p class="placeholder-text">暂无道具，前往商店购买吧！</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 图鉴页面 -->
+            <div id="pokedex-tab" class="tab-panel">
+              <div class="tab-header">
+                <h2>📖 宝可梦图鉴</h2>
+              </div>
+
+              <div class="section-card">
+                <h3>收集进度</h3>
+                <div class="progress-stats">
+                  <div class="stat-item">
+                    <span class="stat-label">已捕获</span>
+                    <span class="stat-value">1/151</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 0.66%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="section-card">
+                <h3>已拥有的宝可梦</h3>
+                <div id="pokedex-list" class="pokedex-grid">
+                  <div class="pokedex-entry owned">
+                    <div class="entry-number">#001</div>
+                    <div class="entry-icon">🌱</div>
+                    <div class="entry-name">妙蛙种子</div>
+                  </div>
+                  <div class="pokedex-entry unknown">
+                    <div class="entry-number">#002</div>
+                    <div class="entry-icon">❓</div>
+                    <div class="entry-name">？？？</div>
+                  </div>
+                  <div class="pokedex-entry unknown">
+                    <div class="entry-number">#003</div>
+                    <div class="entry-icon">❓</div>
+                    <div class="entry-name">？？？</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 商店页面 -->
+            <div id="shop-tab" class="tab-panel">
+              <div class="tab-header">
+                <h2>🏪 宝可梦商店</h2>
+                <p class="tab-subtitle">欢迎光临！</p>
+              </div>
+
+              <div class="section-card">
+                <h3>💊 药品</h3>
+                <div class="shop-items">
+                  <div class="shop-item">
+                    <div class="item-info">
+                      <div class="item-icon">🧪</div>
+                      <div class="item-details">
+                        <div class="item-name">伤药</div>
+                        <div class="item-desc">恢复20 HP</div>
+                      </div>
+                    </div>
+                    <div class="item-action">
+                      <div class="item-price">💰 200</div>
+                      <button class="buy-btn" disabled>购买</button>
+                    </div>
+                  </div>
+                  <div class="shop-item">
+                    <div class="item-info">
+                      <div class="item-icon">💊</div>
+                      <div class="item-details">
+                        <div class="item-name">解毒药</div>
+                        <div class="item-desc">解除中毒状态</div>
+                      </div>
+                    </div>
+                    <div class="item-action">
+                      <div class="item-price">💰 100</div>
+                      <button class="buy-btn" disabled>购买</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="section-card">
+                <h3>⚾ 精灵球</h3>
+                <div class="shop-items">
+                  <div class="shop-item">
+                    <div class="item-info">
+                      <div class="item-icon">⚾</div>
+                      <div class="item-details">
+                        <div class="item-name">精灵球</div>
+                        <div class="item-desc">捕获野生宝可梦</div>
+                      </div>
+                    </div>
+                    <div class="item-action">
+                      <div class="item-price">💰 200</div>
+                      <button class="buy-btn" disabled>购买</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="info-banner">
+                <p>🚧 商店系统即将推出，敬请期待！</p>
+              </div>
+            </div>
+
+            <!-- 服务页面 -->
+            <div id="services-tab" class="tab-panel">
+              <div class="tab-header">
+                <h2>⚙️ 服务</h2>
+              </div>
+
+              <div class="feature-card">
+                <div class="card-icon">❤️</div>
+                <div class="card-content">
+                  <h3>宝可梦中心</h3>
+                  <p>免费恢复所有宝可梦的体力</p>
+                </div>
+                <button id="center-btn" class="card-btn">立即恢复 →</button>
+              </div>
+
+              <div class="feature-card">
+                <div class="card-icon">💾</div>
+                <div class="card-content">
+                  <h3>保存游戏</h3>
+                  <p>保存当前游戏进度到本地</p>
+                </div>
+                <button id="save-btn" class="card-btn">保存进度 →</button>
+              </div>
+
+              <div class="feature-card">
+                <div class="card-icon">🔄</div>
+                <div class="card-content">
+                  <h3>重新开始</h3>
+                  <p>清除存档，从头开始新的冒险</p>
+                </div>
+                <button id="reset-game-btn" class="card-btn danger">重置游戏 →</button>
+              </div>
+            </div>
+
+          </div>
+
         </div>
 
-        <!-- 功能按钮区 -->
-        <div id="action-buttons">
-          <button id="wild-battle-btn" class="action-btn primary">野生宝可梦对战</button>
-          <button id="trainer-battle-btn" class="action-btn primary">训练家对战</button>
-          <button id="center-btn" class="action-btn secondary">宝可梦中心</button>
-        </div>
+        <!-- 移动端底部导航 -->
+        <nav id="bottom-nav">
+          <button class="nav-btn active" data-tab="adventure">
+            <span class="nav-icon">⚔️</span>
+            <span class="nav-label">冒险</span>
+          </button>
+          <button class="nav-btn" data-tab="bag">
+            <span class="nav-icon">🎒</span>
+            <span class="nav-label">背包</span>
+          </button>
+          <button class="nav-btn" data-tab="pokedex">
+            <span class="nav-icon">📖</span>
+            <span class="nav-label">图鉴</span>
+          </button>
+          <button class="nav-btn" data-tab="shop">
+            <span class="nav-icon">🏪</span>
+            <span class="nav-label">商店</span>
+          </button>
+          <button class="nav-btn" data-tab="services">
+            <span class="nav-icon">⚙️</span>
+            <span class="nav-label">服务</span>
+          </button>
+        </nav>
+
       </div>
 
-      <!-- 战斗界面（点击"开始战斗"后显示） -->
+      <!-- 战斗界面（保持原有结构） -->
       <div id="battle-screen" class="screen">
         <!-- 对手宝可梦状态 -->
         <div id="opponent-status" class="status-box">
@@ -148,11 +435,6 @@
       </div>
 
     </main>
-
-    <!-- 页脚 -->
-    <footer id="game-footer">
-      <p>战绩：<span id="wins">0</span>胜 <span id="total">0</span>战</p>
-    </footer>
 
   </div>
 
