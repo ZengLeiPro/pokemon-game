@@ -396,16 +396,9 @@ class Battle {
     UI.updateStats(gameState.player.battlesWon, gameState.player.totalBattles);
     UI.updateMoney(gameState.player.money);
 
-    // 3秒后返回主界面
-    setTimeout(() => {
-      UI.showScreen('main-screen');
-      if (this.winner === 'player') {
-        UI.showMessage('准备开始下一场战斗！');
-      } else {
-        UI.showMessage('继续加油！再来挑战吧！');
-      }
-      gameState.battle.isActive = false;
-    }, 3000);
+    // 隐藏技能按钮，显示确认按钮
+    document.getElementById('move-buttons').style.display = 'none';
+    document.getElementById('battle-end-confirm').style.display = 'block';
 
     return this.winner;
   }
