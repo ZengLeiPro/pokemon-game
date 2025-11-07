@@ -376,6 +376,11 @@ class Battle {
 
       if (this.battleType === 'trainer') {
         UI.addBattleLog(`${this.opponent.name}: 再继续努力吧！`);
+
+        // 失败时扣除金币
+        const prizeMoney = this.opponent.prizeMoney;
+        deductMoney(prizeMoney);
+        UI.addBattleLog(`支付了 ${prizeMoney} 金币给 ${this.opponent.name}！`, 'critical');
       }
 
       UI.addBattleLog(`战斗失败！`);
