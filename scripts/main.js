@@ -88,6 +88,8 @@ function bindMainScreenButtons() {
 function bindBattleEndConfirm() {
   const confirmBtn = document.getElementById('confirm-button');
   confirmBtn.addEventListener('click', () => {
+    console.log('确认按钮被点击');
+
     // 隐藏确认按钮
     document.getElementById('battle-end-confirm').style.display = 'none';
     // 显示技能按钮区域
@@ -95,7 +97,9 @@ function bindBattleEndConfirm() {
 
     // 返回主界面
     UI.showScreen('main-screen');
-    if (gameState.battle.instance && gameState.battle.instance.winner === 'player') {
+
+    // 根据上一场对战的结果显示消息
+    if (gameState.battle.lastWinner === 'player') {
       UI.showMessage('准备开始下一场战斗！');
     } else {
       UI.showMessage('继续加油！再来挑战吧！');
@@ -103,6 +107,7 @@ function bindBattleEndConfirm() {
 
     // 结束战斗状态
     gameState.battle.isActive = false;
+    gameState.battle.lastWinner = null;
   });
 }
 

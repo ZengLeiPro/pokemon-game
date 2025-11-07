@@ -396,6 +396,9 @@ class Battle {
     UI.updateStats(gameState.player.battlesWon, gameState.player.totalBattles);
     UI.updateMoney(gameState.player.money);
 
+    // 保存胜负结果到 gameState，供确认按钮使用
+    gameState.battle.lastWinner = this.winner;
+
     // 隐藏技能按钮，显示确认按钮
     document.getElementById('move-buttons').style.display = 'none';
     document.getElementById('battle-end-confirm').style.display = 'block';
