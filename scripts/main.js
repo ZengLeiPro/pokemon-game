@@ -26,6 +26,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // 绑定主界面按钮事件
   bindMainScreenButtons();
+
+  // 绑定对战结束确认按钮
+  bindBattleEndConfirm();
 });
 
 // ========== 绑定初始选择按钮 ==========
@@ -78,6 +81,28 @@ function bindMainScreenButtons() {
       UI.showMessage(`${gameState.player.pokemon.name} 的 HP 已恢复至满！`);
       saveGame();
     }
+  });
+}
+
+// ========== 绑定对战结束确认按钮 ==========
+function bindBattleEndConfirm() {
+  const confirmBtn = document.getElementById('confirm-button');
+  confirmBtn.addEventListener('click', () => {
+    // 隐藏确认按钮
+    document.getElementById('battle-end-confirm').style.display = 'none';
+    // 显示技能按钮区域
+    document.getElementById('move-buttons').style.display = 'block';
+
+    // 返回主界面
+    UI.showScreen('main-screen');
+    if (gameState.battle.instance && gameState.battle.instance.winner === 'player') {
+      UI.showMessage('准备开始下一场战斗！');
+    } else {
+      UI.showMessage('继续加油！再来挑战吧！');
+    }
+
+    // 结束战斗状态
+    gameState.battle.isActive = false;
   });
 }
 
