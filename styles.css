@@ -357,6 +357,37 @@ body {
   color: #7f8c8d;
 }
 
+/* 确认按钮 */
+#battle-end-confirm {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.confirm-btn {
+  padding: 20px;
+  border: 2px solid #27ae60;
+  border-radius: 10px;
+  background: #2ecc71;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+}
+
+.confirm-btn:hover {
+  background: #27ae60;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(46, 204, 113, 0.3);
+}
+
+.confirm-btn:active {
+  transform: translateY(0);
+}
+
 /* ========== 页脚 ========== */
 #game-footer {
   background: #34495e;
