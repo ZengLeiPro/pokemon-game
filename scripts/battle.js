@@ -406,7 +406,7 @@ class Battle {
 
     // 隐藏技能按钮，显示确认按钮
     document.getElementById('battle-actions').style.display = 'none';
-    document.getElementById('battle-item-panel').style.display = 'none';
+    document.getElementById('battle-item-panel').classList.add('hidden');
     document.getElementById('battle-end-confirm').style.display = 'block';
 
     return this.winner;
@@ -511,7 +511,7 @@ class Battle {
 
       // 隐藏技能按钮，显示确认按钮
       document.getElementById('battle-actions').style.display = 'none';
-      document.getElementById('battle-item-panel').style.display = 'none';
+      document.getElementById('battle-item-panel').classList.add('hidden');
       document.getElementById('battle-end-confirm').style.display = 'block';
 
       return true;
@@ -583,7 +583,7 @@ class Battle {
 
     // 隐藏技能按钮，显示确认按钮
     document.getElementById('battle-actions').style.display = 'none';
-    document.getElementById('battle-item-panel').style.display = 'none';
+    document.getElementById('battle-item-panel').classList.add('hidden');
     document.getElementById('battle-end-confirm').style.display = 'block';
 
     return true;
