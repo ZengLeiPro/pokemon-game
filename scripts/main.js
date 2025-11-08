@@ -148,7 +148,7 @@ function bindBattleEndConfirm() {
     // 隐藏确认按钮
     document.getElementById('battle-end-confirm').style.display = 'none';
     // 显示技能按钮区域
-    document.getElementById('move-buttons').style.display = 'block';
+    document.getElementById('move-buttons').style.display = 'grid';
 
     // 返回主界面
     UI.showScreen('main-screen');
@@ -206,6 +206,10 @@ function onStartBattle(battleType = 'wild') {
   // 切换到战斗界面
   gameState.phase = 'battle';
   UI.showScreen('battle-screen');
+
+  // 确保技能按钮容器显示，确认按钮隐藏
+  document.getElementById('move-buttons').style.display = 'grid';
+  document.getElementById('battle-end-confirm').style.display = 'none';
 
   // 开始战斗
   battle.start();

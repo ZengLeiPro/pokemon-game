@@ -78,11 +78,13 @@ const UI = {
     document.getElementById('opponent-hp-fill').style.width = `${opponentHpPercent}%`;
 
     // 更新对手标签
-    const statusLabel = document.querySelector('#opponent-status .status-label');
-    if (battleType === 'trainer' && trainer) {
-      statusLabel.textContent = `${trainer.trainerClass} ${trainer.name}的`;
-    } else {
-      statusLabel.textContent = '野生的';
+    const typeLabel = document.getElementById('opponent-type-label');
+    if (typeLabel) {
+      if (battleType === 'trainer' && trainer) {
+        typeLabel.textContent = `${trainer.trainerClass} ${trainer.name}的`;
+      } else {
+        typeLabel.textContent = '野生的';
+      }
     }
   },
 
@@ -139,12 +141,14 @@ const UI = {
     // 隐藏所有Tab面板
     document.querySelectorAll('.tab-panel').forEach(panel => {
       panel.classList.remove('active');
+      panel.classList.add('hidden');
     });
 
     // 显示目标Tab面板
     const targetPanel = document.getElementById(`${tabId}-tab`);
     if (targetPanel) {
       targetPanel.classList.add('active');
+      targetPanel.classList.remove('hidden');
     }
 
     // 更新导航按钮状态（侧边栏和底部导航都要更新）

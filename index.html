@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>关都文字对战：初始冒险</title>
+  <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -383,7 +384,7 @@
 
         <!-- 对手宝可梦状态 -->
         <div class="bg-white rounded-2xl p-4 shadow-lg">
-          <div class="text-xs text-gray-600 mb-2">野生的</div>
+          <div id="opponent-type-label" class="text-xs text-gray-600 mb-2">野生的</div>
           <div class="flex justify-between items-center mb-3">
             <span id="opponent-pokemon-name" class="text-lg font-bold text-gray-800">绿毛虫</span>
             <span id="opponent-pokemon-level" class="text-sm text-gray-600">Lv.5</span>
@@ -502,7 +503,7 @@
 
       moves.forEach(move => {
         const btn = document.createElement('button');
-        btn.className = 'p-4 border-2 border-gray-800 rounded-xl bg-white hover:bg-gray-100 transition-all hover:-translate-y-1 hover:shadow-lg text-left';
+        btn.className = 'move-btn p-4 border-2 border-gray-800 rounded-xl bg-white hover:bg-gray-100 transition-all hover:-translate-y-1 hover:shadow-lg text-left';
         btn.onclick = () => onMoveClick(move);
 
         let powerText = '';
