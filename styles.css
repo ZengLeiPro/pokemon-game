@@ -1033,3 +1033,82 @@ html, body {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* ========== 动画效果 ========== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* ========== 消息提示样式 ========== */
+.message-toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  color: white;
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* ========== 模态框样式 ========== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  max-width: 28rem;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* ========== 滚动条样式 ========== */
+.max-h-\[400px\]::-webkit-scrollbar,
+.max-h-\[300px\]::-webkit-scrollbar,
+.max-h-\[80vh\]::-webkit-scrollbar {
+  width: 8px;
+}
+
+.max-h-\[400px\]::-webkit-scrollbar-track,
+.max-h-\[300px\]::-webkit-scrollbar-track,
+.max-h-\[80vh\]::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.max-h-\[400px\]::-webkit-scrollbar-thumb,
+.max-h-\[300px\]::-webkit-scrollbar-thumb,
+.max-h-\[80vh\]::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.max-h-\[400px\]::-webkit-scrollbar-thumb:hover,
+.max-h-\[300px\]::-webkit-scrollbar-thumb:hover,
+.max-h-\[80vh\]::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

@@ -405,10 +405,188 @@ class Battle {
     gameState.battle.lastWinner = this.winner;
 
     // 隐藏技能按钮，显示确认按钮
-    document.getElementById('move-buttons').style.display = 'none';
+    document.getElementById('battle-actions').style.display = 'none';
+    document.getElementById('battle-item-panel').style.display = 'none';
     document.getElementById('battle-end-confirm').style.display = 'block';
 
     return this.winner;
+  }
+
+  // ========== 使用伤药 ==========
+  async useMedicine(itemId) {
+    const item = createItem(itemId);
+    if (!item || item.type !== 'medicine') {
+      UI.addBattleLog('无效的道具！');
+      return false;
+    }
+
+    const result = useItem(itemId, this.playerPokemon);
+    if (result.success) {
+      UI.addBattleLog(result.message, 'success');
+      UI.updateBattleStatus(this.playerPokemon, this.opponentPokemon, this.battleType, this.opponent);
+
+      // 使用道具后，对手行动
+      await this.delay(500);
+      const aiMove = SimpleAI.chooseMove(this.opponentPokemon);
+      await this.executeMoveWithDelay(this.opponentPokemon, this.playerPokemon, aiMove, false);
+
+      // 检查战斗是否结束
+      if (this.checkBattleEnd()) {
+        this.endBattle();
+        return true;
+      }
+
+      UI.updateBattleStatus(this.playerPokemon, this.opponentPokemon, this.battleType, this.opponent);
+      return true;
+    } else {
+      UI.addBattleLog(result.message, 'error');
+      return false;
+    }
+  }
+
+  // ========== 投精灵球 ==========
+  async throwPokeball(itemId) {
+    const item = createItem(itemId);
+    if (!item || item.type !== 'pokeball') {
+      UI.addBattleLog('无效的道具！');
+      return false;
+    }
+
+    // 只能在野生战斗中使用
+    if (this.battleType !== 'wild') {
+      UI.addBattleLog('不能捕捉训练家的宝可梦！', 'error');
+      return false;
+    }
+
+    // 消耗精灵球
+    if (!removeItem(itemId, 1)) {
+      UI.addBattleLog('没有精灵球了！', 'error');
+      return false;
+    }
+
+    UI.addBattleLog(`使用了 ${item.name}！`);
+    await this.delay(500);
+
+    // 计算捕捉率
+    const catchRate = this.calculateCatchRate(item.effect.catchRate);
+    const success = Math.random() < catchRate;
+
+    // 显示摇晃动画
+    UI.addBattleLog('精灵球晃动了一下...');
+    await this.delay(800);
+    UI.addBattleLog('精灵球晃动了两下...');
+    await this.delay(800);
+
+    if (success) {
+      // 捕捉成功
+      UI.addBattleLog('咔哒！捕捉成功！', 'success');
+      UI.addBattleLog(`成功捕获了 ${this.opponentPokemon.name}！`, 'critical');
+
+      // 添加到盒子（如果队伍满了）
+      if (gameState.player.pokemonTeam.length < 6) {
+        addPokemonToTeam(this.opponentPokemon);
+        UI.addBattleLog(`${this.opponentPokemon.name} 加入了你的队伍！`, 'success');
+      } else {
+        addPokemonToBox(this.opponentPokemon);
+        UI.addBattleLog(`${this.opponentPokemon.name} 已传送到宝可梦中心！`, 'success');
+      }
+
+      // 战斗结束
+      this.winner = 'player';
+      this.isActive = false;
+
+      // 更新战绩
+      gameState.player.battlesWon++;
+      gameState.player.totalBattles++;
+
+      // 保存游戏
+      saveGame();
+
+      // 更新UI
+      UI.updatePlayerStatus(getCurrentPokemon());
+      UI.updateStats(gameState.player.battlesWon, gameState.player.totalBattles);
+
+      // 保存胜负结果到 gameState
+      gameState.battle.lastWinner = this.winner;
+
+      // 隐藏技能按钮，显示确认按钮
+      document.getElementById('battle-actions').style.display = 'none';
+      document.getElementById('battle-item-panel').style.display = 'none';
+      document.getElementById('battle-end-confirm').style.display = 'block';
+
+      return true;
+    } else {
+      // 捕捉失败
+      UI.addBattleLog(`哦不！${this.opponentPokemon.name} 挣脱了！`);
+
+      // 对手行动
+      await this.delay(500);
+      const aiMove = SimpleAI.chooseMove(this.opponentPokemon);
+      await this.executeMoveWithDelay(this.opponentPokemon, this.playerPokemon, aiMove, false);
+
+      // 检查战斗是否结束
+      if (this.checkBattleEnd()) {
+        this.endBattle();
+        return true;
+      }
+
+      UI.updateBattleStatus(this.playerPokemon, this.opponentPokemon, this.battleType, this.opponent);
+      return false;
+    }
+  }
+
+  // ========== 计算捕捉率 ==========
+  calculateCatchRate(ballMultiplier) {
+    const wildPokemon = this.opponentPokemon;
+
+    // HP因素：HP越低越容易捕捉
+    const hpFactor = (wildPokemon.maxHP * 3 - wildPokemon.currentHP * 2) / (wildPokemon.maxHP * 3);
+
+    // 等级因素：等级越低越容易捕捉
+    const levelFactor = Math.max(0, (50 - wildPokemon.level) / 50);
+
+    // 基础捕捉率
+    let catchRate = (hpFactor * 0.6 + levelFactor * 0.4) * ballMultiplier;
+
+    // 确保捕捉率在合理范围内
+    catchRate = Math.max(0.05, Math.min(0.95, catchRate));
+
+    // 大师球必定成功
+    if (ballMultiplier >= 255) {
+      catchRate = 1.0;
+    }
+
+    console.log(`捕捉率计算: HP=${wildPokemon.currentHP}/${wildPokemon.maxHP}, Lv=${wildPokemon.level}, 球倍率=${ballMultiplier}, 最终捕捉率=${(catchRate * 100).toFixed(1)}%`);
+
+    return catchRate;
+  }
+
+  // ========== 逃跑 ==========
+  flee() {
+    if (this.battleType === 'trainer') {
+      UI.addBattleLog('不能从训练家对战中逃跑！', 'error');
+      return false;
+    }
+
+    UI.addBattleLog('成功逃跑了！');
+    this.winner = 'flee';
+    this.isActive = false;
+
+    // 更新战绩（逃跑算输）
+    gameState.player.totalBattles++;
+
+    // 保存游戏
+    saveGame();
+
+    // 更新UI
+    UI.updateStats(gameState.player.battlesWon, gameState.player.totalBattles);
+
+    // 隐藏技能按钮，显示确认按钮
+    document.getElementById('battle-actions').style.display = 'none';
+    document.getElementById('battle-item-panel').style.display = 'none';
+    document.getElementById('battle-end-confirm').style.display = 'block';
+
+    return true;
   }
 }
 
