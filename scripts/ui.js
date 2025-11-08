@@ -231,7 +231,7 @@ const UI = {
       if (itemData.type === 'medicine' && !gameState.battle.isActive) {
         useButton.className = 'px-3 py-1 bg-blue-500 hover:bg-blue-600 text-white text-sm font-bold rounded transition-colors';
         useButton.textContent = '使用';
-        useButton.onclick = () => this.showPokemonSelectionForItem(itemId);
+        useButton.onclick = () => UI.showPokemonSelectionForItem(itemId);
       } else {
         useButton.className = 'px-3 py-1 bg-gray-300 text-gray-500 text-sm font-bold rounded cursor-not-allowed';
         useButton.textContent = itemData.type === 'pokeball' ? '战斗中使用' : '使用';
@@ -281,8 +281,8 @@ const UI = {
         if (!isActive && pokemon.currentHP > 0 && !gameState.battle.isActive) {
           slotDiv.onclick = () => {
             switchActivePokemon(i);
-            this.renderPokemonTeam();
-            this.updatePlayerStatus(getCurrentPokemon());
+            UI.renderPokemonTeam();
+            UI.updatePlayerStatus(getCurrentPokemon());
             showShopMessage(`切换到 ${pokemon.name}！`, 'success');
           };
         }
@@ -438,8 +438,8 @@ const UI = {
           const result = useItem(itemId, pokemon);
           if (result.success) {
             showShopMessage(result.message, 'success');
-            this.renderBag();
-            this.updatePlayerStatus(getCurrentPokemon());
+            UI.renderBag();
+            UI.updatePlayerStatus(getCurrentPokemon());
           } else {
             showShopMessage(result.message, 'error');
           }
@@ -507,7 +507,7 @@ const UI = {
       `;
 
       // 点击时显示操作选项
-      pokemonDiv.onclick = () => this.showBoxPokemonActions(pokemon, index);
+      pokemonDiv.onclick = () => UI.showBoxPokemonActions(pokemon, index);
 
       container.appendChild(pokemonDiv);
     });
@@ -553,8 +553,8 @@ const UI = {
       addToTeamBtn.onclick = () => {
         if (movePokemonToTeam(boxIndex)) {
           showShopMessage(`${pokemon.name} 加入了队伍！`, 'success');
-          this.renderPokemonBox();
-          this.renderBag();
+          UI.renderPokemonBox();
+          UI.renderBag();
           document.body.removeChild(modal);
         }
       };
