@@ -19,11 +19,36 @@
       "defense": 8,
       "speed": 7
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 16,
+        "evolveInto": "ivysaur"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 1,
+        "move": "growl"
+      },
+      {
+        "level": 7,
+        "move": "vineWhip"
+      },
+      {
+        "level": 13,
+        "move": "poisonPowder"
+      },
+      {
+        "level": 20,
+        "move": "razorLeaf"
+      },
+      {
+        "level": 32,
+        "move": "solarBeam"
       }
     ]
   },
@@ -47,11 +72,40 @@
       "defense": 10,
       "speed": 9
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 32,
+        "evolveInto": "venusaur"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 1,
+        "move": "growl"
+      },
+      {
+        "level": 1,
+        "move": "vineWhip"
+      },
+      {
+        "level": 7,
+        "move": "vineWhip"
+      },
+      {
+        "level": 13,
+        "move": "poisonPowder"
+      },
+      {
+        "level": 22,
+        "move": "razorLeaf"
+      },
+      {
+        "level": 36,
+        "move": "solarBeam"
       }
     ]
   },
@@ -80,6 +134,22 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 1,
+        "move": "growl"
+      },
+      {
+        "level": 1,
+        "move": "vineWhip"
+      },
+      {
+        "level": 1,
+        "move": "razorLeaf"
+      },
+      {
+        "level": 32,
+        "move": "solarBeam"
       }
     ]
   },
@@ -102,11 +172,40 @@
       "defense": 7,
       "speed": 10
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 16,
+        "evolveInto": "charmeleon"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
-        "move": "tackle"
+        "move": "scratch"
+      },
+      {
+        "level": 1,
+        "move": "growl"
+      },
+      {
+        "level": 7,
+        "move": "ember"
+      },
+      {
+        "level": 13,
+        "move": "scaryFace"
+      },
+      {
+        "level": 19,
+        "move": "bite"
+      },
+      {
+        "level": 28,
+        "move": "flamethrower"
+      },
+      {
+        "level": 34,
+        "move": "dragonRage"
       }
     ]
   },
@@ -129,11 +228,44 @@
       "defense": 9,
       "speed": 12
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 36,
+        "evolveInto": "charizard"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
-        "move": "tackle"
+        "move": "scratch"
+      },
+      {
+        "level": 1,
+        "move": "growl"
+      },
+      {
+        "level": 1,
+        "move": "ember"
+      },
+      {
+        "level": 7,
+        "move": "ember"
+      },
+      {
+        "level": 13,
+        "move": "scaryFace"
+      },
+      {
+        "level": 20,
+        "move": "bite"
+      },
+      {
+        "level": 30,
+        "move": "flamethrower"
+      },
+      {
+        "level": 36,
+        "move": "dragonRage"
       }
     ]
   },
@@ -161,7 +293,23 @@
     "learnset": [
       {
         "level": 1,
-        "move": "tackle"
+        "move": "scratch"
+      },
+      {
+        "level": 1,
+        "move": "growl"
+      },
+      {
+        "level": 1,
+        "move": "ember"
+      },
+      {
+        "level": 1,
+        "move": "flamethrower"
+      },
+      {
+        "level": 36,
+        "move": "dragonRage"
       }
     ]
   },
@@ -184,11 +332,40 @@
       "defense": 10,
       "speed": 7
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 16,
+        "evolveInto": "wartortle"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 1,
+        "move": "tailWhip"
+      },
+      {
+        "level": 7,
+        "move": "bubble"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 13,
+        "move": "withdraw"
+      },
+      {
+        "level": 18,
+        "move": "bite"
+      },
+      {
+        "level": 28,
+        "move": "hydroPump"
       }
     ]
   },
@@ -211,11 +388,44 @@
       "defense": 12,
       "speed": 9
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 36,
+        "evolveInto": "blastoise"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 1,
+        "move": "tailWhip"
+      },
+      {
+        "level": 1,
+        "move": "bubble"
+      },
+      {
+        "level": 7,
+        "move": "bubble"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 13,
+        "move": "withdraw"
+      },
+      {
+        "level": 19,
+        "move": "bite"
+      },
+      {
+        "level": 31,
+        "move": "hydroPump"
       }
     ]
   },
@@ -243,6 +453,22 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 1,
+        "move": "bubble"
+      },
+      {
+        "level": 1,
+        "move": "waterGun"
+      },
+      {
+        "level": 1,
+        "move": "withdraw"
+      },
+      {
+        "level": 36,
+        "move": "hydroPump"
       }
     ]
   },
@@ -265,11 +491,20 @@
       "defense": 6,
       "speed": 7
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 7,
+        "evolveInto": "metapod"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 1,
+        "move": "stringShot"
       }
     ]
   },
@@ -292,10 +527,19 @@
       "defense": 9,
       "speed": 5
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 10,
+        "evolveInto": "butterfree"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
+        "move": "tackle"
+      },
+      {
+        "level": 7,
         "move": "tackle"
       }
     ]
@@ -325,6 +569,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "bugBite"
+      },
+      {
+        "level": 13,
+        "move": "poisonPowder"
       }
     ]
   },
@@ -348,11 +600,20 @@
       "defense": 5,
       "speed": 8
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 7,
+        "evolveInto": "kakuna"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 1,
+        "move": "stringShot"
       }
     ]
   },
@@ -376,10 +637,19 @@
       "defense": 8,
       "speed": 6
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 10,
+        "evolveInto": "beedrill"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
+        "move": "tackle"
+      },
+      {
+        "level": 7,
         "move": "tackle"
       }
     ]
@@ -409,6 +679,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "bugBite"
+      },
+      {
+        "level": 13,
+        "move": "poisonPowder"
       }
     ]
   },
@@ -432,11 +710,24 @@
       "defense": 6,
       "speed": 9
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 18,
+        "evolveInto": "pidgeotto"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 5,
+        "move": "peck"
+      },
+      {
+        "level": 12,
+        "move": "bite"
       }
     ]
   },
@@ -460,11 +751,28 @@
       "defense": 9,
       "speed": 11
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 36,
+        "evolveInto": "pidgeot"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 1,
+        "move": "peck"
+      },
+      {
+        "level": 5,
+        "move": "peck"
+      },
+      {
+        "level": 12,
+        "move": "bite"
       }
     ]
   },
@@ -493,6 +801,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 1,
+        "move": "peck"
+      },
+      {
+        "level": 1,
+        "move": "bite"
       }
     ]
   },
@@ -515,11 +831,24 @@
       "defense": 6,
       "speed": 11
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 20,
+        "evolveInto": "raticate"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 1,
+        "move": "tailWhip"
+      },
+      {
+        "level": 7,
+        "move": "bite"
       }
     ]
   },
@@ -547,6 +876,18 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 1,
+        "move": "tailWhip"
+      },
+      {
+        "level": 1,
+        "move": "bite"
+      },
+      {
+        "level": 7,
+        "move": "bite"
       }
     ]
   },
@@ -570,11 +911,20 @@
       "defense": 5,
       "speed": 11
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 20,
+        "evolveInto": "fearow"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
-        "move": "tackle"
+        "move": "peck"
+      },
+      {
+        "level": 7,
+        "move": "leer"
       }
     ]
   },
@@ -602,7 +952,11 @@
     "learnset": [
       {
         "level": 1,
-        "move": "tackle"
+        "move": "peck"
+      },
+      {
+        "level": 1,
+        "move": "leer"
       }
     ]
   },
@@ -625,11 +979,24 @@
       "defense": 7,
       "speed": 9
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 22,
+        "evolveInto": "arbok"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 8,
+        "move": "poisonPowder"
+      },
+      {
+        "level": 13,
+        "move": "bite"
       }
     ]
   },
@@ -657,6 +1024,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 1,
+        "move": "poisonPowder"
+      },
+      {
+        "level": 1,
+        "move": "bite"
       }
     ]
   },
@@ -679,11 +1054,28 @@
       "defense": 6,
       "speed": 14
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 30,
+        "evolveInto": "raichu"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
-        "move": "tackle"
+        "move": "thunderShock"
+      },
+      {
+        "level": 1,
+        "move": "growl"
+      },
+      {
+        "level": 6,
+        "move": "tailWhip"
+      },
+      {
+        "level": 13,
+        "move": "thunderbolt"
       }
     ]
   },
@@ -710,7 +1102,15 @@
     "learnset": [
       {
         "level": 1,
-        "move": "tackle"
+        "move": "thunderShock"
+      },
+      {
+        "level": 1,
+        "move": "growl"
+      },
+      {
+        "level": 1,
+        "move": "thunderbolt"
       }
     ]
   },
@@ -733,11 +1133,20 @@
       "defense": 13,
       "speed": 6
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 22,
+        "evolveInto": "sandslash"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
-        "move": "tackle"
+        "move": "scratch"
+      },
+      {
+        "level": 6,
+        "move": "leer"
       }
     ]
   },
@@ -764,7 +1173,11 @@
     "learnset": [
       {
         "level": 1,
-        "move": "tackle"
+        "move": "scratch"
+      },
+      {
+        "level": 1,
+        "move": "leer"
       }
     ]
   },
@@ -787,11 +1200,20 @@
       "defense": 8,
       "speed": 7
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 16,
+        "evolveInto": "nidorina"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 8,
+        "move": "poisonPowder"
       }
     ]
   },
@@ -814,11 +1236,20 @@
       "defense": 11,
       "speed": 9
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 36,
+        "evolveInto": "nidoqueen"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 1,
+        "move": "poisonPowder"
       }
     ]
   },
@@ -847,6 +1278,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 1,
+        "move": "poisonPowder"
+      },
+      {
+        "level": 23,
+        "move": "bite"
       }
     ]
   },
@@ -869,11 +1308,20 @@
       "defense": 6,
       "speed": 8
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 16,
+        "evolveInto": "nidorino"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 8,
+        "move": "poisonPowder"
       }
     ]
   },
@@ -896,11 +1344,20 @@
       "defense": 9,
       "speed": 10
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 36,
+        "evolveInto": "nidoking"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 1,
+        "move": "poisonPowder"
       }
     ]
   },
@@ -929,6 +1386,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 1,
+        "move": "poisonPowder"
+      },
+      {
+        "level": 23,
+        "move": "bite"
       }
     ]
   },
@@ -951,7 +1416,12 @@
       "defense": 8,
       "speed": 6
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 30,
+        "evolveInto": "clefable"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
@@ -1005,11 +1475,24 @@
       "defense": 6,
       "speed": 10
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 35,
+        "evolveInto": "ninetales"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "ember"
+      },
+      {
+        "level": 20,
+        "move": "flamethrower"
       }
     ]
   },
@@ -1037,6 +1520,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "ember"
+      },
+      {
+        "level": 20,
+        "move": "flamethrower"
       }
     ]
   },
@@ -1060,7 +1551,12 @@
       "defense": 3,
       "speed": 3
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 30,
+        "evolveInto": "wigglytuff"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
@@ -1116,11 +1612,20 @@
       "defense": 6,
       "speed": 9
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 22,
+        "evolveInto": "golbat"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "peck"
       }
     ]
   },
@@ -1149,6 +1654,10 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "peck"
       }
     ]
   },
@@ -1172,11 +1681,24 @@
       "defense": 9,
       "speed": 5
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 21,
+        "evolveInto": "gloom"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "vineWhip"
+      },
+      {
+        "level": 20,
+        "move": "razorLeaf"
       }
     ]
   },
@@ -1200,11 +1722,24 @@
       "defense": 11,
       "speed": 6
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 36,
+        "evolveInto": "vileplume"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "vineWhip"
+      },
+      {
+        "level": 20,
+        "move": "razorLeaf"
       }
     ]
   },
@@ -1233,6 +1768,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "vineWhip"
+      },
+      {
+        "level": 20,
+        "move": "razorLeaf"
       }
     ]
   },
@@ -1256,11 +1799,24 @@
       "defense": 9,
       "speed": 4
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 24,
+        "evolveInto": "parasect"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "vineWhip"
+      },
+      {
+        "level": 20,
+        "move": "razorLeaf"
       }
     ]
   },
@@ -1289,6 +1845,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "vineWhip"
+      },
+      {
+        "level": 20,
+        "move": "razorLeaf"
       }
     ]
   },
@@ -1312,11 +1876,20 @@
       "defense": 8,
       "speed": 7
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 31,
+        "evolveInto": "venomoth"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "bugBite"
       }
     ]
   },
@@ -1345,6 +1918,10 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "bugBite"
       }
     ]
   },
@@ -1367,7 +1944,12 @@
       "defense": 4,
       "speed": 15
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 26,
+        "evolveInto": "dugtrio"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
@@ -1421,7 +2003,12 @@
       "defense": 6,
       "speed": 14
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 28,
+        "evolveInto": "persian"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
@@ -1475,11 +2062,24 @@
       "defense": 8,
       "speed": 9
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 33,
+        "evolveInto": "golduck"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -1507,6 +2107,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -1529,7 +2137,12 @@
       "defense": 6,
       "speed": 11
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 28,
+        "evolveInto": "primeape"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
@@ -1583,11 +2196,24 @@
       "defense": 7,
       "speed": 9
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 35,
+        "evolveInto": "arcanine"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "ember"
+      },
+      {
+        "level": 20,
+        "move": "flamethrower"
       }
     ]
   },
@@ -1615,6 +2241,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "ember"
+      },
+      {
+        "level": 20,
+        "move": "flamethrower"
       }
     ]
   },
@@ -1637,11 +2271,24 @@
       "defense": 6,
       "speed": 14
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 25,
+        "evolveInto": "poliwhirl"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -1664,11 +2311,24 @@
       "defense": 10,
       "speed": 14
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 40,
+        "evolveInto": "poliwrath"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -1697,6 +2357,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -1719,7 +2387,12 @@
       "defense": 3,
       "speed": 14
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 16,
+        "evolveInto": "kadabra"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
@@ -1746,7 +2419,12 @@
       "defense": 5,
       "speed": 16
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 40,
+        "evolveInto": "alakazam"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
@@ -1800,7 +2478,12 @@
       "defense": 8,
       "speed": 6
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 28,
+        "evolveInto": "machoke"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
@@ -1827,7 +2510,12 @@
       "defense": 11,
       "speed": 7
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 40,
+        "evolveInto": "machamp"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
@@ -1882,11 +2570,24 @@
       "defense": 6,
       "speed": 6
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 21,
+        "evolveInto": "weepinbell"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "vineWhip"
+      },
+      {
+        "level": 20,
+        "move": "razorLeaf"
       }
     ]
   },
@@ -1910,11 +2611,24 @@
       "defense": 8,
       "speed": 9
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 36,
+        "evolveInto": "victreebel"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "vineWhip"
+      },
+      {
+        "level": 20,
+        "move": "razorLeaf"
       }
     ]
   },
@@ -1943,6 +2657,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "vineWhip"
+      },
+      {
+        "level": 20,
+        "move": "razorLeaf"
       }
     ]
   },
@@ -1966,11 +2688,24 @@
       "defense": 6,
       "speed": 11
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 30,
+        "evolveInto": "tentacruel"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -1999,6 +2734,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -2022,7 +2765,12 @@
       "defense": 15,
       "speed": 3
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 25,
+        "evolveInto": "graveler"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
@@ -2050,7 +2798,12 @@
       "defense": 18,
       "speed": 6
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 40,
+        "evolveInto": "golem"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
@@ -2105,11 +2858,24 @@
       "defense": 9,
       "speed": 14
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 40,
+        "evolveInto": "rapidash"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "ember"
+      },
+      {
+        "level": 20,
+        "move": "flamethrower"
       }
     ]
   },
@@ -2137,6 +2903,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "ember"
+      },
+      {
+        "level": 20,
+        "move": "flamethrower"
       }
     ]
   },
@@ -2160,11 +2934,24 @@
       "defense": 10,
       "speed": 3
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 37,
+        "evolveInto": "slowbro"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -2193,6 +2980,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -2216,11 +3011,24 @@
       "defense": 11,
       "speed": 7
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 30,
+        "evolveInto": "magneton"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "thunderShock"
+      },
+      {
+        "level": 20,
+        "move": "thunderbolt"
       }
     ]
   },
@@ -2249,6 +3057,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "thunderShock"
+      },
+      {
+        "level": 20,
+        "move": "thunderbolt"
       }
     ]
   },
@@ -2277,6 +3093,10 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "peck"
       }
     ]
   },
@@ -2300,11 +3120,20 @@
       "defense": 7,
       "speed": 12
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 31,
+        "evolveInto": "dodrio"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "peck"
       }
     ]
   },
@@ -2333,6 +3162,10 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "peck"
       }
     ]
   },
@@ -2355,11 +3188,24 @@
       "defense": 9,
       "speed": 7
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 34,
+        "evolveInto": "dewgong"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -2388,6 +3234,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -2410,11 +3264,20 @@
       "defense": 8,
       "speed": 4
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 38,
+        "evolveInto": "muk"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "poisonPowder"
       }
     ]
   },
@@ -2442,6 +3305,10 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "poisonPowder"
       }
     ]
   },
@@ -2464,11 +3331,24 @@
       "defense": 15,
       "speed": 6
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 35,
+        "evolveInto": "cloyster"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -2497,6 +3377,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -2520,11 +3408,20 @@
       "defense": 5,
       "speed": 12
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 25,
+        "evolveInto": "haunter"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "poisonPowder"
       }
     ]
   },
@@ -2548,11 +3445,20 @@
       "defense": 7,
       "speed": 15
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 40,
+        "evolveInto": "gengar"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "poisonPowder"
       }
     ]
   },
@@ -2581,6 +3487,10 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "poisonPowder"
       }
     ]
   },
@@ -2631,7 +3541,12 @@
       "defense": 7,
       "speed": 7
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 26,
+        "evolveInto": "hypno"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
@@ -2685,11 +3600,24 @@
       "defense": 14,
       "speed": 8
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 28,
+        "evolveInto": "kingler"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -2717,6 +3645,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -2739,11 +3675,24 @@
       "defense": 8,
       "speed": 15
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 30,
+        "evolveInto": "electrode"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "thunderShock"
+      },
+      {
+        "level": 20,
+        "move": "thunderbolt"
       }
     ]
   },
@@ -2771,6 +3720,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "thunderShock"
+      },
+      {
+        "level": 20,
+        "move": "thunderbolt"
       }
     ]
   },
@@ -2794,11 +3751,24 @@
       "defense": 12,
       "speed": 6
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 35,
+        "evolveInto": "exeggutor"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "vineWhip"
+      },
+      {
+        "level": 20,
+        "move": "razorLeaf"
       }
     ]
   },
@@ -2827,6 +3797,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "vineWhip"
+      },
+      {
+        "level": 20,
+        "move": "razorLeaf"
       }
     ]
   },
@@ -2849,7 +3827,12 @@
       "defense": 15,
       "speed": 6
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 28,
+        "evolveInto": "marowak"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
@@ -2984,11 +3967,20 @@
       "defense": 15,
       "speed": 6
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 35,
+        "evolveInto": "weezing"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "poisonPowder"
       }
     ]
   },
@@ -3016,6 +4008,10 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "poisonPowder"
       }
     ]
   },
@@ -3039,7 +4035,12 @@
       "defense": 15,
       "speed": 4
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 42,
+        "evolveInto": "rhydon"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
@@ -3126,6 +4127,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "vineWhip"
+      },
+      {
+        "level": 20,
+        "move": "razorLeaf"
       }
     ]
   },
@@ -3175,11 +4184,24 @@
       "defense": 11,
       "speed": 9
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 32,
+        "evolveInto": "seadra"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -3207,6 +4229,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -3229,11 +4259,24 @@
       "defense": 9,
       "speed": 10
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 33,
+        "evolveInto": "seaking"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -3261,6 +4304,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -3283,11 +4334,24 @@
       "defense": 9,
       "speed": 13
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 35,
+        "evolveInto": "starmie"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -3316,6 +4380,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -3372,6 +4444,10 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "bugBite"
       }
     ]
   },
@@ -3427,6 +4503,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "thunderShock"
+      },
+      {
+        "level": 20,
+        "move": "thunderbolt"
       }
     ]
   },
@@ -3454,6 +4538,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "ember"
+      },
+      {
+        "level": 20,
+        "move": "flamethrower"
       }
     ]
   },
@@ -3481,6 +4573,10 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "bugBite"
       }
     ]
   },
@@ -3530,11 +4626,24 @@
       "defense": 9,
       "speed": 12
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 20,
+        "evolveInto": "gyarados"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -3563,6 +4672,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -3591,6 +4708,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -3640,7 +4765,20 @@
       "defense": 8,
       "speed": 9
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 30,
+        "evolveInto": "vaporeon"
+      },
+      {
+        "level": 30,
+        "evolveInto": "jolteon"
+      },
+      {
+        "level": 30,
+        "evolveInto": "flareon"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
@@ -3672,6 +4810,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -3699,6 +4845,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "thunderShock"
+      },
+      {
+        "level": 20,
+        "move": "thunderbolt"
       }
     ]
   },
@@ -3726,6 +4880,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "ember"
+      },
+      {
+        "level": 20,
+        "move": "flamethrower"
       }
     ]
   },
@@ -3776,11 +4938,24 @@
       "defense": 15,
       "speed": 6
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 40,
+        "evolveInto": "omastar"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -3809,6 +4984,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -3832,11 +5015,24 @@
       "defense": 14,
       "speed": 9
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 40,
+        "evolveInto": "kabutops"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -3865,6 +5061,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "waterGun"
+      },
+      {
+        "level": 20,
+        "move": "hydroPump"
       }
     ]
   },
@@ -3893,6 +5097,10 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "peck"
       }
     ]
   },
@@ -3948,6 +5156,10 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "peck"
       }
     ]
   },
@@ -3976,6 +5188,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "thunderShock"
+      },
+      {
+        "level": 20,
+        "move": "thunderbolt"
       }
     ]
   },
@@ -4004,6 +5224,14 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "ember"
+      },
+      {
+        "level": 20,
+        "move": "flamethrower"
       }
     ]
   },
@@ -4026,7 +5254,12 @@
       "defense": 7,
       "speed": 8
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 30,
+        "evolveInto": "dragonair"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
@@ -4053,7 +5286,12 @@
       "defense": 10,
       "speed": 11
     },
-    "evolutions": [],
+    "evolutions": [
+      {
+        "level": 55,
+        "evolveInto": "dragonite"
+      }
+    ],
     "learnset": [
       {
         "level": 1,
@@ -4086,6 +5324,10 @@
       {
         "level": 1,
         "move": "tackle"
+      },
+      {
+        "level": 10,
+        "move": "peck"
       }
     ]
   },

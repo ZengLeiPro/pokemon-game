@@ -391,15 +391,13 @@ const MOVE_DATA = {
     "description": "降低对方的防御"
   }
 };
-
 // ========== 宝可梦数据 ==========
 // 数据来源: PokeAPI (https://pokeapi.co/)
-// 生成时间: 2025-11-06T15:43:43.947Z
-// 包含151只初代宝可梦完整数据
+// 更新时间: 2025-11-08T00:54:43.713Z
+// 包含151只初代宝可梦完整数据（已配置进化链和技能学习表）
 
 const POKEMON_DATA = {
   // #1 妙蛙种子
-  // 注意：这个宝可梦原来有详细的技能配置，现已被API数据覆盖
   "bulbasaur": {
     "id": 1,
     "name": "妙蛙种子",
@@ -417,14 +415,20 @@ const POKEMON_DATA = {
       "defense": 8,
       "speed": 7
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 16, "evolveInto": "ivysaur" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 1, "move": "growl" },
+      { "level": 7, "move": "vineWhip" },
+      { "level": 13, "move": "poisonPowder" },
+      { "level": 20, "move": "razorLeaf" },
+      { "level": 32, "move": "solarBeam" }
     ]
   },
 
   // #2 妙蛙草
-  // 注意：这个宝可梦原来有详细的技能配置，现已被API数据覆盖
   "ivysaur": {
     "id": 2,
     "name": "妙蛙草",
@@ -442,14 +446,21 @@ const POKEMON_DATA = {
       "defense": 10,
       "speed": 9
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 32, "evolveInto": "venusaur" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 1, "move": "growl" },
+      { "level": 1, "move": "vineWhip" },
+      { "level": 7, "move": "vineWhip" },
+      { "level": 13, "move": "poisonPowder" },
+      { "level": 22, "move": "razorLeaf" },
+      { "level": 36, "move": "solarBeam" }
     ]
   },
 
   // #3 妙蛙花
-  // 注意：这个宝可梦原来有详细的技能配置，现已被API数据覆盖
   "venusaur": {
     "id": 3,
     "name": "妙蛙花",
@@ -469,12 +480,15 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 1, "move": "growl" },
+      { "level": 1, "move": "vineWhip" },
+      { "level": 1, "move": "razorLeaf" },
+      { "level": 32, "move": "solarBeam" }
     ]
   },
 
   // #4 小火龙
-  // 注意：这个宝可梦原来有详细的技能配置，现已被API数据覆盖
   "charmander": {
     "id": 4,
     "name": "小火龙",
@@ -492,14 +506,21 @@ const POKEMON_DATA = {
       "defense": 7,
       "speed": 10
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 16, "evolveInto": "charmeleon" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "scratch" },
+      { "level": 1, "move": "growl" },
+      { "level": 7, "move": "ember" },
+      { "level": 13, "move": "scaryFace" },
+      { "level": 19, "move": "bite" },
+      { "level": 28, "move": "flamethrower" },
+      { "level": 34, "move": "dragonRage" }
     ]
   },
 
   // #5 火恐龙
-  // 注意：这个宝可梦原来有详细的技能配置，现已被API数据覆盖
   "charmeleon": {
     "id": 5,
     "name": "火恐龙",
@@ -517,14 +538,22 @@ const POKEMON_DATA = {
       "defense": 9,
       "speed": 12
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 36, "evolveInto": "charizard" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "scratch" },
+      { "level": 1, "move": "growl" },
+      { "level": 1, "move": "ember" },
+      { "level": 7, "move": "ember" },
+      { "level": 13, "move": "scaryFace" },
+      { "level": 20, "move": "bite" },
+      { "level": 30, "move": "flamethrower" },
+      { "level": 36, "move": "dragonRage" }
     ]
   },
 
   // #6 喷火龙
-  // 注意：这个宝可梦原来有详细的技能配置，现已被API数据覆盖
   "charizard": {
     "id": 6,
     "name": "喷火龙",
@@ -544,12 +573,15 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "scratch" },
+      { "level": 1, "move": "growl" },
+      { "level": 1, "move": "ember" },
+      { "level": 1, "move": "flamethrower" },
+      { "level": 36, "move": "dragonRage" }
     ]
   },
 
   // #7 杰尼龟
-  // 注意：这个宝可梦原来有详细的技能配置，现已被API数据覆盖
   "squirtle": {
     "id": 7,
     "name": "杰尼龟",
@@ -567,14 +599,21 @@ const POKEMON_DATA = {
       "defense": 10,
       "speed": 7
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 16, "evolveInto": "wartortle" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 1, "move": "tailWhip" },
+      { "level": 7, "move": "bubble" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 13, "move": "withdraw" },
+      { "level": 18, "move": "bite" },
+      { "level": 28, "move": "hydroPump" }
     ]
   },
 
   // #8 卡咪龟
-  // 注意：这个宝可梦原来有详细的技能配置，现已被API数据覆盖
   "wartortle": {
     "id": 8,
     "name": "卡咪龟",
@@ -592,14 +631,22 @@ const POKEMON_DATA = {
       "defense": 12,
       "speed": 9
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 36, "evolveInto": "blastoise" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 1, "move": "tailWhip" },
+      { "level": 1, "move": "bubble" },
+      { "level": 7, "move": "bubble" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 13, "move": "withdraw" },
+      { "level": 19, "move": "bite" },
+      { "level": 31, "move": "hydroPump" }
     ]
   },
 
   // #9 水箭龟
-  // 注意：这个宝可梦原来有详细的技能配置，现已被API数据覆盖
   "blastoise": {
     "id": 9,
     "name": "水箭龟",
@@ -619,12 +666,15 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 1, "move": "bubble" },
+      { "level": 1, "move": "waterGun" },
+      { "level": 1, "move": "withdraw" },
+      { "level": 36, "move": "hydroPump" }
     ]
   },
 
   // #10 绿毛虫
-  // 注意：这个宝可梦原来有详细的技能配置，现已被API数据覆盖
   "caterpie": {
     "id": 10,
     "name": "绿毛虫",
@@ -642,9 +692,12 @@ const POKEMON_DATA = {
       "defense": 6,
       "speed": 7
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 7, "evolveInto": "metapod" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 1, "move": "stringShot" }
     ]
   },
 
@@ -666,9 +719,12 @@ const POKEMON_DATA = {
       "defense": 9,
       "speed": 5
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 10, "evolveInto": "butterfree" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 7, "move": "tackle" }
     ]
   },
 
@@ -692,12 +748,13 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "bugBite" },
+      { "level": 13, "move": "poisonPowder" }
     ]
   },
 
   // #13 独角虫
-  // 注意：这个宝可梦原来有详细的技能配置，现已被API数据覆盖
   "weedle": {
     "id": 13,
     "name": "独角虫",
@@ -715,9 +772,12 @@ const POKEMON_DATA = {
       "defense": 5,
       "speed": 8
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 7, "evolveInto": "kakuna" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 1, "move": "stringShot" }
     ]
   },
 
@@ -739,9 +799,12 @@ const POKEMON_DATA = {
       "defense": 8,
       "speed": 6
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 10, "evolveInto": "beedrill" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 7, "move": "tackle" }
     ]
   },
 
@@ -765,12 +828,13 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "bugBite" },
+      { "level": 13, "move": "poisonPowder" }
     ]
   },
 
   // #16 波波
-  // 注意：这个宝可梦原来有详细的技能配置，现已被API数据覆盖
   "pidgey": {
     "id": 16,
     "name": "波波",
@@ -788,9 +852,13 @@ const POKEMON_DATA = {
       "defense": 6,
       "speed": 9
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 18, "evolveInto": "pidgeotto" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 5, "move": "peck" },
+      { "level": 12, "move": "bite" }
     ]
   },
 
@@ -812,9 +880,14 @@ const POKEMON_DATA = {
       "defense": 9,
       "speed": 11
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 36, "evolveInto": "pidgeot" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 1, "move": "peck" },
+      { "level": 5, "move": "peck" },
+      { "level": 12, "move": "bite" }
     ]
   },
 
@@ -838,12 +911,13 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 1, "move": "peck" },
+      { "level": 1, "move": "bite" }
     ]
   },
 
   // #19 小拉达
-  // 注意：这个宝可梦原来有详细的技能配置，现已被API数据覆盖
   "rattata": {
     "id": 19,
     "name": "小拉达",
@@ -861,9 +935,13 @@ const POKEMON_DATA = {
       "defense": 6,
       "speed": 11
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 20, "evolveInto": "raticate" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 1, "move": "tailWhip" },
+      { "level": 7, "move": "bite" }
     ]
   },
 
@@ -887,7 +965,10 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 1, "move": "tailWhip" },
+      { "level": 1, "move": "bite" },
+      { "level": 7, "move": "bite" }
     ]
   },
 
@@ -909,9 +990,12 @@ const POKEMON_DATA = {
       "defense": 5,
       "speed": 11
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 20, "evolveInto": "fearow" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "peck" },
+      { "level": 7, "move": "leer" }
     ]
   },
 
@@ -935,7 +1019,8 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "peck" },
+      { "level": 1, "move": "leer" }
     ]
   },
 
@@ -957,9 +1042,13 @@ const POKEMON_DATA = {
       "defense": 7,
       "speed": 9
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 22, "evolveInto": "arbok" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 8, "move": "poisonPowder" },
+      { "level": 13, "move": "bite" }
     ]
   },
 
@@ -983,12 +1072,13 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 1, "move": "poisonPowder" },
+      { "level": 1, "move": "bite" }
     ]
   },
 
   // #25 皮卡丘
-  // 注意：这个宝可梦原来有详细的技能配置，现已被API数据覆盖
   "pikachu": {
     "id": 25,
     "name": "皮卡丘",
@@ -1006,9 +1096,14 @@ const POKEMON_DATA = {
       "defense": 6,
       "speed": 14
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 30, "evolveInto": "raichu" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "thunderShock" },
+      { "level": 1, "move": "growl" },
+      { "level": 6, "move": "tailWhip" },
+      { "level": 13, "move": "thunderbolt" }
     ]
   },
 
@@ -1032,12 +1127,13 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "thunderShock" },
+      { "level": 1, "move": "growl" },
+      { "level": 1, "move": "thunderbolt" }
     ]
   },
 
   // #27 穿山鼠
-  // 注意：这个宝可梦原来有详细的技能配置，现已被API数据覆盖
   "sandshrew": {
     "id": 27,
     "name": "穿山鼠",
@@ -1055,9 +1151,12 @@ const POKEMON_DATA = {
       "defense": 13,
       "speed": 6
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 22, "evolveInto": "sandslash" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "scratch" },
+      { "level": 6, "move": "leer" }
     ]
   },
 
@@ -1081,7 +1180,8 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "scratch" },
+      { "level": 1, "move": "leer" }
     ]
   },
 
@@ -1103,9 +1203,12 @@ const POKEMON_DATA = {
       "defense": 8,
       "speed": 7
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 16, "evolveInto": "nidorina" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 8, "move": "poisonPowder" }
     ]
   },
 
@@ -1127,9 +1230,12 @@ const POKEMON_DATA = {
       "defense": 11,
       "speed": 9
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 36, "evolveInto": "nidoqueen" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 1, "move": "poisonPowder" }
     ]
   },
 
@@ -1153,7 +1259,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 1, "move": "poisonPowder" },
+      { "level": 23, "move": "bite" }
     ]
   },
 
@@ -1175,9 +1283,12 @@ const POKEMON_DATA = {
       "defense": 6,
       "speed": 8
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 16, "evolveInto": "nidorino" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 8, "move": "poisonPowder" }
     ]
   },
 
@@ -1199,9 +1310,12 @@ const POKEMON_DATA = {
       "defense": 9,
       "speed": 10
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 36, "evolveInto": "nidoking" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 1, "move": "poisonPowder" }
     ]
   },
 
@@ -1225,7 +1339,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 1, "move": "poisonPowder" },
+      { "level": 23, "move": "bite" }
     ]
   },
 
@@ -1247,7 +1363,9 @@ const POKEMON_DATA = {
       "defense": 8,
       "speed": 6
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 30, "evolveInto": "clefable" }
+    ],
     "learnset": [
       { "level": 1, "move": "tackle" }
     ]
@@ -1295,9 +1413,13 @@ const POKEMON_DATA = {
       "defense": 6,
       "speed": 10
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 35, "evolveInto": "ninetales" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "ember" },
+      { "level": 20, "move": "flamethrower" }
     ]
   },
 
@@ -1321,7 +1443,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "ember" },
+      { "level": 20, "move": "flamethrower" }
     ]
   },
 
@@ -1343,7 +1467,9 @@ const POKEMON_DATA = {
       "defense": 3,
       "speed": 3
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 30, "evolveInto": "wigglytuff" }
+    ],
     "learnset": [
       { "level": 1, "move": "tackle" }
     ]
@@ -1391,9 +1517,12 @@ const POKEMON_DATA = {
       "defense": 6,
       "speed": 9
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 22, "evolveInto": "golbat" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "peck" }
     ]
   },
 
@@ -1417,7 +1546,8 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "peck" }
     ]
   },
 
@@ -1439,9 +1569,13 @@ const POKEMON_DATA = {
       "defense": 9,
       "speed": 5
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 21, "evolveInto": "gloom" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "vineWhip" },
+      { "level": 20, "move": "razorLeaf" }
     ]
   },
 
@@ -1463,9 +1597,13 @@ const POKEMON_DATA = {
       "defense": 11,
       "speed": 6
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 36, "evolveInto": "vileplume" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "vineWhip" },
+      { "level": 20, "move": "razorLeaf" }
     ]
   },
 
@@ -1489,7 +1627,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "vineWhip" },
+      { "level": 20, "move": "razorLeaf" }
     ]
   },
 
@@ -1511,9 +1651,13 @@ const POKEMON_DATA = {
       "defense": 9,
       "speed": 4
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 24, "evolveInto": "parasect" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "vineWhip" },
+      { "level": 20, "move": "razorLeaf" }
     ]
   },
 
@@ -1537,7 +1681,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "vineWhip" },
+      { "level": 20, "move": "razorLeaf" }
     ]
   },
 
@@ -1559,9 +1705,12 @@ const POKEMON_DATA = {
       "defense": 8,
       "speed": 7
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 31, "evolveInto": "venomoth" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "bugBite" }
     ]
   },
 
@@ -1585,7 +1734,8 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "bugBite" }
     ]
   },
 
@@ -1607,7 +1757,9 @@ const POKEMON_DATA = {
       "defense": 4,
       "speed": 15
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 26, "evolveInto": "dugtrio" }
+    ],
     "learnset": [
       { "level": 1, "move": "tackle" }
     ]
@@ -1655,7 +1807,9 @@ const POKEMON_DATA = {
       "defense": 6,
       "speed": 14
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 28, "evolveInto": "persian" }
+    ],
     "learnset": [
       { "level": 1, "move": "tackle" }
     ]
@@ -1703,9 +1857,13 @@ const POKEMON_DATA = {
       "defense": 8,
       "speed": 9
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 33, "evolveInto": "golduck" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -1729,7 +1887,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -1751,7 +1911,9 @@ const POKEMON_DATA = {
       "defense": 6,
       "speed": 11
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 28, "evolveInto": "primeape" }
+    ],
     "learnset": [
       { "level": 1, "move": "tackle" }
     ]
@@ -1799,9 +1961,13 @@ const POKEMON_DATA = {
       "defense": 7,
       "speed": 9
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 35, "evolveInto": "arcanine" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "ember" },
+      { "level": 20, "move": "flamethrower" }
     ]
   },
 
@@ -1825,7 +1991,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "ember" },
+      { "level": 20, "move": "flamethrower" }
     ]
   },
 
@@ -1847,9 +2015,13 @@ const POKEMON_DATA = {
       "defense": 6,
       "speed": 14
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 25, "evolveInto": "poliwhirl" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -1871,9 +2043,13 @@ const POKEMON_DATA = {
       "defense": 10,
       "speed": 14
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 40, "evolveInto": "poliwrath" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -1897,7 +2073,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -1919,7 +2097,9 @@ const POKEMON_DATA = {
       "defense": 3,
       "speed": 14
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 16, "evolveInto": "kadabra" }
+    ],
     "learnset": [
       { "level": 1, "move": "tackle" }
     ]
@@ -1943,7 +2123,9 @@ const POKEMON_DATA = {
       "defense": 5,
       "speed": 16
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 40, "evolveInto": "alakazam" }
+    ],
     "learnset": [
       { "level": 1, "move": "tackle" }
     ]
@@ -1991,7 +2173,9 @@ const POKEMON_DATA = {
       "defense": 8,
       "speed": 6
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 28, "evolveInto": "machoke" }
+    ],
     "learnset": [
       { "level": 1, "move": "tackle" }
     ]
@@ -2015,7 +2199,9 @@ const POKEMON_DATA = {
       "defense": 11,
       "speed": 7
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 40, "evolveInto": "machamp" }
+    ],
     "learnset": [
       { "level": 1, "move": "tackle" }
     ]
@@ -2063,9 +2249,13 @@ const POKEMON_DATA = {
       "defense": 6,
       "speed": 6
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 21, "evolveInto": "weepinbell" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "vineWhip" },
+      { "level": 20, "move": "razorLeaf" }
     ]
   },
 
@@ -2087,9 +2277,13 @@ const POKEMON_DATA = {
       "defense": 8,
       "speed": 9
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 36, "evolveInto": "victreebel" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "vineWhip" },
+      { "level": 20, "move": "razorLeaf" }
     ]
   },
 
@@ -2113,7 +2307,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "vineWhip" },
+      { "level": 20, "move": "razorLeaf" }
     ]
   },
 
@@ -2135,9 +2331,13 @@ const POKEMON_DATA = {
       "defense": 6,
       "speed": 11
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 30, "evolveInto": "tentacruel" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -2161,7 +2361,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -2183,7 +2385,9 @@ const POKEMON_DATA = {
       "defense": 15,
       "speed": 3
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 25, "evolveInto": "graveler" }
+    ],
     "learnset": [
       { "level": 1, "move": "tackle" }
     ]
@@ -2207,7 +2411,9 @@ const POKEMON_DATA = {
       "defense": 18,
       "speed": 6
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 40, "evolveInto": "golem" }
+    ],
     "learnset": [
       { "level": 1, "move": "tackle" }
     ]
@@ -2255,9 +2461,13 @@ const POKEMON_DATA = {
       "defense": 9,
       "speed": 14
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 40, "evolveInto": "rapidash" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "ember" },
+      { "level": 20, "move": "flamethrower" }
     ]
   },
 
@@ -2281,7 +2491,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "ember" },
+      { "level": 20, "move": "flamethrower" }
     ]
   },
 
@@ -2303,9 +2515,13 @@ const POKEMON_DATA = {
       "defense": 10,
       "speed": 3
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 37, "evolveInto": "slowbro" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -2329,7 +2545,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -2351,9 +2569,13 @@ const POKEMON_DATA = {
       "defense": 11,
       "speed": 7
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 30, "evolveInto": "magneton" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "thunderShock" },
+      { "level": 20, "move": "thunderbolt" }
     ]
   },
 
@@ -2377,7 +2599,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "thunderShock" },
+      { "level": 20, "move": "thunderbolt" }
     ]
   },
 
@@ -2401,7 +2625,8 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "peck" }
     ]
   },
 
@@ -2423,9 +2648,12 @@ const POKEMON_DATA = {
       "defense": 7,
       "speed": 12
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 31, "evolveInto": "dodrio" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "peck" }
     ]
   },
 
@@ -2449,7 +2677,8 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "peck" }
     ]
   },
 
@@ -2471,9 +2700,13 @@ const POKEMON_DATA = {
       "defense": 9,
       "speed": 7
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 34, "evolveInto": "dewgong" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -2497,7 +2730,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -2519,9 +2754,12 @@ const POKEMON_DATA = {
       "defense": 8,
       "speed": 4
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 38, "evolveInto": "muk" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "poisonPowder" }
     ]
   },
 
@@ -2545,7 +2783,8 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "poisonPowder" }
     ]
   },
 
@@ -2567,9 +2806,13 @@ const POKEMON_DATA = {
       "defense": 15,
       "speed": 6
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 35, "evolveInto": "cloyster" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -2593,7 +2836,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -2615,9 +2860,12 @@ const POKEMON_DATA = {
       "defense": 5,
       "speed": 12
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 25, "evolveInto": "haunter" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "poisonPowder" }
     ]
   },
 
@@ -2639,9 +2887,12 @@ const POKEMON_DATA = {
       "defense": 7,
       "speed": 15
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 40, "evolveInto": "gengar" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "poisonPowder" }
     ]
   },
 
@@ -2665,7 +2916,8 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "poisonPowder" }
     ]
   },
 
@@ -2711,7 +2963,9 @@ const POKEMON_DATA = {
       "defense": 7,
       "speed": 7
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 26, "evolveInto": "hypno" }
+    ],
     "learnset": [
       { "level": 1, "move": "tackle" }
     ]
@@ -2759,9 +3013,13 @@ const POKEMON_DATA = {
       "defense": 14,
       "speed": 8
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 28, "evolveInto": "kingler" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -2785,7 +3043,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -2807,9 +3067,13 @@ const POKEMON_DATA = {
       "defense": 8,
       "speed": 15
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 30, "evolveInto": "electrode" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "thunderShock" },
+      { "level": 20, "move": "thunderbolt" }
     ]
   },
 
@@ -2833,7 +3097,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "thunderShock" },
+      { "level": 20, "move": "thunderbolt" }
     ]
   },
 
@@ -2855,9 +3121,13 @@ const POKEMON_DATA = {
       "defense": 12,
       "speed": 6
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 35, "evolveInto": "exeggutor" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "vineWhip" },
+      { "level": 20, "move": "razorLeaf" }
     ]
   },
 
@@ -2881,7 +3151,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "vineWhip" },
+      { "level": 20, "move": "razorLeaf" }
     ]
   },
 
@@ -2903,7 +3175,9 @@ const POKEMON_DATA = {
       "defense": 15,
       "speed": 6
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 28, "evolveInto": "marowak" }
+    ],
     "learnset": [
       { "level": 1, "move": "tackle" }
     ]
@@ -3023,9 +3297,12 @@ const POKEMON_DATA = {
       "defense": 15,
       "speed": 6
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 35, "evolveInto": "weezing" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "poisonPowder" }
     ]
   },
 
@@ -3049,7 +3326,8 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "poisonPowder" }
     ]
   },
 
@@ -3071,7 +3349,9 @@ const POKEMON_DATA = {
       "defense": 15,
       "speed": 4
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 42, "evolveInto": "rhydon" }
+    ],
     "learnset": [
       { "level": 1, "move": "tackle" }
     ]
@@ -3145,7 +3425,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "vineWhip" },
+      { "level": 20, "move": "razorLeaf" }
     ]
   },
 
@@ -3191,9 +3473,13 @@ const POKEMON_DATA = {
       "defense": 11,
       "speed": 9
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 32, "evolveInto": "seadra" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -3217,7 +3503,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -3239,9 +3527,13 @@ const POKEMON_DATA = {
       "defense": 9,
       "speed": 10
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 33, "evolveInto": "seaking" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -3265,7 +3557,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -3287,9 +3581,13 @@ const POKEMON_DATA = {
       "defense": 9,
       "speed": 13
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 35, "evolveInto": "starmie" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -3313,7 +3611,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -3361,7 +3661,8 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "bugBite" }
     ]
   },
 
@@ -3409,7 +3710,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "thunderShock" },
+      { "level": 20, "move": "thunderbolt" }
     ]
   },
 
@@ -3433,7 +3736,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "ember" },
+      { "level": 20, "move": "flamethrower" }
     ]
   },
 
@@ -3457,7 +3762,8 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "bugBite" }
     ]
   },
 
@@ -3503,9 +3809,13 @@ const POKEMON_DATA = {
       "defense": 9,
       "speed": 12
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 20, "evolveInto": "gyarados" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -3529,7 +3839,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -3553,7 +3865,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -3599,7 +3913,11 @@ const POKEMON_DATA = {
       "defense": 8,
       "speed": 9
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 30, "evolveInto": "vaporeon" },
+      { "level": 30, "evolveInto": "jolteon" },
+      { "level": 30, "evolveInto": "flareon" }
+    ],
     "learnset": [
       { "level": 1, "move": "tackle" }
     ]
@@ -3625,7 +3943,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -3649,7 +3969,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "thunderShock" },
+      { "level": 20, "move": "thunderbolt" }
     ]
   },
 
@@ -3673,7 +3995,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "ember" },
+      { "level": 20, "move": "flamethrower" }
     ]
   },
 
@@ -3719,9 +4043,13 @@ const POKEMON_DATA = {
       "defense": 15,
       "speed": 6
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 40, "evolveInto": "omastar" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -3745,7 +4073,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -3767,9 +4097,13 @@ const POKEMON_DATA = {
       "defense": 14,
       "speed": 9
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 40, "evolveInto": "kabutops" }
+    ],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -3793,7 +4127,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "waterGun" },
+      { "level": 20, "move": "hydroPump" }
     ]
   },
 
@@ -3817,7 +4153,8 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "peck" }
     ]
   },
 
@@ -3865,7 +4202,8 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "peck" }
     ]
   },
 
@@ -3889,7 +4227,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "thunderShock" },
+      { "level": 20, "move": "thunderbolt" }
     ]
   },
 
@@ -3913,7 +4253,9 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "ember" },
+      { "level": 20, "move": "flamethrower" }
     ]
   },
 
@@ -3935,7 +4277,9 @@ const POKEMON_DATA = {
       "defense": 7,
       "speed": 8
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 30, "evolveInto": "dragonair" }
+    ],
     "learnset": [
       { "level": 1, "move": "tackle" }
     ]
@@ -3959,7 +4303,9 @@ const POKEMON_DATA = {
       "defense": 10,
       "speed": 11
     },
-    "evolutions": [],
+    "evolutions": [
+      { "level": 55, "evolveInto": "dragonite" }
+    ],
     "learnset": [
       { "level": 1, "move": "tackle" }
     ]
@@ -3985,7 +4331,8 @@ const POKEMON_DATA = {
     },
     "evolutions": [],
     "learnset": [
-      { "level": 1, "move": "tackle" }
+      { "level": 1, "move": "tackle" },
+      { "level": 10, "move": "peck" }
     ]
   },
 
@@ -4040,63 +4387,536 @@ const POKEMON_DATA = {
 
 // ========== 野生宝可梦生成池 ==========
 const WILD_POKEMON_POOL = [
-  // 低等级区域（1-15级）
+  // ========== 新手区域（1-10级）==========
+  // 常见虫系
   {
     "species": "caterpie",
     "minLevel": 2,
-    "maxLevel": 7,
-    "weight": 30
+    "maxLevel": 5,
+    "weight": 25
   },
   {
     "species": "weedle",
     "minLevel": 2,
-    "maxLevel": 7,
-    "weight": 30
+    "maxLevel": 5,
+    "weight": 25
   },
+  {
+    "species": "metapod",
+    "minLevel": 6,
+    "maxLevel": 9,
+    "weight": 15
+  },
+  {
+    "species": "kakuna",
+    "minLevel": 6,
+    "maxLevel": 9,
+    "weight": 15
+  },
+
+  // 常见普通系
   {
     "species": "rattata",
     "minLevel": 2,
-    "maxLevel": 10,
+    "maxLevel": 8,
     "weight": 25
   },
   {
     "species": "pidgey",
     "minLevel": 3,
-    "maxLevel": 12,
+    "maxLevel": 10,
+    "weight": 25
+  },
+  {
+    "species": "spearow",
+    "minLevel": 3,
+    "maxLevel": 9,
     "weight": 20
   },
 
-  // 中等级区域（10-30级）
+  // ========== 初级区域（8-18级）==========
   {
-    "species": "pikachu",
+    "species": "butterfree",
     "minLevel": 10,
-    "maxLevel": 25,
+    "maxLevel": 14,
+    "weight": 12
+  },
+  {
+    "species": "beedrill",
+    "minLevel": 10,
+    "maxLevel": 14,
+    "weight": 12
+  },
+  {
+    "species": "pidgeotto",
+    "minLevel": 15,
+    "maxLevel": 20,
     "weight": 15
   },
   {
+    "species": "raticate",
+    "minLevel": 15,
+    "maxLevel": 22,
+    "weight": 15
+  },
+
+  // 电系
+  {
+    "species": "pikachu",
+    "minLevel": 10,
+    "maxLevel": 18,
+    "weight": 18
+  },
+
+  // 地面系
+  {
     "species": "sandshrew",
+    "minLevel": 10,
+    "maxLevel": 18,
+    "weight": 18
+  },
+  {
+    "species": "diglett",
     "minLevel": 12,
+    "maxLevel": 20,
+    "weight": 15
+  },
+
+  // 毒系
+  {
+    "species": "ekans",
+    "minLevel": 8,
+    "maxLevel": 16,
+    "weight": 18
+  },
+  {
+    "species": "zubat",
+    "minLevel": 10,
+    "maxLevel": 18,
+    "weight": 18
+  },
+
+  // 草系
+  {
+    "species": "oddish",
+    "minLevel": 10,
+    "maxLevel": 18,
+    "weight": 18
+  },
+  {
+    "species": "bellsprout",
+    "minLevel": 10,
+    "maxLevel": 18,
+    "weight": 18
+  },
+
+  // ========== 中级区域（18-30级）==========
+  // 进化形态
+  {
+    "species": "sandslash",
+    "minLevel": 22,
+    "maxLevel": 28,
+    "weight": 12
+  },
+  {
+    "species": "arbok",
+    "minLevel": 22,
+    "maxLevel": 28,
+    "weight": 10
+  },
+  {
+    "species": "golbat",
+    "minLevel": 22,
+    "maxLevel": 28,
+    "weight": 10
+  },
+  {
+    "species": "gloom",
+    "minLevel": 21,
+    "maxLevel": 28,
+    "weight": 12
+  },
+  {
+    "species": "weepinbell",
+    "minLevel": 21,
     "maxLevel": 28,
     "weight": 12
   },
 
-  // 高等级区域（30-50级）
+  // 水系
   {
-    "species": "charizard",
-    "minLevel": 36,
+    "species": "poliwag",
+    "minLevel": 15,
+    "maxLevel": 22,
+    "weight": 15
+  },
+  {
+    "species": "tentacool",
+    "minLevel": 15,
+    "maxLevel": 25,
+    "weight": 15
+  },
+  {
+    "species": "psyduck",
+    "minLevel": 18,
+    "maxLevel": 25,
+    "weight": 15
+  },
+  {
+    "species": "slowpoke",
+    "minLevel": 18,
+    "maxLevel": 28,
+    "weight": 12
+  },
+  {
+    "species": "krabby",
+    "minLevel": 18,
+    "maxLevel": 25,
+    "weight": 15
+  },
+  {
+    "species": "horsea",
+    "minLevel": 18,
+    "maxLevel": 25,
+    "weight": 15
+  },
+  {
+    "species": "goldeen",
+    "minLevel": 18,
+    "maxLevel": 25,
+    "weight": 15
+  },
+  {
+    "species": "magikarp",
+    "minLevel": 5,
+    "maxLevel": 15,
+    "weight": 20
+  },
+
+  // 岩石/地面系
+  {
+    "species": "geodude",
+    "minLevel": 15,
+    "maxLevel": 22,
+    "weight": 15
+  },
+  {
+    "species": "onix",
+    "minLevel": 18,
+    "maxLevel": 28,
+    "weight": 10
+  },
+  {
+    "species": "cubone",
+    "minLevel": 18,
+    "maxLevel": 26,
+    "weight": 12
+  },
+
+  // 格斗系
+  {
+    "species": "mankey",
+    "minLevel": 15,
+    "maxLevel": 25,
+    "weight": 15
+  },
+  {
+    "species": "machop",
+    "minLevel": 15,
+    "maxLevel": 25,
+    "weight": 15
+  },
+
+  // 超能力系
+  {
+    "species": "abra",
+    "minLevel": 10,
+    "maxLevel": 18,
+    "weight": 12
+  },
+  {
+    "species": "drowzee",
+    "minLevel": 18,
+    "maxLevel": 25,
+    "weight": 12
+  },
+
+  // 火系
+  {
+    "species": "vulpix",
+    "minLevel": 18,
+    "maxLevel": 28,
+    "weight": 12
+  },
+  {
+    "species": "growlithe",
+    "minLevel": 18,
+    "maxLevel": 28,
+    "weight": 12
+  },
+  {
+    "species": "ponyta",
+    "minLevel": 22,
+    "maxLevel": 32,
+    "weight": 10
+  },
+
+  // 其他
+  {
+    "species": "meowth",
+    "minLevel": 15,
+    "maxLevel": 25,
+    "weight": 15
+  },
+  {
+    "species": "paras",
+    "minLevel": 15,
+    "maxLevel": 22,
+    "weight": 15
+  },
+  {
+    "species": "venonat",
+    "minLevel": 18,
+    "maxLevel": 28,
+    "weight": 12
+  },
+
+  // ========== 高级区域（28-40级）==========
+  {
+    "species": "poliwhirl",
+    "minLevel": 25,
+    "maxLevel": 35,
+    "weight": 10
+  },
+  {
+    "species": "tentacruel",
+    "minLevel": 30,
+    "maxLevel": 38,
+    "weight": 8
+  },
+  {
+    "species": "graveler",
+    "minLevel": 25,
+    "maxLevel": 35,
+    "weight": 10
+  },
+  {
+    "species": "kadabra",
+    "minLevel": 20,
+    "maxLevel": 30,
+    "weight": 8
+  },
+  {
+    "species": "machoke",
+    "minLevel": 28,
+    "maxLevel": 35,
+    "weight": 10
+  },
+  {
+    "species": "marowak",
+    "minLevel": 28,
+    "maxLevel": 35,
+    "weight": 10
+  },
+  {
+    "species": "kingler",
+    "minLevel": 28,
+    "maxLevel": 35,
+    "weight": 10
+  },
+  {
+    "species": "seadra",
+    "minLevel": 32,
+    "maxLevel": 38,
+    "weight": 8
+  },
+  {
+    "species": "golduck",
+    "minLevel": 33,
+    "maxLevel": 38,
+    "weight": 8
+  },
+  {
+    "species": "primeape",
+    "minLevel": 28,
+    "maxLevel": 35,
+    "weight": 10
+  },
+  {
+    "species": "hypno",
+    "minLevel": 28,
+    "maxLevel": 35,
+    "weight": 8
+  },
+  {
+    "species": "persian",
+    "minLevel": 28,
+    "maxLevel": 35,
+    "weight": 10
+  },
+  {
+    "species": "parasect",
+    "minLevel": 24,
+    "maxLevel": 32,
+    "weight": 10
+  },
+  {
+    "species": "venomoth",
+    "minLevel": 31,
+    "maxLevel": 38,
+    "weight": 8
+  },
+
+  // 稀有火系进化形态
+  {
+    "species": "ninetales",
+    "minLevel": 35,
+    "maxLevel": 40,
+    "weight": 5
+  },
+  {
+    "species": "arcanine",
+    "minLevel": 35,
+    "maxLevel": 40,
+    "weight": 5
+  },
+  {
+    "species": "rapidash",
+    "minLevel": 40,
     "maxLevel": 45,
+    "weight": 5
+  },
+
+  // ========== 稀有区域（35-50级）==========
+  // 最终进化形态（稀有）
+  {
+    "species": "pidgeot",
+    "minLevel": 36,
+    "maxLevel": 42,
+    "weight": 5
+  },
+  {
+    "species": "fearow",
+    "minLevel": 30,
+    "maxLevel": 38,
+    "weight": 5
+  },
+  {
+    "species": "vileplume",
+    "minLevel": 36,
+    "maxLevel": 42,
+    "weight": 4
+  },
+  {
+    "species": "victreebel",
+    "minLevel": 36,
+    "maxLevel": 42,
+    "weight": 4
+  },
+  {
+    "species": "golem",
+    "minLevel": 40,
+    "maxLevel": 45,
+    "weight": 4
+  },
+  {
+    "species": "alakazam",
+    "minLevel": 40,
+    "maxLevel": 45,
+    "weight": 4
+  },
+  {
+    "species": "machamp",
+    "minLevel": 40,
+    "maxLevel": 45,
+    "weight": 4
+  },
+
+  // 龙系（超稀有）
+  {
+    "species": "dratini",
+    "minLevel": 15,
+    "maxLevel": 25,
+    "weight": 5
+  },
+  {
+    "species": "dragonair",
+    "minLevel": 30,
+    "maxLevel": 40,
     "weight": 3
   },
   {
-    "species": "blastoise",
-    "minLevel": 36,
+    "species": "gyarados",
+    "minLevel": 25,
+    "maxLevel": 35,
+    "weight": 3
+  },
+
+  // 电系进化
+  {
+    "species": "raichu",
+    "minLevel": 30,
+    "maxLevel": 38,
+    "weight": 5
+  },
+  {
+    "species": "magneton",
+    "minLevel": 30,
+    "maxLevel": 38,
+    "weight": 5
+  },
+
+  // 幽灵系（稀有）
+  {
+    "species": "gastly",
+    "minLevel": 18,
+    "maxLevel": 25,
+    "weight": 8
+  },
+  {
+    "species": "haunter",
+    "minLevel": 25,
+    "maxLevel": 35,
+    "weight": 5
+  },
+  {
+    "species": "gengar",
+    "minLevel": 40,
     "maxLevel": 45,
     "weight": 3
   },
+
+  // 尼多家族
   {
-    "species": "venusaur",
-    "minLevel": 36,
-    "maxLevel": 45,
-    "weight": 3
+    "species": "nidoran-f",
+    "minLevel": 12,
+    "maxLevel": 18,
+    "weight": 15
+  },
+  {
+    "species": "nidoran-m",
+    "minLevel": 12,
+    "maxLevel": 18,
+    "weight": 15
+  },
+  {
+    "species": "nidorina",
+    "minLevel": 18,
+    "maxLevel": 28,
+    "weight": 10
+  },
+  {
+    "species": "nidorino",
+    "minLevel": 18,
+    "maxLevel": 28,
+    "weight": 10
+  },
+
+  // 伊布（稀有）
+  {
+    "species": "eevee",
+    "minLevel": 15,
+    "maxLevel": 25,
+    "weight": 5
   }
 ];

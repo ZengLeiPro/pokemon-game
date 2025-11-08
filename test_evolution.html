@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>进化系统测试</title>
+</head>
+<body>
+  <h1>进化系统测试</h1>
+  <div id="output"></div>
+
+  <script src="scripts/data.js"></script>
+  <script src="scripts/move.js"></script>
+  <script src="scripts/pokemon.js"></script>
+
+  <script>
+    const output = document.getElementById('output');
+
+    function log(message, isSuccess = true) {
+      const p = document.createElement('p');
+      p.textContent = message;
+      p.style.color = isSuccess ? 'green' : 'red';
+      output.appendChild(p);
+    }
+
+    // 测试进化链配置
+    log('=== 测试进化链配置 ===');
+
+    const evolutionTests = [
+      { id: 'charmander', expectedEvo: 'charmeleon', level: 16 },
+      { id: 'charmeleon', expectedEvo: 'charizard', level: 36 },
+      { id: 'bulbasaur', expectedEvo: 'ivysaur', level: 16 },
+      { id: 'squirtle', expectedEvo: 'wartortle', level: 16 },
+      { id: 'pikachu', expectedEvo: 'raichu', level: 30 },
+      { id: 'caterpie', expectedEvo: 'metapod', level: 7 },
+      { id: 'metapod', expectedEvo: 'butterfree', level: 10 }
+    ];
+
+    let evolutionsPassed = 0;
+    let evolutionsFailed = 0;
+
+    for (const test of evolutionTests) {
+      const data = POKEMON_DATA[test.id];
+      if (!data) {
+        log(`✗ 找不到宝可梦: ${test.id}`, false);
+        evolutionsFailed++;
+        continue;
+      }
+
+      if (data.evolutions && data.evolutions.length > 0) {
+        const evo = data.evolutions[0];
+        if (evo.evolveInto === test.expectedEvo && evo.level === test.level) {
+          log(`✓ ${data.name} (${test.id}) -> ${test.level}级进化成 ${test.expectedEvo}`);
+          evolutionsPassed++;
+        } else {
+          log(`✗ ${data.name} 进化配置错误: 期望${test.expectedEvo}@${test.level}, 实际${evo.evolveInto}@${evo.level}`, false);
+          evolutionsFailed++;
+        }
+      } else {
+        log(`✗ ${data.name} 没有进化配置`, false);
+        evolutionsFailed++;
+      }
+    }
+
+    log(`\n进化链测试结果: ${evolutionsPassed}/${evolutionTests.length} 通过`);
+
+    // 测试技能学习表
+    log('\n=== 测试技能学习表 ===');
+
+    const skillTests = [
+      { id: 'charmander', expectedMoves: ['scratch', 'growl', 'ember'] },
+      { id: 'pikachu', expectedMoves: ['thunderShock', 'growl', 'tailWhip', 'thunderbolt'] },
+      { id: 'bulbasaur', expectedMoves: ['tackle', 'growl', 'vineWhip'] }
+    ];
+
+    let skillsPassed = 0;
+    let skillsFailed = 0;
+
+    for (const test of skillTests) {
+      const data = POKEMON_DATA[test.id];
+      if (!data) {
+        log(`✗ 找不到宝可梦: ${test.id}`, false);
+        skillsFailed++;
+        continue;
+      }
+
+      const learnedMoves = data.learnset.map(l => l.move);
+      const hasAllExpected = test.expectedMoves.every(move => learnedMoves.includes(move));
+
+      if (hasAllExpected && data.learnset.length > 1) {
+        log(`✓ ${data.name} 技能学习表正常 (共${data.learnset.length}个技能)`);
+        skillsPassed++;
+      } else {
+        log(`✗ ${data.name} 技能学习表异常: ${learnedMoves.join(', ')}`, false);
+        skillsFailed++;
+      }
+    }
+
+    log(`\n技能学习表测试结果: ${skillsPassed}/${skillTests.length} 通过`);
+
+    // 统计总体数据
+    log('\n=== 数据统计 ===');
+
+    const totalPokemon = Object.keys(POKEMON_DATA).length;
+    log(`总宝可梦数量: ${totalPokemon}`);
+
+    const withEvolutions = Object.values(POKEMON_DATA).filter(p => p.evolutions && p.evolutions.length > 0).length;
+    log(`有进化链的宝可梦: ${withEvolutions}`);
+
+    const withMultipleMoves = Object.values(POKEMON_DATA).filter(p => p.learnset && p.learnset.length > 1).length;
+    log(`有多个技能的宝可梦: ${withMultipleMoves}`);
+
+    const wildPokemonCount = WILD_POKEMON_POOL.length;
+    log(`野生宝可梦池数量: ${wildPokemonCount}`);
+
+    // 测试实际进化
+    log('\n=== 测试实际进化功能 ===');
+
+    try {
+      const charmander = new Pokemon('charmander', 15);
+      log(`✓ 创建 ${charmander.name} Lv.${charmander.level}`);
+
+      // 模拟升级到16级
+      charmander.gainExp(EXP_TABLE[16] - charmander.exp);
+
+      if (charmander.speciesId === 'charmeleon') {
+        log(`✓ 小火龙成功进化成火恐龙！当前等级: ${charmander.level}, 名称: ${charmander.name}`);
+      } else {
+        log(`✗ 小火龙未能进化，当前物种: ${charmander.speciesId}`, false);
+      }
+    } catch (error) {
+      log(`✗ 进化测试失败: ${error.message}`, false);
+    }
+
+    log('\n=== 测试完成 ===');
+  </script>
+</body>
+</html>
