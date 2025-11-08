@@ -16,6 +16,11 @@ const UI = {
 
   // ========== 更新主界面的玩家状态 ==========
   updatePlayerStatus(pokemon) {
+    if (!pokemon) {
+      console.warn('updatePlayerStatus: pokemon is null');
+      return;
+    }
+
     document.getElementById('player-pokemon-name').textContent = pokemon.name;
     document.getElementById('player-pokemon-level').textContent = `Lv.${pokemon.level}`;
 
