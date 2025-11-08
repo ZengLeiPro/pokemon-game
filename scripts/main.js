@@ -35,6 +35,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // 绑定重置按钮
   bindResetButtons();
+
+  // 绑定战斗界面按钮
+  bindBattleButtons();
 });
 
 // ========== 绑定初始选择按钮 ==========
@@ -54,7 +57,14 @@ function onStarterSelected(pokemonId) {
   console.log(`选择了：${pokemonId}`);
 
   // 创建玩家的宝可梦（5级）
-  gameState.player.pokemon = new Pokemon(pokemonId, 5);
+  const starterPokemon = new Pokemon(pokemonId, 5);
+
+  // 添加到队伍
+  addPokemonToTeam(starterPokemon);
+
+  // 赠送新手礼包
+  addItem('potion', 5);
+  addItem('pokeball', 5);
 
   // 保存游戏
   saveGame();
@@ -62,10 +72,15 @@ function onStarterSelected(pokemonId) {
   // 切换到主界面
   gameState.phase = 'main';
   UI.showScreen('main-screen');
-  UI.updatePlayerStatus(gameState.player.pokemon);
+  UI.updatePlayerStatus(getCurrentPokemon());
   UI.updateStats(0, 0);
   UI.updateMoney(gameState.player.money);
-  UI.showMessage(`你选择了 ${gameState.player.pokemon.name}！开始你的冒险吧！`);
+
+  // 显示欢迎消息
+  showShopMessage(`你选择了 ${starterPokemon.name}！开始你的冒险吧！`, 'success');
+  setTimeout(() => {
+    showShopMessage('获得了新手礼包：5个伤药和5个精灵球！', 'success');
+  }, 2000);
 }
 
 // ========== 绑定主界面按钮 ==========
@@ -81,13 +96,41 @@ function bindMainScreenButtons() {
   // 宝可梦中心按钮
   const centerBtn = document.getElementById('center-btn');
   centerBtn.addEventListener('click', () => {
-    if (gameState.player.pokemon) {
-      gameState.player.pokemon.fullHeal();
-      UI.updatePlayerStatus(gameState.player.pokemon);
-      alert(`${gameState.player.pokemon.name} 的 HP 已恢复至满！`);
+    // 恢复队伍中所有宝可梦
+    let healedCount = 0;
+    gameState.player.pokemonTeam.forEach(pokemon => {
+      if (pokemon.currentHP < pokemon.maxHP) {
+        pokemon.fullHeal();
+        healedCount++;
+      }
+    });
+
+    if (healedCount > 0) {
+      showShopMessage(`所有宝可梦的HP已恢复至满！`, 'success');
+      UI.updatePlayerStatus(getCurrentPokemon());
+      UI.renderBag(); // 更新背包中的宝可梦显示
       saveGame();
+    } else {
+      showShopMessage('宝可梦的HP已经是满的了！', 'info');
     }
   });
+
+  // 宝可梦盒子按钮
+  const pokemonBoxBtn = document.getElementById('pokemon-box-btn');
+  if (pokemonBoxBtn) {
+    pokemonBoxBtn.addEventListener('click', () => {
+      UI.renderPokemonBox();
+      document.getElementById('pokemon-box-panel').classList.remove('hidden');
+    });
+  }
+
+  // 关闭盒子面板按钮
+  const closeBoxBtn = document.getElementById('close-box-btn');
+  if (closeBoxBtn) {
+    closeBoxBtn.addEventListener('click', () => {
+      document.getElementById('pokemon-box-panel').classList.add('hidden');
+    });
+  }
 
   // 保存游戏按钮
   const saveBtn = document.getElementById('save-btn');
@@ -139,6 +182,38 @@ function bindResetButtons() {
   }
 }
 
+// ========== 绑定战斗界面按钮 ==========
+function bindBattleButtons() {
+  // 使用道具按钮
+  const useItemBtn = document.getElementById('use-item-btn');
+  if (useItemBtn) {
+    useItemBtn.addEventListener('click', () => {
+      // 显示道具面板
+      UI.renderBattleItemList();
+      document.getElementById('battle-item-panel').classList.remove('hidden');
+    });
+  }
+
+  // 关闭道具面板按钮
+  const closeItemPanelBtn = document.getElementById('close-item-panel-btn');
+  if (closeItemPanelBtn) {
+    closeItemPanelBtn.addEventListener('click', () => {
+      document.getElementById('battle-item-panel').classList.add('hidden');
+    });
+  }
+
+  // 逃跑按钮
+  const fleeBtn = document.getElementById('flee-btn');
+  if (fleeBtn) {
+    fleeBtn.addEventListener('click', () => {
+      const battle = gameState.battle.instance;
+      if (battle && battle.isActive) {
+        battle.flee();
+      }
+    });
+  }
+}
+
 // ========== 绑定对战结束确认按钮 ==========
 function bindBattleEndConfirm() {
   const confirmBtn = document.getElementById('confirm-button');
@@ -147,8 +222,10 @@ function bindBattleEndConfirm() {
 
     // 隐藏确认按钮
     document.getElementById('battle-end-confirm').style.display = 'none';
-    // 显示技能按钮区域
-    document.getElementById('move-buttons').style.display = 'grid';
+    // 显示战斗操作区域
+    document.getElementById('battle-actions').style.display = 'block';
+    // 隐藏道具面板
+    document.getElementById('battle-item-panel').classList.add('hidden');
 
     // 返回主界面
     UI.showScreen('main-screen');
@@ -156,6 +233,8 @@ function bindBattleEndConfirm() {
     // 根据上一场对战的结果显示消息
     if (gameState.battle.lastWinner === 'player') {
       UI.showMessage('准备开始下一场战斗！');
+    } else if (gameState.battle.lastWinner === 'flee') {
+      UI.showMessage('成功逃离了战斗！');
     } else {
       UI.showMessage('继续加油！再来挑战吧！');
     }

@@ -194,43 +194,19 @@
             <div id="bag-tab" class="tab-panel hidden space-y-4">
               <h2 class="text-2xl font-bold text-gray-800 mb-4">🎒 背包</h2>
 
+              <!-- 我的宝可梦队伍 -->
               <div class="bg-white rounded-2xl p-5 shadow-lg">
-                <h3 class="text-lg font-bold text-gray-800 mb-4 pb-3 border-b-2">👾 我的宝可梦</h3>
-                <div class="grid grid-cols-2 gap-3">
-                  <div class="bg-blue-50 border-2 border-blue-500 rounded-xl p-4 flex items-center gap-3">
-                    <div class="text-4xl">🌱</div>
-                    <div>
-                      <div class="font-bold text-gray-800">妙蛙种子</div>
-                      <div class="text-sm text-gray-600">Lv.15</div>
-                    </div>
-                  </div>
-                  <div class="bg-gray-100 border-2 border-gray-300 rounded-xl p-4 flex items-center gap-3 opacity-50">
-                    <div class="text-4xl">+</div>
-                    <div class="text-sm text-gray-600">空位</div>
-                  </div>
-                  <div class="bg-gray-100 border-2 border-gray-300 rounded-xl p-4 flex items-center gap-3 opacity-50">
-                    <div class="text-4xl">+</div>
-                    <div class="text-sm text-gray-600">空位</div>
-                  </div>
-                  <div class="bg-gray-100 border-2 border-gray-300 rounded-xl p-4 flex items-center gap-3 opacity-50">
-                    <div class="text-4xl">+</div>
-                    <div class="text-sm text-gray-600">空位</div>
-                  </div>
+                <h3 class="text-lg font-bold text-gray-800 mb-4 pb-3 border-b-2">👾 我的宝可梦队伍</h3>
+                <div id="pokemon-team-container" class="grid grid-cols-2 lg:grid-cols-3 gap-3">
+                  <!-- 动态生成宝可梦队伍 -->
                 </div>
               </div>
 
+              <!-- 道具 -->
               <div class="bg-white rounded-2xl p-5 shadow-lg">
                 <h3 class="text-lg font-bold text-gray-800 mb-4 pb-3 border-b-2">🎒 道具</h3>
-                <div class="space-y-2">
-                  <div class="flex justify-between items-center p-3 bg-gray-100 rounded-lg">
-                    <span class="text-gray-800">伤药</span>
-                    <span class="font-bold text-gray-600">x 0</span>
-                  </div>
-                  <div class="flex justify-between items-center p-3 bg-gray-100 rounded-lg">
-                    <span class="text-gray-800">精灵球</span>
-                    <span class="font-bold text-gray-600">x 0</span>
-                  </div>
-                  <p class="text-center text-gray-400 text-sm mt-4 italic">暂无道具，前往商店购买吧！</p>
+                <div id="bag-items-container" class="space-y-2">
+                  <!-- 动态生成道具列表 -->
                 </div>
               </div>
             </div>
@@ -276,39 +252,23 @@
             <div id="shop-tab" class="tab-panel hidden space-y-4">
               <div>
                 <h2 class="text-2xl font-bold text-gray-800">🏪 宝可梦商店</h2>
-                <p class="text-sm text-gray-600">欢迎光临！</p>
+                <p class="text-sm text-gray-600">欢迎光临！你当前有 <span id="shop-money" class="font-bold text-yellow-600">3000</span> 💰</p>
               </div>
 
+              <!-- 药品区 -->
               <div class="bg-white rounded-2xl p-5 shadow-lg">
                 <h3 class="text-lg font-bold text-gray-800 mb-4 pb-3 border-b-2">💊 药品</h3>
-                <div class="space-y-3">
-                  <div class="grid grid-cols-[auto_1fr_auto] gap-4 items-center p-4 bg-gray-100 rounded-xl">
-                    <div class="text-3xl">🧪</div>
-                    <div>
-                      <div class="font-bold text-gray-800">伤药</div>
-                      <div class="text-xs text-gray-600">恢复20 HP</div>
-                    </div>
-                    <div class="flex flex-col items-end gap-2">
-                      <div class="text-sm font-bold text-yellow-600">💰 200</div>
-                      <button class="px-4 py-2 bg-gray-400 text-white font-bold rounded-lg text-sm cursor-not-allowed" disabled>购买</button>
-                    </div>
-                  </div>
-                  <div class="grid grid-cols-[auto_1fr_auto] gap-4 items-center p-4 bg-gray-100 rounded-xl">
-                    <div class="text-3xl">💊</div>
-                    <div>
-                      <div class="font-bold text-gray-800">解毒药</div>
-                      <div class="text-xs text-gray-600">解除中毒状态</div>
-                    </div>
-                    <div class="flex flex-col items-end gap-2">
-                      <div class="text-sm font-bold text-yellow-600">💰 100</div>
-                      <button class="px-4 py-2 bg-gray-400 text-white font-bold rounded-lg text-sm cursor-not-allowed" disabled>购买</button>
-                    </div>
-                  </div>
+                <div id="medicine-items-container" class="space-y-3">
+                  <!-- 动态生成药品列表 -->
                 </div>
               </div>
 
-              <div class="bg-yellow-100 border-2 border-yellow-400 rounded-xl p-4 text-center">
-                <p class="text-yellow-800 font-medium">🚧 商店系统即将推出，敬请期待！</p>
+              <!-- 精灵球区 -->
+              <div class="bg-white rounded-2xl p-5 shadow-lg">
+                <h3 class="text-lg font-bold text-gray-800 mb-4 pb-3 border-b-2">⚪ 精灵球</h3>
+                <div id="pokeball-items-container" class="space-y-3">
+                  <!-- 动态生成精灵球列表 -->
+                </div>
               </div>
             </div>
 
@@ -323,6 +283,27 @@
                   <p class="text-sm text-gray-600">免费恢复所有宝可梦的体力</p>
                 </div>
                 <button id="center-btn" class="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-xl transition-all hover:scale-105 whitespace-nowrap">恢复 →</button>
+              </div>
+
+              <div class="bg-white rounded-2xl p-5 shadow-lg grid grid-cols-[60px_1fr_auto] gap-4 items-center hover:-translate-y-1 transition-transform">
+                <div class="text-5xl">📦</div>
+                <div>
+                  <h3 class="text-lg font-bold text-gray-800 mb-1">宝可梦盒子</h3>
+                  <p class="text-sm text-gray-600">管理捕获的宝可梦（<span id="box-count">0</span> 只）</p>
+                </div>
+                <button id="pokemon-box-btn" class="px-6 py-3 bg-purple-500 hover:bg-purple-600 text-white font-bold rounded-xl transition-all hover:scale-105 whitespace-nowrap">管理 →</button>
+              </div>
+
+              <!-- 宝可梦盒子面板 -->
+              <div id="pokemon-box-panel" class="hidden bg-white rounded-2xl p-5 shadow-lg">
+                <div class="flex justify-between items-center mb-4">
+                  <h3 class="text-lg font-bold text-gray-800">宝可梦盒子</h3>
+                  <button id="close-box-btn" class="text-gray-600 hover:text-gray-800 font-bold text-xl">✕</button>
+                </div>
+                <div id="pokemon-box-container" class="grid grid-cols-2 lg:grid-cols-3 gap-3 max-h-[400px] overflow-y-auto">
+                  <!-- 动态生成盒子中的宝可梦 -->
+                </div>
+                <p id="box-empty-message" class="text-center text-gray-400 text-sm mt-4 italic hidden">盒子里没有宝可梦</p>
               </div>
 
               <div class="bg-white rounded-2xl p-5 shadow-lg grid grid-cols-[60px_1fr_auto] gap-4 items-center hover:-translate-y-1 transition-transform">
@@ -421,9 +402,33 @@
           </div>
         </div>
 
-        <!-- 技能按钮 -->
-        <div id="move-buttons" class="grid grid-cols-2 gap-3">
-          <!-- 动态生成 -->
+        <!-- 战斗操作选择 -->
+        <div id="battle-actions" class="space-y-3">
+          <!-- 技能按钮 -->
+          <div id="move-buttons" class="grid grid-cols-2 gap-3">
+            <!-- 动态生成 -->
+          </div>
+
+          <!-- 底部操作按钮 -->
+          <div class="grid grid-cols-2 gap-3">
+            <button id="use-item-btn" class="py-3 bg-purple-500 hover:bg-purple-600 text-white font-bold rounded-xl transition-all hover:scale-105">
+              🎒 使用道具
+            </button>
+            <button id="flee-btn" class="py-3 bg-gray-400 hover:bg-gray-500 text-white font-bold rounded-xl transition-all hover:scale-105">
+              🏃 逃跑
+            </button>
+          </div>
+        </div>
+
+        <!-- 道具选择面板 -->
+        <div id="battle-item-panel" class="hidden bg-white rounded-2xl p-4 shadow-lg">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-lg font-bold text-gray-800">选择道具</h3>
+            <button id="close-item-panel-btn" class="text-gray-600 hover:text-gray-800 font-bold">✕</button>
+          </div>
+          <div id="battle-item-list" class="space-y-2 max-h-[300px] overflow-y-auto">
+            <!-- 动态生成道具列表 -->
+          </div>
         </div>
 
         <!-- 对战结束确认 -->
@@ -440,11 +445,13 @@
   <!-- JavaScript文件 -->
   <script src="scripts/data.js"></script>
   <script src="scripts/move.js"></script>
+  <script src="scripts/item.js"></script>
   <script src="scripts/pokemon.js"></script>
   <script src="scripts/npc.js"></script>
   <script src="scripts/battle.js"></script>
   <script src="scripts/gameState.js"></script>
   <script src="scripts/ui.js"></script>
+  <script src="scripts/shop.js"></script>
   <script src="scripts/main.js"></script>
 
   <script>
