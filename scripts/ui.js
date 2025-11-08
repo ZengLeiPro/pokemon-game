@@ -629,7 +629,7 @@ const UI = {
         <span class="font-bold text-gray-600">x ${count}</span>
       `;
 
-      itemDiv.onclick = () => this.useBattleItem(itemId);
+      itemDiv.onclick = () => UI.useBattleItem(itemId);
 
       container.appendChild(itemDiv);
     });
