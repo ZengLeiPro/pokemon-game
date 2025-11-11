@@ -1020,9 +1020,7 @@ const UI = {
     // 切换到战斗界面
     UI.showScreen('battle-screen');
     UI.updateBattleStatus(battle.playerPokemon, battle.opponentPokemon, 'gymLeader', gymLeader);
-    UI.createMoveButtons(battle.playerPokemon.moves, (move) => {
-      // 这里需要在main.js中实现战斗逻辑
-    });
+    UI.createMoveButtons(battle.playerPokemon.moves, onPlayerMoveSelected);
 
     // 显示挑战开始信息
     document.getElementById('battle-log').innerHTML = '';
