@@ -191,10 +191,29 @@ function bindBattleButtons() {
   const switchPokemonBtn = document.getElementById('switch-pokemon-btn');
   if (switchPokemonBtn) {
     switchPokemonBtn.addEventListener('click', () => {
-      // 显示切换面板
-      UI.renderBattleSwitchList();
-      document.getElementById('battle-switch-panel').classList.remove('hidden');
+      console.log('=== 点击了切换按钮 ===');
+      console.log('战斗实例:', gameState.battle.instance);
+      console.log('战斗激活状态:', gameState.battle.instance?.isActive);
+      console.log('宝可梦队伍:', gameState.player.pokemonTeam);
+      console.log('当前出战索引:', gameState.player.activePokemonIndex);
+
+      try {
+        // 显示切换面板
+        UI.renderBattleSwitchList();
+        const panel = document.getElementById('battle-switch-panel');
+        if (panel) {
+          panel.classList.remove('hidden');
+          console.log('切换面板已显示');
+          console.log('面板内容:', document.getElementById('battle-switch-list').innerHTML.substring(0, 200));
+        } else {
+          console.error('找不到切换面板元素');
+        }
+      } catch (error) {
+        console.error('显示切换面板时出错:', error);
+      }
     });
+  } else {
+    console.error('找不到切换按钮元素');
   }
 
   // 关闭切换面板按钮
