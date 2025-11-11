@@ -85,7 +85,11 @@ const UI = {
     // 更新对手标签
     const typeLabel = document.getElementById('opponent-type-label');
     if (typeLabel) {
-      if (battleType === 'trainer' && trainer) {
+      if (battleType === 'gymLeader' && trainer) {
+        // 显示道馆馆长信息和剩余宝可梦数量
+        const remainingCount = trainer.pokemonTeam.length - trainer.currentPokemonIndex;
+        typeLabel.textContent = `${trainer.gymType}道馆馆长 ${trainer.name}的 (剩余: ${remainingCount})`;
+      } else if (battleType === 'trainer' && trainer) {
         typeLabel.textContent = `${trainer.trainerClass} ${trainer.name}的`;
       } else {
         typeLabel.textContent = '野生的';
@@ -917,5 +921,169 @@ const UI = {
 
     // 重新启用技能按钮
     UI.setMoveButtonsEnabled(true);
+  },
+
+  // ========== 道馆系统UI ==========
+
+  /**
+   * 渲染道馆列表
+   */
+  renderGymList() {
+    const container = document.getElementById('gym-list-container');
+    if (!container) return;
+
+    const gyms = getAllGyms();
+    container.innerHTML = '';
+
+    gyms.forEach(gym => {
+      const hasBadge = gameState.player.badges && gameState.player.badges.includes(gym.badge.id);
+
+      const gymCard = document.createElement('div');
+      gymCard.className = `bg-white rounded-2xl p-5 shadow-lg grid grid-cols-[80px_1fr_auto] gap-4 items-center hover:-translate-y-1 transition-transform ${hasBadge ? 'opacity-75' : ''}`;
+
+      gymCard.innerHTML = `
+        <div class="text-6xl">${gym.badge.icon}</div>
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <h3 class="text-lg font-bold text-gray-800">${gym.location} - ${gym.type}道馆</h3>
+            ${hasBadge ? `<span class="px-2 py-1 bg-yellow-500 text-white text-xs rounded-full">已获得勋章</span>` : ''}
+          </div>
+          <p class="text-sm text-gray-600 mb-1">馆长：${gym.name} - ${gym.description}</p>
+          <div class="flex items-center gap-3 text-xs">
+            <span class="text-gray-500">推荐等级：Lv.${gym.recommendedLevel}</span>
+            <span class="px-2 py-1 bg-blue-100 text-blue-600 rounded">${gym.type}属性</span>
+          </div>
+        </div>
+        <button
+          class="gym-challenge-btn px-6 py-3 ${hasBadge ? 'bg-gray-400 cursor-not-allowed' : 'bg-purple-500 hover:bg-purple-600'} text-white font-bold rounded-xl transition-all ${!hasBadge ? 'hover:scale-105' : ''} whitespace-nowrap"
+          data-gym-id="${gym.id}"
+          ${hasBadge ? 'disabled' : ''}
+        >
+          ${hasBadge ? '已完成 ✓' : '挑战 →'}
+        </button>
+      `;
+
+      container.appendChild(gymCard);
+    });
+
+    // 绑定挑战按钮事件
+    container.querySelectorAll('.gym-challenge-btn:not([disabled])').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const gymId = btn.getAttribute('data-gym-id');
+        this.startGymChallenge(gymId);
+      });
+    });
+
+    // 更新勋章计数
+    this.updateBadgeDisplay();
+  },
+
+  /**
+   * 开始道馆挑战
+   */
+  startGymChallenge(gymId) {
+    const gymLeader = createGymLeader(gymId);
+    if (!gymLeader) {
+      alert('道馆数据加载失败！');
+      return;
+    }
+
+    // 检查玩家是否有可战斗的宝可梦
+    if (!hasAlivePokemon()) {
+      alert('你的宝可梦都失去了战斗能力！请先去宝可梦中心恢复。');
+      return;
+    }
+
+    // 显示挑战确认
+    const gymData = GYM_DATA[gymId];
+    const confirmed = confirm(
+      `你确定要挑战 ${gymData.location} 的 ${gymData.type}属性道馆吗？\n\n` +
+      `馆长：${gymData.name}\n` +
+      `推荐等级：Lv.${gymData.recommendedLevel}\n\n` +
+      `提示：道馆馆长拥有6只${gymData.type}属性的宝可梦！`
+    );
+
+    if (!confirmed) return;
+
+    // 开始道馆挑战战斗
+    gameState.battle.isActive = true;
+    gameState.battle.opponent = gymLeader;
+    gameState.battle.battleType = 'gymLeader';
+
+    // 初始化道馆馆长的当前宝可梦
+    gymLeader.currentPokemonIndex = 0;
+
+    // 创建Battle实例
+    const battle = new Battle(getCurrentPokemon(), gymLeader.pokemonTeam[0], 'gymLeader', gymLeader);
+    gameState.battle.instance = battle;
+
+    // 切换到战斗界面
+    UI.showScreen('battle-screen');
+    UI.updateBattleStatus(battle.playerPokemon, battle.opponentPokemon, 'gymLeader', gymLeader);
+    UI.createMoveButtons(battle.playerPokemon.moves, (move) => {
+      // 这里需要在main.js中实现战斗逻辑
+    });
+
+    // 显示挑战开始信息
+    document.getElementById('battle-log').innerHTML = '';
+    UI.addBattleLog(`你向 ${gymData.type}属性道馆馆长 ${gymData.name} 发起了挑战！`, 'info');
+    UI.addBattleLog(`${gymData.name}: ${gymData.description}`, 'opponent');
+    UI.addBattleLog(`\n${gymData.name} 派出了 ${gymLeader.pokemonTeam[0].name}！`, 'opponent');
+  },
+
+  /**
+   * 更新勋章显示
+   */
+  updateBadgeDisplay() {
+    const badgeCount = gameState.player.badges ? gameState.player.badges.length : 0;
+
+    // 更新各处的勋章数量显示
+    const badgeCountElements = [
+      'badge-count',
+      'gym-badge-count',
+      'gym-progress'
+    ];
+
+    badgeCountElements.forEach(id => {
+      const elem = document.getElementById(id);
+      if (elem) elem.textContent = badgeCount;
+    });
+
+    // 更新勋章进度条
+    const badgeProgress = document.getElementById('badge-progress');
+    if (badgeProgress) {
+      const percentage = (badgeCount / 8) * 100;
+      badgeProgress.style.width = `${percentage}%`;
+    }
+
+    // 渲染勋章展示
+    this.renderBadges();
+  },
+
+  /**
+   * 渲染勋章展示（在图鉴页面）
+   */
+  renderBadges() {
+    const container = document.getElementById('badges-container');
+    if (!container) return;
+
+    container.innerHTML = '';
+    const allBadges = Object.values(BADGES);
+
+    allBadges.forEach(badge => {
+      const hasBadge = gameState.player.badges && gameState.player.badges.includes(badge.id);
+
+      const badgeCard = document.createElement('div');
+      badgeCard.className = `${hasBadge ? 'bg-yellow-50 border-2 border-yellow-400' : 'bg-gray-100 opacity-50'} rounded-xl p-3 text-center transition-all ${hasBadge ? 'hover:scale-105 cursor-pointer' : ''}`;
+      badgeCard.title = badge.description;
+
+      badgeCard.innerHTML = `
+        <div class="text-3xl mb-1">${hasBadge ? badge.icon : '❓'}</div>
+        <div class="text-xs font-bold text-gray-800">${hasBadge ? badge.name : '???'}</div>
+        <div class="text-xs text-gray-600">${hasBadge ? badge.type : '未获得'}</div>
+      `;
+
+      container.appendChild(badgeCard);
+    });
   }
 };

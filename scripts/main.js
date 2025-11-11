@@ -17,6 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     UI.updateStats(gameState.player.battlesWon, gameState.player.totalBattles);
     UI.updateMoney(gameState.player.money);
+    UI.updateBadgeDisplay();  // 更新勋章显示
     UI.showMessage(`欢迎回来！继续你的冒险吧！`);
   } else {
     // 没有存档，显示初始选择界面
@@ -78,6 +79,7 @@ function onStarterSelected(pokemonId) {
   UI.updatePlayerStatus(getCurrentPokemon());
   UI.updateStats(0, 0);
   UI.updateMoney(gameState.player.money);
+  UI.updateBadgeDisplay();  // 初始化勋章显示
 
   // 显示欢迎消息
   showShopMessage(`你选择了 ${starterPokemon.name}！开始你的冒险吧！`, 'success');
@@ -95,6 +97,23 @@ function bindMainScreenButtons() {
   // 训练家对战按钮
   const trainerBattleBtn = document.getElementById('trainer-battle-btn');
   trainerBattleBtn.addEventListener('click', () => onStartBattle('trainer'));
+
+  // 道馆挑战按钮
+  const gymChallengeBtn = document.getElementById('gym-challenge-btn');
+  if (gymChallengeBtn) {
+    gymChallengeBtn.addEventListener('click', () => {
+      UI.showScreen('gym-selection-screen');
+      UI.renderGymList();
+    });
+  }
+
+  // 道馆界面返回按钮
+  const gymBackBtn = document.getElementById('gym-back-btn');
+  if (gymBackBtn) {
+    gymBackBtn.addEventListener('click', () => {
+      UI.showScreen('main-screen');
+    });
+  }
 
   // 宝可梦中心按钮
   const centerBtn = document.getElementById('center-btn');
