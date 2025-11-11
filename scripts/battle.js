@@ -102,9 +102,13 @@ class Battle {
     await this.executeMoveWithDelay(firstAttacker, firstDefender, firstMove, firstIsPlayer);
 
     // 检查战斗是否结束
-    if (this.checkBattleEnd()) {
+    let battleCheck = this.checkBattleEnd();
+    if (battleCheck === true) {
       await this.delay(800);
       return this.endBattle();
+    } else if (battleCheck === 'force_switch') {
+      await this.delay(800);
+      return this.forceSwitchPokemon();
     }
 
     // 等待一段时间再让对方行动
@@ -114,9 +118,13 @@ class Battle {
     await this.executeMoveWithDelay(secondAttacker, secondDefender, secondMove, secondIsPlayer);
 
     // 再次检查战斗是否结束
-    if (this.checkBattleEnd()) {
+    battleCheck = this.checkBattleEnd();
+    if (battleCheck === true) {
       await this.delay(800);
       return this.endBattle();
+    } else if (battleCheck === 'force_switch') {
+      await this.delay(800);
+      return this.forceSwitchPokemon();
     }
 
     // 更新UI
@@ -307,8 +315,14 @@ class Battle {
     }
 
     if (this.playerPokemon.currentHP <= 0) {
-      this.winner = 'opponent';
-      return true;
+      // 检查是否还有其他可用的宝可梦
+      if (hasAlivePokemon()) {
+        this.winner = null; // 还没结束
+        return 'force_switch'; // 返回特殊值表示需要强制切换
+      } else {
+        this.winner = 'opponent';
+        return true;
+      }
     }
 
     return false;
@@ -584,9 +598,81 @@ class Battle {
     // 隐藏技能按钮，显示确认按钮
     document.getElementById('battle-actions').style.display = 'none';
     document.getElementById('battle-item-panel').classList.add('hidden');
+    document.getElementById('battle-switch-panel').classList.add('hidden');
     document.getElementById('battle-end-confirm').style.display = 'block';
 
     return true;
+  }
+
+  // ========== 战斗中切换宝可梦 ==========
+  async switchPokemon(newIndex) {
+    const oldPokemon = this.playerPokemon;
+    const newPokemon = gameState.player.pokemonTeam[newIndex];
+
+    if (!newPokemon) {
+      UI.addBattleLog('无效的宝可梦！', 'error');
+      return false;
+    }
+
+    if (newPokemon.currentHP <= 0) {
+      UI.addBattleLog(`${newPokemon.name} 已经倒下了！`, 'error');
+      return false;
+    }
+
+    // 切换出战宝可梦
+    switchActivePokemon(newIndex);
+    this.playerPokemon = newPokemon;
+
+    UI.addBattleLog(`\n回来吧，${oldPokemon.name}！`);
+    await this.delay(500);
+    UI.addBattleLog(`上吧，${newPokemon.name}！`, 'success');
+    await this.delay(500);
+
+    // 重置新宝可梦的能力等级变化
+    newPokemon.statModifiers = { attack: 0, defense: 0 };
+
+    // 更新战斗界面
+    UI.updateBattleStatus(this.playerPokemon, this.opponentPokemon, this.battleType, this.opponent);
+    UI.createMoveButtons(newPokemon.moves, (move) => onPlayerMoveSelected(move));
+
+    // 对手行动（切换是一回合的行动）
+    await this.delay(500);
+    const aiMove = SimpleAI.chooseMove(this.opponentPokemon);
+    await this.executeMoveWithDelay(this.opponentPokemon, this.playerPokemon, aiMove, false);
+
+    // 检查战斗是否结束
+    const battleCheck = this.checkBattleEnd();
+    if (battleCheck === true) {
+      await this.delay(800);
+      this.endBattle();
+      return true;
+    } else if (battleCheck === 'force_switch') {
+      await this.delay(800);
+      return this.forceSwitchPokemon();
+    }
+
+    UI.updateBattleStatus(this.playerPokemon, this.opponentPokemon, this.battleType, this.opponent);
+    return true;
+  }
+
+  // ========== 强制切换宝可梦（当前宝可梦倒下时） ==========
+  async forceSwitchPokemon() {
+    UI.addBattleLog(`\n你的 ${this.playerPokemon.name} 倒下了！`, 'critical');
+    await this.delay(800);
+    UI.addBattleLog(`请选择下一只宝可梦！`, 'critical');
+
+    // 禁用技能按钮
+    UI.setMoveButtonsEnabled(false);
+
+    // 隐藏战斗操作按钮
+    document.getElementById('battle-actions').style.display = 'none';
+
+    // 显示切换面板（只显示可用的宝可梦）
+    UI.renderBattleSwitchListForced();
+    document.getElementById('battle-switch-panel').classList.remove('hidden');
+
+    // 战斗暂停，等待玩家选择
+    return 'waiting_for_switch';
   }
 }
 

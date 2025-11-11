@@ -410,13 +410,27 @@
           </div>
 
           <!-- 底部操作按钮 -->
-          <div class="grid grid-cols-2 gap-3">
+          <div class="grid grid-cols-3 gap-3">
+            <button id="switch-pokemon-btn" class="py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-xl transition-all hover:scale-105">
+              🔄 切换
+            </button>
             <button id="use-item-btn" class="py-3 bg-purple-500 hover:bg-purple-600 text-white font-bold rounded-xl transition-all hover:scale-105">
-              🎒 使用道具
+              🎒 道具
             </button>
             <button id="flee-btn" class="py-3 bg-gray-400 hover:bg-gray-500 text-white font-bold rounded-xl transition-all hover:scale-105">
               🏃 逃跑
             </button>
+          </div>
+        </div>
+
+        <!-- 切换宝可梦面板 -->
+        <div id="battle-switch-panel" class="hidden bg-white rounded-2xl p-4 shadow-lg">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-lg font-bold text-gray-800">选择宝可梦</h3>
+            <button id="close-switch-panel-btn" class="text-gray-600 hover:text-gray-800 font-bold">✕</button>
+          </div>
+          <div id="battle-switch-list" class="space-y-2 max-h-[300px] overflow-y-auto">
+            <!-- 动态生成宝可梦列表 -->
           </div>
         </div>
 
