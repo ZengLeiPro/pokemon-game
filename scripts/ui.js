@@ -1014,19 +1014,21 @@ const UI = {
     gymLeader.currentPokemonIndex = 0;
 
     // 创建Battle实例
-    const battle = new Battle(getCurrentPokemon(), gymLeader.pokemonTeam[0], 'gymLeader', gymLeader);
+    const battle = new Battle(getCurrentPokemon(), gymLeader, 'gymLeader');
     gameState.battle.instance = battle;
 
     // 切换到战斗界面
     UI.showScreen('battle-screen');
-    UI.updateBattleStatus(battle.playerPokemon, battle.opponentPokemon, 'gymLeader', gymLeader);
-    UI.createMoveButtons(battle.playerPokemon.moves, onPlayerMoveSelected);
 
-    // 显示挑战开始信息
-    document.getElementById('battle-log').innerHTML = '';
-    UI.addBattleLog(`你向 ${gymData.type}属性道馆馆长 ${gymData.name} 发起了挑战！`, 'info');
-    UI.addBattleLog(`${gymData.name}: ${gymData.description}`, 'opponent');
-    UI.addBattleLog(`\n${gymData.name} 派出了 ${gymLeader.pokemonTeam[0].name}！`, 'opponent');
+    // 确保战斗操作界面显示正确
+    document.getElementById('move-buttons').style.display = 'grid';
+    document.getElementById('battle-end-confirm').style.display = 'none';
+
+    // 开始战斗
+    battle.start();
+
+    // 生成技能按钮
+    UI.createMoveButtons(battle.playerPokemon.moves, onPlayerMoveSelected);
   },
 
   /**

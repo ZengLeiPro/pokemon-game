@@ -39,12 +39,18 @@ class Battle {
       // 训练家对战
       UI.addBattleLog(this.opponent.getIntroduction());
       UI.addBattleLog(`${this.opponent.name} 派出了 ${this.opponentPokemon.name} Lv.${this.opponentPokemon.level}！`);
+    } else if (this.battleType === 'gymLeader') {
+      // 道馆馆长对战
+      UI.addBattleLog(this.opponent.getIntroduction(), 'info');
+      UI.addBattleLog(`${this.opponent.name} 派出了 ${this.opponentPokemon.name} Lv.${this.opponentPokemon.level}！`, 'opponent');
     } else {
       // 野生宝可梦对战
       UI.addBattleLog(`野生的 ${this.opponentPokemon.name} Lv.${this.opponentPokemon.level} 出现了！`);
     }
 
-    UI.addBattleLog(`你的 ${this.playerPokemon.name} Lv.${this.playerPokemon.level} 准备战斗！`);
+    if (this.battleType !== 'gymLeader') {
+      UI.addBattleLog(`你的 ${this.playerPokemon.name} Lv.${this.playerPokemon.level} 准备战斗！`);
+    }
     UI.updateBattleStatus(this.playerPokemon, this.opponentPokemon, this.battleType, this.opponent);
   }
 
