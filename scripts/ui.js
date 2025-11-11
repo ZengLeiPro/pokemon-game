@@ -789,7 +789,15 @@ const UI = {
         <span class="text-green-600 font-bold">→</span>
       `;
 
-      pokemonDiv.onclick = () => UI.switchPokemonInBattle(index);
+      pokemonDiv.onclick = async () => {
+        console.log('点击切换宝可梦，索引:', index);
+        try {
+          await UI.switchPokemonInBattle(index);
+        } catch (error) {
+          console.error('切换宝可梦时出错:', error);
+          UI.addBattleLog('切换失败！', 'error');
+        }
+      };
 
       container.appendChild(pokemonDiv);
     });
@@ -797,8 +805,14 @@ const UI = {
 
   // ========== 战斗中切换宝可梦 ==========
   async switchPokemonInBattle(newIndex) {
+    console.log('switchPokemonInBattle 被调用，索引:', newIndex);
     const battle = gameState.battle.instance;
-    if (!battle || !battle.isActive) return;
+    console.log('battle 实例:', battle, 'isActive:', battle?.isActive);
+
+    if (!battle || !battle.isActive) {
+      console.warn('战斗未激活，无法切换');
+      return;
+    }
 
     // 隐藏切换面板
     document.getElementById('battle-switch-panel').classList.add('hidden');
@@ -807,12 +821,14 @@ const UI = {
     UI.setMoveButtonsEnabled(false);
 
     // 调用战斗中的切换方法
+    console.log('调用 battle.switchPokemon');
     await battle.switchPokemon(newIndex);
 
     // 重新启用技能按钮（如果战斗还在继续）
     if (battle.isActive) {
       UI.setMoveButtonsEnabled(true);
     }
+    console.log('switchPokemonInBattle 完成');
   },
 
   // ========== 渲染强制切换宝可梦列表（当前宝可梦倒下时） ==========
