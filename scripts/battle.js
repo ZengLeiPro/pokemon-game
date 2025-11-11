@@ -379,7 +379,7 @@ class Battle {
       // 队伍经验共享：其他队伍成员获得一半经验
       const sharedExp = Math.floor(expGained / 2);
       if (sharedExp > 0 && gameState.player.pokemonTeam.length > 1) {
-        UI.addBattleLog(`\n队伍其他成员获得共享经验 ${sharedExp} 点！`, 'info');
+        UI.addBattleLog(`\n=== 队伍经验共享 ===`, 'info');
 
         gameState.player.pokemonTeam.forEach((pokemon, index) => {
           // 跳过出战的宝可梦（已经获得全部经验）
@@ -387,16 +387,19 @@ class Battle {
             return;
           }
 
+          // 显示宝可梦获得经验
+          UI.addBattleLog(`${pokemon.name} Lv.${pokemon.level} 获得了 ${sharedExp} 点经验！`, 'success');
+
           // 给其他宝可梦分配一半经验
           const teamLevelUpInfo = pokemon.gainExp(sharedExp);
 
           // 显示升级信息
           if (teamLevelUpInfo.length > 0) {
             for (let info of teamLevelUpInfo) {
-              UI.addBattleLog(`\n${pokemon.name} 升到了 Lv.${info.level}！`, 'success');
+              UI.addBattleLog(`${pokemon.name} 升到了 Lv.${info.level}！`, 'critical');
               const gains = info.statGains;
               UI.addBattleLog(
-                `HP +${gains.hp} (${gains.newMaxHP})，` +
+                `  HP +${gains.hp} (${gains.newMaxHP})，` +
                 `攻击 +${gains.attack} (${gains.newAttack})，` +
                 `防御 +${gains.defense} (${gains.newDefense})，` +
                 `速度 +${gains.speed} (${gains.newSpeed})`,
