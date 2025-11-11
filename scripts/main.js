@@ -187,6 +187,24 @@ function bindResetButtons() {
 
 // ========== 绑定战斗界面按钮 ==========
 function bindBattleButtons() {
+  // 切换宝可梦按钮
+  const switchPokemonBtn = document.getElementById('switch-pokemon-btn');
+  if (switchPokemonBtn) {
+    switchPokemonBtn.addEventListener('click', () => {
+      // 显示切换面板
+      UI.renderBattleSwitchList();
+      document.getElementById('battle-switch-panel').classList.remove('hidden');
+    });
+  }
+
+  // 关闭切换面板按钮
+  const closeSwitchPanelBtn = document.getElementById('close-switch-panel-btn');
+  if (closeSwitchPanelBtn) {
+    closeSwitchPanelBtn.addEventListener('click', () => {
+      document.getElementById('battle-switch-panel').classList.add('hidden');
+    });
+  }
+
   // 使用道具按钮
   const useItemBtn = document.getElementById('use-item-btn');
   if (useItemBtn) {

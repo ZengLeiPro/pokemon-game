@@ -268,28 +268,55 @@ const UI = {
       if (pokemon) {
         // 有宝可梦
         const isActive = i === gameState.player.activePokemonIndex;
-        slotDiv.className = `${isActive ? 'bg-blue-50 border-blue-500' : 'bg-gray-50 border-gray-300'} border-2 rounded-xl p-4 flex items-center gap-3 cursor-pointer hover:scale-105 transition-transform`;
+        slotDiv.className = `${isActive ? 'bg-blue-50 border-blue-500' : 'bg-gray-50 border-gray-300'} border-2 rounded-xl p-4 flex flex-col gap-2`;
 
         slotDiv.innerHTML = `
-          <div class="text-4xl">${this.getPokemonIcon(pokemon.speciesId)}</div>
-          <div class="flex-1">
-            <div class="font-bold text-gray-800">${pokemon.name}</div>
-            <div class="text-sm text-gray-600">Lv.${pokemon.level}</div>
-            <div class="text-xs ${pokemon.currentHP > 0 ? 'text-green-600' : 'text-red-600'}">
-              HP: ${pokemon.currentHP}/${pokemon.maxHP}
+          <div class="flex items-center gap-3">
+            <div class="text-4xl">${this.getPokemonIcon(pokemon.speciesId)}</div>
+            <div class="flex-1">
+              <div class="font-bold text-gray-800">${pokemon.name}</div>
+              <div class="text-sm text-gray-600">Lv.${pokemon.level}</div>
+              <div class="text-xs ${pokemon.currentHP > 0 ? 'text-green-600' : 'text-red-600'}">
+                HP: ${pokemon.currentHP}/${pokemon.maxHP}
+              </div>
             </div>
+            ${isActive ? '<div class="text-sm font-bold text-blue-600">✓ 出战中</div>' : ''}
           </div>
-          ${isActive ? '<div class="text-sm font-bold text-blue-600">✓ 出战中</div>' : ''}
         `;
 
-        // 点击切换出战宝可梦
-        if (!isActive && pokemon.currentHP > 0 && !gameState.battle.isActive) {
-          slotDiv.onclick = () => {
-            switchActivePokemon(i);
-            UI.renderPokemonTeam();
-            UI.updatePlayerStatus(getCurrentPokemon());
-            showShopMessage(`切换到 ${pokemon.name}！`, 'success');
-          };
+        // 添加操作按钮
+        if (!gameState.battle.isActive) {
+          const btnContainer = document.createElement('div');
+          btnContainer.className = 'flex gap-2';
+
+          // 切换出战按钮
+          if (!isActive && pokemon.currentHP > 0) {
+            const switchBtn = document.createElement('button');
+            switchBtn.className = 'flex-1 px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-xs font-bold rounded transition-colors';
+            switchBtn.textContent = '设为出战';
+            switchBtn.onclick = (e) => {
+              e.stopPropagation();
+              switchActivePokemon(i);
+              UI.renderPokemonTeam();
+              UI.updatePlayerStatus(getCurrentPokemon());
+              showShopMessage(`切换到 ${pokemon.name}！`, 'success');
+            };
+            btnContainer.appendChild(switchBtn);
+          }
+
+          // 移到盒子按钮（不能移除最后一只宝可梦）
+          if (team.length > 1) {
+            const removeBtn = document.createElement('button');
+            removeBtn.className = 'flex-1 px-3 py-1 bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold rounded transition-colors';
+            removeBtn.textContent = '移至盒子';
+            removeBtn.onclick = (e) => {
+              e.stopPropagation();
+              UI.showRemovePokemonConfirm(pokemon, i);
+            };
+            btnContainer.appendChild(removeBtn);
+          }
+
+          slotDiv.appendChild(btnContainer);
         }
       } else {
         // 空位
@@ -302,6 +329,60 @@ const UI = {
 
       container.appendChild(slotDiv);
     }
+  },
+
+  // ========== 显示移除宝可梦确认对话框 ==========
+  showRemovePokemonConfirm(pokemon, teamIndex) {
+    const modal = document.createElement('div');
+    modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+    modal.onclick = (e) => {
+      if (e.target === modal) {
+        document.body.removeChild(modal);
+      }
+    };
+
+    const content = document.createElement('div');
+    content.className = 'bg-white rounded-2xl p-6 max-w-md w-full mx-4';
+
+    const title = document.createElement('h3');
+    title.className = 'text-xl font-bold text-gray-800 mb-4 text-center';
+    title.innerHTML = `
+      <div class="text-5xl mb-2">${this.getPokemonIcon(pokemon.speciesId)}</div>
+      将 ${pokemon.name} 移至盒子？
+    `;
+
+    const info = document.createElement('p');
+    info.className = 'text-sm text-gray-600 mb-4 text-center';
+    info.textContent = '宝可梦会从队伍中移除，并存放到宝可梦盒子中。你可以随时在服务页面的盒子里将它加回队伍。';
+
+    const actions = document.createElement('div');
+    actions.className = 'flex gap-3';
+
+    const confirmBtn = document.createElement('button');
+    confirmBtn.className = 'flex-1 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-lg transition-colors';
+    confirmBtn.textContent = '确认移除';
+    confirmBtn.onclick = () => {
+      if (removePokemonFromTeam(teamIndex)) {
+        showShopMessage(`${pokemon.name} 已移至盒子`, 'success');
+        UI.renderBag();
+        UI.updatePlayerStatus(getCurrentPokemon());
+      }
+      document.body.removeChild(modal);
+    };
+
+    const cancelBtn = document.createElement('button');
+    cancelBtn.className = 'flex-1 px-4 py-2 bg-gray-400 hover:bg-gray-500 text-white font-bold rounded-lg transition-colors';
+    cancelBtn.textContent = '取消';
+    cancelBtn.onclick = () => document.body.removeChild(modal);
+
+    actions.appendChild(confirmBtn);
+    actions.appendChild(cancelBtn);
+
+    content.appendChild(title);
+    content.appendChild(info);
+    content.appendChild(actions);
+    modal.appendChild(content);
+    document.body.appendChild(modal);
   },
 
   // ========== 获取宝可梦图标 ==========
@@ -666,5 +747,159 @@ const UI = {
     if (battle.isActive) {
       UI.setMoveButtonsEnabled(true);
     }
+  },
+
+  // ========== 渲染战斗中的宝可梦切换列表 ==========
+  renderBattleSwitchList() {
+    const container = document.getElementById('battle-switch-list');
+    if (!container) return;
+
+    const team = gameState.player.pokemonTeam;
+    const currentIndex = gameState.player.activePokemonIndex;
+    container.innerHTML = '';
+
+    // 筛选可用宝可梦（不是当前出战且HP > 0）
+    const availablePokemon = team.map((pokemon, index) => ({ pokemon, index }))
+      .filter(({ pokemon, index }) => index !== currentIndex && pokemon.currentHP > 0);
+
+    if (availablePokemon.length === 0) {
+      const emptyDiv = document.createElement('p');
+      emptyDiv.className = 'text-center text-gray-400 text-sm italic';
+      emptyDiv.textContent = '没有可以切换的宝可梦';
+      container.appendChild(emptyDiv);
+      return;
+    }
+
+    // 渲染宝可梦
+    availablePokemon.forEach(({ pokemon, index }) => {
+      const pokemonDiv = document.createElement('div');
+      pokemonDiv.className = 'flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors';
+
+      pokemonDiv.innerHTML = `
+        <div class="flex items-center gap-3">
+          <span class="text-3xl">${this.getPokemonIcon(pokemon.speciesId)}</span>
+          <div>
+            <div class="font-bold text-gray-800">${pokemon.name}</div>
+            <div class="text-sm text-gray-600">Lv.${pokemon.level}</div>
+            <div class="text-xs text-green-600">
+              HP: ${pokemon.currentHP}/${pokemon.maxHP}
+            </div>
+          </div>
+        </div>
+        <span class="text-green-600 font-bold">→</span>
+      `;
+
+      pokemonDiv.onclick = () => UI.switchPokemonInBattle(index);
+
+      container.appendChild(pokemonDiv);
+    });
+  },
+
+  // ========== 战斗中切换宝可梦 ==========
+  async switchPokemonInBattle(newIndex) {
+    const battle = gameState.battle.instance;
+    if (!battle || !battle.isActive) return;
+
+    // 隐藏切换面板
+    document.getElementById('battle-switch-panel').classList.add('hidden');
+
+    // 禁用技能按钮
+    UI.setMoveButtonsEnabled(false);
+
+    // 调用战斗中的切换方法
+    await battle.switchPokemon(newIndex);
+
+    // 重新启用技能按钮（如果战斗还在继续）
+    if (battle.isActive) {
+      UI.setMoveButtonsEnabled(true);
+    }
+  },
+
+  // ========== 渲染强制切换宝可梦列表（当前宝可梦倒下时） ==========
+  renderBattleSwitchListForced() {
+    const container = document.getElementById('battle-switch-list');
+    if (!container) return;
+
+    const team = gameState.player.pokemonTeam;
+    const currentIndex = gameState.player.activePokemonIndex;
+    container.innerHTML = '';
+
+    // 筛选可用宝可梦（不是当前出战且HP > 0）
+    const availablePokemon = team.map((pokemon, index) => ({ pokemon, index }))
+      .filter(({ pokemon, index }) => index !== currentIndex && pokemon.currentHP > 0);
+
+    if (availablePokemon.length === 0) {
+      const emptyDiv = document.createElement('p');
+      emptyDiv.className = 'text-center text-red-600 font-bold text-sm italic';
+      emptyDiv.textContent = '没有可以切换的宝可梦了！';
+      container.appendChild(emptyDiv);
+      return;
+    }
+
+    // 添加提示信息
+    const hintDiv = document.createElement('p');
+    hintDiv.className = 'text-center text-red-600 font-bold text-sm mb-3';
+    hintDiv.textContent = '必须选择一只宝可梦继续战斗！';
+    container.appendChild(hintDiv);
+
+    // 渲染宝可梦
+    availablePokemon.forEach(({ pokemon, index }) => {
+      const pokemonDiv = document.createElement('div');
+      pokemonDiv.className = 'flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-green-100 cursor-pointer transition-colors border-2 border-green-500';
+
+      pokemonDiv.innerHTML = `
+        <div class="flex items-center gap-3">
+          <span class="text-3xl">${this.getPokemonIcon(pokemon.speciesId)}</span>
+          <div>
+            <div class="font-bold text-gray-800">${pokemon.name}</div>
+            <div class="text-sm text-gray-600">Lv.${pokemon.level}</div>
+            <div class="text-xs text-green-600">
+              HP: ${pokemon.currentHP}/${pokemon.maxHP}
+            </div>
+          </div>
+        </div>
+        <span class="text-green-600 font-bold text-xl">→</span>
+      `;
+
+      pokemonDiv.onclick = () => UI.forcedSwitchPokemon(index);
+
+      container.appendChild(pokemonDiv);
+    });
+  },
+
+  // ========== 强制切换宝可梦（不让对手行动） ==========
+  async forcedSwitchPokemon(newIndex) {
+    const battle = gameState.battle.instance;
+    if (!battle || !battle.isActive) return;
+
+    const oldPokemon = battle.playerPokemon;
+    const newPokemon = gameState.player.pokemonTeam[newIndex];
+
+    if (!newPokemon || newPokemon.currentHP <= 0) {
+      return;
+    }
+
+    // 隐藏切换面板
+    document.getElementById('battle-switch-panel').classList.add('hidden');
+
+    // 切换出战宝可梦
+    switchActivePokemon(newIndex);
+    battle.playerPokemon = newPokemon;
+
+    UI.addBattleLog(`\n上吧，${newPokemon.name}！`, 'success');
+    await battle.delay(500);
+
+    // 重置新宝可梦的能力等级变化
+    newPokemon.statModifiers = { attack: 0, defense: 0 };
+
+    // 更新战斗界面
+    UI.updateBattleStatus(battle.playerPokemon, battle.opponentPokemon, battle.battleType, battle.opponent);
+    UI.createMoveButtons(newPokemon.moves, (move) => onPlayerMoveSelected(move));
+
+    // 显示战斗操作按钮
+    document.getElementById('battle-actions').style.display = 'block';
+
+    // 重新启用技能按钮
+    UI.setMoveButtonsEnabled(true);
   }
 };
