@@ -2,8 +2,8 @@
 class Battle {
   constructor(playerPokemon, opponent, battleType = 'wild') {
     this.playerPokemon = playerPokemon;
-    this.opponent = opponent;  // 可以是野生宝可梦或训练家
-    this.battleType = battleType;  // 'wild' 或 'trainer'
+    this.opponent = opponent;  // 可以是野生宝可梦、训练家或道馆馆长
+    this.battleType = battleType;  // 'wild', 'trainer', 或 'gymLeader'
     this.turn = 0;
     this.isActive = true;
     this.winner = null;
@@ -11,6 +11,12 @@ class Battle {
     // 获取对手的宝可梦
     if (battleType === 'trainer') {
       this.opponentPokemon = opponent.pokemon;
+    } else if (battleType === 'gymLeader') {
+      // 道馆馆长：从队伍中获取第一只宝可梦
+      if (!opponent.currentPokemonIndex) {
+        opponent.currentPokemonIndex = 0;
+      }
+      this.opponentPokemon = opponent.pokemonTeam[opponent.currentPokemonIndex];
     } else {
       this.opponentPokemon = opponent;
     }
@@ -334,7 +340,43 @@ class Battle {
 
     if (this.winner === 'player') {
       // 玩家胜利
-      if (this.battleType === 'trainer') {
+      if (this.battleType === 'gymLeader') {
+        // 道馆馆长对战：检查是否还有其他宝可梦
+        UI.addBattleLog(`\n${this.opponent.name}的 ${this.opponentPokemon.name} 倒下了！`, 'success');
+
+        // 检查道馆馆长是否还有其他宝可梦
+        this.opponent.currentPokemonIndex++;
+        if (this.opponent.currentPokemonIndex < this.opponent.pokemonTeam.length) {
+          // 还有其他宝可梦，道馆馆长换下一只
+          const nextPokemon = this.opponent.pokemonTeam[this.opponent.currentPokemonIndex];
+          UI.addBattleLog(`\n${this.opponent.name} 派出了 ${nextPokemon.name}！`, 'opponent');
+
+          // 不结束战斗，继续进行
+          this.isActive = true;
+          this.winner = null;
+          this.opponentPokemon = nextPokemon;
+          this.opponentPokemon.statModifiers = { attack: 0, defense: 0 };
+
+          // 更新战斗界面
+          UI.updateBattleStatus(this.playerPokemon, this.opponentPokemon, 'gymLeader', this.opponent);
+          UI.setMoveButtonsEnabled(true);
+
+          return; // 不执行后续的战斗结束逻辑
+        } else {
+          // 所有宝可梦都倒下了，道馆挑战成功
+          UI.addBattleLog(`\n${this.opponent.name}的所有宝可梦都倒下了！`, 'success');
+          UI.addBattleLog(this.opponent.getDefeatMessage());
+          UI.addBattleLog(`恭喜！你击败了道馆馆长 ${this.opponent.name}！`, 'critical');
+
+          // 授予勋章
+          const badge = this.opponent.badge;
+          awardBadge(badge.id);
+          UI.addBattleLog(`\n你获得了 ${badge.icon} ${badge.name}！`, 'critical');
+
+          // 标记道馆馆长为已击败
+          this.opponent.markDefeated();
+        }
+      } else if (this.battleType === 'trainer') {
         // 训练家对战胜利
         UI.addBattleLog(`\n${this.opponent.name}的 ${this.opponentPokemon.name} 倒下了！`, 'success');
         UI.addBattleLog(this.opponent.getDefeatMessage());

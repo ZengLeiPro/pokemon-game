@@ -11,7 +11,8 @@ const gameState = {
     totalBattles: 0,            // 总场数
     money: 3000,                // 金币（初始3000，参考官方游戏）
     trainerDefeats: 0,          // 击败训练家数量
-    capturedCount: 0            // 捕获的宝可梦总数
+    capturedCount: 0,           // 捕获的宝可梦总数
+    badges: []                  // 已获得的勋章列表
   },
 
   // 战斗状态
@@ -248,7 +249,10 @@ function saveGame() {
         money: gameState.player.money,
         trainerDefeats: gameState.player.trainerDefeats,
         capturedCount: gameState.player.capturedCount
-      }
+      },
+
+      // 保存勋章
+      badges: gameState.player.badges || []
     };
 
     localStorage.setItem('pokemonSave', JSON.stringify(saveData));
@@ -314,6 +318,9 @@ function loadGame() {
     gameState.player.trainerDefeats = data.stats.trainerDefeats || 0;
     gameState.player.capturedCount = data.stats.capturedCount || 0;
 
+    // 加载勋章
+    gameState.player.badges = data.badges || [];
+
     console.log('游戏已加载');
     return true;
   } catch (error) {
@@ -359,6 +366,7 @@ function loadLegacySave(data) {
   gameState.player.money = data.stats.money !== undefined ? data.stats.money : 3000;
   gameState.player.trainerDefeats = data.stats.trainerDefeats || 0;
   gameState.player.capturedCount = 0;
+  gameState.player.badges = [];
 
   // 保存迁移后的存档
   saveGame();
@@ -379,6 +387,7 @@ function resetGame() {
   gameState.player.money = 3000;
   gameState.player.trainerDefeats = 0;
   gameState.player.capturedCount = 0;
+  gameState.player.badges = [];
   gameState.phase = "start";
   console.log('游戏已重置');
 }
