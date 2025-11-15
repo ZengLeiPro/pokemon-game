@@ -45,11 +45,12 @@ npm run build:static
 
 ### 自动发布到 GitHub Pages
 
-仓库已经配置 GitHub Actions，在主分支收到推送时会自动：
+仓库已经配置 GitHub Actions，在主分支收到推送或针对 `main` 分支创建的 Pull Request 时会自动：
 
 1. 安装依赖并执行 `npm run build:static` 生成相对路径的静态文件；
 2. 将 `dist/` 目录上传为构建产物；
-3. 将最新构建部署到 GitHub Pages，对外提供可访问的网站。
+3. 在推送到 `main` 时，将最新构建部署到 GitHub Pages，对外提供可访问的网站；
+4. 在 Pull Request 中创建 GitHub Pages 预览链接，方便在合并前验证静态页面效果（Fork 仓库的 PR 会自动跳过部署步骤）。
 
 如需手动触发部署，可在 GitHub 仓库页面的 **Actions** 标签页中选择 “Deploy static site” 工作流并执行 `Run workflow`。
 

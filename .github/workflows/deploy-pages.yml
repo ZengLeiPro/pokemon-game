@@ -3,6 +3,8 @@ name: Deploy static site
 on:
   push:
     branches: ["main"]
+  pull_request:
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -11,7 +13,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages-${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.pull_request.number) || github.ref_name }}
   cancel-in-progress: true
 
 jobs:
@@ -57,8 +59,9 @@ jobs:
 
   deploy:
     needs: build
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
     environment:
-      name: github-pages
+      name: ${{ github.event_name == 'pull_request' && format('preview/pr-{0}', github.event.pull_request.number) || 'github-pages' }}
       url: ${{ steps.deploy.outputs.page_url }}
     runs-on: ubuntu-latest
     permissions:
@@ -69,3 +72,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deploy
         uses: actions/deploy-pages@v4
+        with:
+          preview: ${{ github.event_name == 'pull_request' }}
