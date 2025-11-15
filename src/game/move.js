@@ -1,5 +1,7 @@
+import { MOVE_DATA } from './data.js';
+
 // ========== Move类 ==========
-class Move {
+export default class Move {
   constructor(moveId) {
     const data = MOVE_DATA[moveId];
 
@@ -32,3 +34,5 @@ class Move {
     }
   }
 }
+
+export { Move };

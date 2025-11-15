@@ -1,5 +1,5 @@
 // ========== 属性克制表 ==========
-const TYPE_CHART = {
+export const TYPE_CHART = {
   "火": {
     "草": 2.0,
     "冰": 2.0,
@@ -65,7 +65,7 @@ const TYPE_CHART = {
 };
 
 // ========== 经验值等级表 ==========
-const EXP_TABLE = {
+export const EXP_TABLE = {
   1: 0,
   2: 8,
   3: 27,
@@ -119,7 +119,7 @@ const EXP_TABLE = {
 };
 
 // ========== 技能数据 ==========
-const MOVE_DATA = {
+export const MOVE_DATA = {
   // 火系技能
   "ember": {
     "name": "火花",
@@ -396,7 +396,7 @@ const MOVE_DATA = {
 // 更新时间: 2025-11-08T00:54:43.713Z
 // 包含151只初代宝可梦完整数据（已配置进化链和技能学习表）
 
-const POKEMON_DATA = {
+export const POKEMON_DATA = {
   // #1 妙蛙种子
   "bulbasaur": {
     "id": 1,
